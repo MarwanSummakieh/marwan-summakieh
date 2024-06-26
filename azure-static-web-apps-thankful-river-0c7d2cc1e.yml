@@ -17,10 +17,6 @@ jobs:
     vmImage: ubuntu-latest
   variables:
   - group: Azure-Static-Web-Apps-thankful-river-0c7d2cc1e-variable-group
-  - name: NEXT_PUBLIC_OPEN_AI_API
-    value: $(NEXT_PUBLIC_OPEN_AI_API)
-  - name: NEXT_PUBLIC_ASSISTANT_ID
-    value: $(NEXT_PUBLIC_ASSISTANT_ID)
   steps:
   - checkout: self
     submodules: true
