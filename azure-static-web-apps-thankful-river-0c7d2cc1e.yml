@@ -17,6 +17,10 @@ jobs:
     vmImage: ubuntu-latest
   variables:
   - group: Azure-Static-Web-Apps-thankful-river-0c7d2cc1e-variable-group
+  - name: NEXT_PUBLIC_OPEN_AI_API
+    value: $(NEXT_PUBLIC_OPEN_AI_API)
+  - name: NEXT_PUBLIC_ASSISTANT_ID
+    value: $(NEXT_PUBLIC_ASSISTANT_ID)
   steps:
   - checkout: self
     submodules: true
@@ -24,9 +28,14 @@ jobs:
     inputs:
       version: '18.x'
   - script: |
+      echo "##vso[task.setvariable variable=NEXT_PUBLIC_OPEN_AI_API]$(NEXT_PUBLIC_OPEN_AI_API)"
+      echo "##vso[task.setvariable variable=NEXT_PUBLIC_ASSISTANT_ID]$(NEXT_PUBLIC_ASSISTANT_ID)"
       npm install
       npm run build
     displayName: 'Build Application'
+    env:
+      NEXT_PUBLIC_OPEN_AI_API: $(NEXT_PUBLIC_OPEN_AI_API)
+      NEXT_PUBLIC_ASSISTANT_ID: $(NEXT_PUBLIC_ASSISTANT_ID)
   - task: AzureStaticWebApp@0
     inputs:
       azure_static_web_apps_api_token: $(AZURE_STATIC_WEB_APPS_API_TOKEN_THANKFUL_RIVER_0C7D2CC1E)
