@@ -20,6 +20,13 @@ jobs:
   steps:
   - checkout: self
     submodules: true
+  - task: UseNode@1
+    inputs:
+      version: '18.x'
+  - script: |
+      npm install
+      npm run build
+    displayName: 'Build Application'
   - task: AzureStaticWebApp@0
     inputs:
       azure_static_web_apps_api_token: $(AZURE_STATIC_WEB_APPS_API_TOKEN_THANKFUL_RIVER_0C7D2CC1E)
@@ -29,4 +36,3 @@ jobs:
       api_location: "" # Api source code path - optional
       output_location: "" # Built app content directory - optional
 ###### End of Repository/Build Configurations ######
-
