@@ -26,7 +26,7 @@ const techData: { [key: string]: TechItem[] } = {
     { src: "/icons/Node.js.svg", name: "Node.js" },
     { src: "/icons/Express.svg", name: "Express" },
     { src: "/icons/Spring.svg", name: "Spring" },
-    { src: "/icons/Net.svg", name: ".NET" },
+    { src: "/icons/NET.svg", name: ".NET" },
     { src: "/icons/CSharp.svg", name: "C#" },
     { src: "/icons/Go.svg", name: "Go" },
     { src: "/icons/Python.svg", name: "Python" },
@@ -37,7 +37,7 @@ const techData: { [key: string]: TechItem[] } = {
     { src: "/icons/Kubernetes.svg", name: "Kubernetes" },
     { src: "/icons/AWS.svg", name: "AWS" },
     { src: "/icons/Azure.svg", name: "Azure" },
-    { src: "/icons/PowerShell.svg", name: "PowerShell" }
+    { src: "/icons/Powershell.svg", name: "PowerShell" }
   ],
   "Databases": [
     { src: "/icons/MongoDB.svg", name: "MongoDB" },
