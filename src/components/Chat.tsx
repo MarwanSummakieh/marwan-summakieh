@@ -61,7 +61,7 @@ const Chat: React.FC = () => {
       currentMessageRef.current = "";
 
       const run = openai.beta.threads.runs.stream(threadId, {
-        assistant_id: process.env.NEXT_PUBLIC_ASSISTANT_ID || ''
+        assistant_id: process.env.ASSISTANT_ID || ''
       });
 
       run
