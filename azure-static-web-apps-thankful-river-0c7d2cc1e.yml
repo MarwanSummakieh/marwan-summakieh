@@ -34,6 +34,7 @@ jobs:
       npm run build
     displayName: 'Build Application'
     env:
+      NODE_VERSION: 18.17.0
       NEXT_PUBLIC_OPEN_AI_API: $(NEXT_PUBLIC_OPEN_AI_API)
       NEXT_PUBLIC_ASSISTANT_ID: $(NEXT_PUBLIC_ASSISTANT_ID)
   - task: AzureStaticWebApp@0
