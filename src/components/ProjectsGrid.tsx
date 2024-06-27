@@ -60,7 +60,6 @@ const ProjectGrid: React.FC = () => {
     <ThemeProvider
       attribute="class"
       defaultTheme="dark"
-      enableSystem
       disableTransitionOnChange
     >
       <div>

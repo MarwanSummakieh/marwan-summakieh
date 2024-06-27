@@ -9,7 +9,6 @@ const Footer: React.FC = () => {
         <ThemeProvider
             attribute="class"
             defaultTheme="dark"
-            enableSystem
             disableTransitionOnChange
         >
             <footer className="text-white py-4 bg-black-100">

@@ -127,7 +127,6 @@ const Chat: React.FC = () => {
     <ThemeProvider
       attribute="class"
       defaultTheme="dark"
-      enableSystem
       disableTransitionOnChange
     >
       <div>

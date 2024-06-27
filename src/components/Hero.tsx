@@ -14,7 +14,6 @@ const Hero = () => {
     <ThemeProvider
       attribute="class"
       defaultTheme="dark"
-      enableSystem
       disableTransitionOnChange
     >
       <div className="pd-20 pt-36">
