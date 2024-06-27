@@ -17,6 +17,7 @@ const Chat: React.FC = () => {
   const [threadId, setThreadId] = useState<string | null>(null);
   const [imageSrc, setImageSrc] = useState<string>('/imojies/hey.png');
   const chatContainerRef = useRef<HTMLDivElement>(null);
+  const [currentTypingMessage, setCurrentTypingMessage] = useState<string>('');
 
   const placeholders = [
     "What's your experience in software engineering?",
@@ -78,12 +79,30 @@ const Chat: React.FC = () => {
       }
 
       const data = await response.json();
-      setMessages((prevMessages) => [...prevMessages, ...data.messages]);
-      setImageSrc('/imojies/smiling.png');
+      startTypingEffect(data.messages);
     } catch (error) {
       console.error("Error sending message:", error);
       setMessages((prevMessages) => [...prevMessages, { text: "Sorry, I couldn't process your request.", type: 'received' }]);
       setImageSrc('/imojies/oops.png');
+    }
+  };
+
+  const startTypingEffect = (newMessages: Message[]) => {
+    const receivedMessages = newMessages.filter(msg => msg.type === 'received');
+    if (receivedMessages.length > 0) {
+      const fullText = receivedMessages.map(msg => msg.text).join(' ');
+      typeMessage(fullText, 0);
+    }
+  };
+
+  const typeMessage = (text: string, index: number) => {
+    if (index < text.length) {
+      setCurrentTypingMessage((prev) => prev + text[index]);
+      setTimeout(() => typeMessage(text, index + 1), 50); // Adjust the speed as needed
+    } else {
+      setMessages((prevMessages) => [...prevMessages, { text, type: 'received' }]);
+      setCurrentTypingMessage('');
+      setImageSrc('/imojies/smiling.png');
     }
   };
 
@@ -102,7 +121,7 @@ const Chat: React.FC = () => {
     if (chatContainer) {
       chatContainer.scrollTop = chatContainer.scrollHeight;
     }
-  }, [messages]);
+  }, [messages, currentTypingMessage]);
 
   return (
     <ThemeProvider
@@ -152,6 +171,13 @@ const Chat: React.FC = () => {
                   </div>
                 </div>
               ))}
+              {currentTypingMessage && (
+                <div className="flex mb-2 justify-start">
+                  <div className="max-w-xs p-3 rounded-2xl bg-cyan-800 text-white">
+                    {currentTypingMessage}
+                  </div>
+                </div>
+              )}
               <div
                 id="bottom-fade"
                 className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-gray-100 dark:from-gray-800 to-transparent pointer-events-none z-10 opacity-0 transition-opacity duration-300"
