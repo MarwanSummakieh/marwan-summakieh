@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import openai from '../utils/openai';
 import { ThemeProvider } from './ThemeProvider';
 import { PlaceholdersAndVanishInput } from './ui/PlaceholdersAndVanishInput';
 import { Spotlight } from './ui/Spotlight';
@@ -18,7 +17,6 @@ const Chat: React.FC = () => {
   const [threadId, setThreadId] = useState<string | null>(null);
   const [imageSrc, setImageSrc] = useState<string>('/imojies/hey.png');
   const chatContainerRef = useRef<HTMLDivElement>(null);
-  const currentMessageRef = useRef<string>("");
 
   const placeholders = [
     "What's your experience in software engineering?",
@@ -30,10 +28,23 @@ const Chat: React.FC = () => {
   useEffect(() => {
     const createNewThread = async () => {
       try {
-        const thread = await openai.beta.threads.create();
-        setThreadId(thread.id);
+        const response = await fetch('/api/chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ message: '', threadId: null }),
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || 'Failed to create new thread');
+        }
+
+        const data = await response.json();
+        setThreadId(data.threadId);
       } catch (error) {
-        console.error("Error creating new thread:", (error as Error).message);
+        console.error("Error creating new thread:", error);
         setImageSrc('/imojies/oops.png');
       }
     };
@@ -50,66 +61,28 @@ const Chat: React.FC = () => {
   };
 
   const sendMessageToOpenAI = async (message: string) => {
-    if (!threadId) return; // Ensure threadId is defined
+    if (!threadId) return;
 
     try {
-      await openai.beta.threads.messages.create(threadId, {
-        role: "user",
-        content: message,
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message, threadId }),
       });
 
-      currentMessageRef.current = "";
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to send message');
+      }
 
-      const run = openai.beta.threads.runs.stream(threadId, {
-        assistant_id: process.env.ASSISTANT_ID || ''
-      });
-
-      run
-        .on('textCreated', (text) => {
-          currentMessageRef.current = "";
-          setMessages((prevMessages) => [...prevMessages, { text: "", type: 'received' }]);
-        })
-        .on('textDelta', (textDelta, snapshot) => {
-          currentMessageRef.current += textDelta.value || '';
-          setMessages((prevMessages) => {
-            const newMessages = [...prevMessages];
-            const lastMessageIndex = newMessages.length - 1;
-            if (lastMessageIndex >= 0 && newMessages[lastMessageIndex].type === 'received') {
-              newMessages[lastMessageIndex].text = currentMessageRef.current;
-            } else {
-              newMessages.push({ text: currentMessageRef.current, type: 'received' });
-            }
-            return newMessages;
-          });
-          setImageSrc('/imojies/smiling.png');
-        })
-        .on('toolCallCreated', (toolCall) => {
-          setMessages((prevMessages) => [...prevMessages, { text: `${toolCall.type}\n\n`, type: 'received' }]);
-          setImageSrc('/imojies/smiling.png');
-        })
-        .on('toolCallDelta', (toolCallDelta, snapshot) => {
-          if (toolCallDelta.type === 'code_interpreter' && toolCallDelta.code_interpreter) {
-            if (toolCallDelta.code_interpreter.input) {
-              setMessages((prevMessages) => [...prevMessages, { text: toolCallDelta.code_interpreter?.input || '', type: 'received' }]);
-            }
-            if (toolCallDelta.code_interpreter.outputs) {
-              setMessages((prevMessages) => {
-                const newMessages = [...prevMessages];
-                newMessages.push({ text: "\noutput >\n", type: 'received' });
-                toolCallDelta.code_interpreter?.outputs?.forEach(output => {
-                  if (output.type === "logs" && output.logs) {
-                    newMessages.push({ text: `${output.logs}\n`, type: 'received' });
-                  }
-                });
-                return newMessages;
-              });
-            }
-          }
-          setImageSrc('/imojies/smiling.png');
-        });
+      const data = await response.json();
+      setMessages((prevMessages) => [...prevMessages, ...data.messages]);
+      setImageSrc('/imojies/smiling.png');
     } catch (error) {
-      console.error("Error calling OpenAI API:", (error as Error).message);
-      setMessages((prevMessages) => [...prevMessages, { text: "Sorry, I couldn't process your request. " + (error as Error).message, type: 'received' }]);
+      console.error("Error sending message:", error);
+      setMessages((prevMessages) => [...prevMessages, { text: "Sorry, I couldn't process your request.", type: 'received' }]);
       setImageSrc('/imojies/oops.png');
     }
   };
@@ -139,12 +112,11 @@ const Chat: React.FC = () => {
       disableTransitionOnChange
     >
       <div>
-          <Spotlight className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen" fill="white" />
-          <Spotlight className="-top-10 -left-full h-[80vh] w-[50vw]" fill="purple" />
-          <Spotlight className="top-28 left-80 h-[80vh] w-[50vw]" fill="blue" />
-        </div>
-      <h2 className="text-center text-xl font-bold mt-16">Chat with Marwan</h2>
-      <div className="relative flex mb-32 justify-center items-center h-[85vh]">
+        <Spotlight className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen" fill="white" />
+        <Spotlight className="-top-10 -left-full h-[80vh] w-[50vw]" fill="purple" />
+        <Spotlight className="top-28 left-80 h-[80vh] w-[50vw]" fill="blue" />
+      </div>
+      <div className="relative flex mb-32 mt-16 justify-center items-center h-[90vh]">
         <div className="flex flex-col md:flex-row w-full max-w-6xl h-full items-center justify-between space-x-0 md:space-x-4 p-4">
           <div className="flex-1 mb-10 md:mb-0 flex items-end justify-center">
             <Image

@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@tabler/icons-react": "^3.6.0",
+    "ai": "^3.2.12",
     "axios": "^1.7.2",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
