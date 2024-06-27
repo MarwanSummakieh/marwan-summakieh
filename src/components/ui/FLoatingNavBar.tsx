@@ -30,7 +30,7 @@ export const FloatingNav = ({
           duration: 0.2,
         }}
         className={cn(
-          "flex justify-center items-center fixed top-4 inset-x-0 mx-auto border border-transparent dark:border-white/[0.2] rounded-full dark:bg-black bg-white shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] z-[5000] p-2 sm:p-4 space-x-4 w-full sm:w-auto",
+          "flex justify-center items-center fixed top-4 inset-x-0 mx-auto border border-transparent dark:border-white/[0.2] rounded-full dark:bg-black bg-white shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] z-[5000] p-2 sm:p-4 space-x-4 w-[90] sm:max-w-fit",
           className
         )}
       >
@@ -38,10 +38,10 @@ export const FloatingNav = ({
           <Link
             key={`link=${idx}`}
             href={navItem.link}
-            className="relative dark:text-neutral-50 flex items-center space-x-2 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500"
+            className="relative dark:text-neutral-50 flex space-x-1 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500"
           >
             <span className="flex justify-center items-center">{navItem.icon}</span>
-            <span className="text-sm">{navItem.name}</span>
+            <span className="text-sm sm:block">{navItem.name}</span>
           </Link>
         ))}
       </motion.div>
