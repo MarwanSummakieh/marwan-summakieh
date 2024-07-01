@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
-import TechGrid from "@/components/TechGrid";
+import Timeline from "@/components/Timeline";
+import TechGrid from "@/components/Timeline";
 import { FloatingNav } from "@/components/ui/FLoatingNavBar";
 
 export default function Home() {
@@ -23,7 +24,7 @@ export default function Home() {
         },
       ]} />
       <Hero />
-      <TechGrid />
+      <Timeline />
       <Footer />
       </div>
     </main>
