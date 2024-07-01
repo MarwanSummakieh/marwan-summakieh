@@ -49,7 +49,7 @@ const milestones = [
   },
   {
     date: "2023 - Present",
-    text: "Started my first company job at Joker IT, it was a very interesting and unique experience where I dove deeper into Azure and automation with powershell, focusing on Azure and PowerShell.",
+    text: "Started my first company job at Joker IT, it was a very interesting and unique experience where I dove deeper into Azure and automation with powershell.",
     image: "/imojies/work.png",
     alt: "Joker IT",
     tech: [
