@@ -13,7 +13,7 @@ interface TechItem {
 const milestones = [
   {
     date: "2018 - 2019",
-    text: "Hack your future was my entry way to the world of programming and just like that I was hooked, I learnt HTML, CSS, and JavaScript.",
+    text: "\"HackYourFuture\", was my entry way to the world of programming and just like that I was hooked, I learnt HTML, CSS, and JavaScript.",
     image: "/imojies/amazing.png",
     alt: "HackYourFuture",
     tech: [
@@ -24,11 +24,12 @@ const milestones = [
   },
   {
     date: "2019 - 2022",
-    text: "After Hack your future I enrolled into a full time software engineering programme where I was introduced to many concept such as object-oriented programming and test driven development. I also got to understand software design architectures. Here is where I learnt the most including C#, TypeScript, Tailwind, React, and React Native.",
+    text: "After \"HackYourFuture\", I enrolled into a full time software engineering programme, where I was introduced to many concepts, such as object-oriented programming and test driven development. I also got to understand software design architectures. This is where I learnt the most, including C#, TypeScript, Tailwind, React, and React Native.",
     image: "/imojies/graduation.png",
     alt: "VIA University College",
     tech: [
       { src: "/icons/Java.svg", name: "Java" },
+      { src: "/icons/Spring.svg", name: "Spring" },
       { src: "/icons/CSharp.svg", name: "C#" },
       { src: "/icons/TypeScript.svg", name: "TypeScript" },
       { src: "/icons/Tailwind CSS.svg", name: "Tailwind CSS" },
@@ -37,7 +38,7 @@ const milestones = [
   },
   {
     date: "2022 - 2023",
-    text: "After graduating I wanted to take a short break and I started to learn the know how side of development such as cloud services and micro services, I also worked on multiple e-commerce projects. learning AWS, Kubernetes, Go, and Python.",
+    text: "After graduating I wanted to take a short break and I started to learn the know-how side of development such as cloud services and micro services. I also worked on multiple e-commerce projects. learning AWS, Kubernetes, Go, and Python.",
     image: "/imojies/busy.png",
     alt: "Freelance",
     tech: [
@@ -49,7 +50,7 @@ const milestones = [
   },
   {
     date: "2023 - Present",
-    text: "Started my first company job at Joker IT, it was a very interesting and unique experience where I dove deeper into Azure and automation with powershell.",
+    text: "Started my first company job at Joker IT, it was a very interesting and unique experience where, I dove deeper into Azure and automation with Powershell.",
     image: "/imojies/work.png",
     alt: "Joker IT",
     tech: [
@@ -80,7 +81,7 @@ const Timeline: React.FC = () => {
               <div className="flex flex-wrap gap-4 justify-center">
                 {milestone.tech.map((tech, techIndex) => (
                   <div key={techIndex} className="relative flex flex-col items-center group">
-                    <Image src={tech.src} alt={tech.name} width={50} height={50} className="shadow-md" />
+                    <Image src={tech.src} alt={tech.name} width={75} height={75} className="shadow-md" />
                     <p className="text-white text-sm absolute bottom-[-1.5rem] opacity-0 group-hover:opacity-100 transition-opacity bg-black bg-opacity-50 px-2 py-1 rounded-lg">
                       {tech.name}
                     </p>
