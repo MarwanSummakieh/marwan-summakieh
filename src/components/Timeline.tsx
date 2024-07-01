@@ -66,13 +66,13 @@ const Timeline: React.FC = () => {
         <h1 className="text-4xl font-bold text-white">My Journey in Tech</h1>
       </div>
       <div className="relative">
-        <div className="absolute left-1/2 transform -translate-x-1/2 h-full border-l-2 border-blue-800"></div>
+        <div className="absolute left-1/2 transform -translate-x-1/2 h-full border-l-2 border-blue-800 hidden md:block"></div>
         {milestones.map((milestone, index) => (
-          <div key={index} className={`flex ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'} items-center mb-10 relative`}>
-            <div className="w-1/2 p-5">
+          <div key={index} className={`flex ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center mb-10 relative`}>
+            <div className="w-1/2 p-5 hidden md:block">
               <Image src={milestone.image} alt={milestone.alt} width={400} height={300} className="rounded-xl shadow-lg" />
             </div>
-            <div className="w-1/2 p-5">
+            <div className="w-full md:w-1/2 p-5">
               <div className="bg-blue-800 text-white p-6 rounded-xl shadow-lg mb-4">
                 <h2 className="text-2xl font-bold mb-4">{milestone.date}</h2>
                 <p className="text-lg">{milestone.text}</p>
@@ -88,7 +88,7 @@ const Timeline: React.FC = () => {
                 ))}
               </div>
             </div>
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-blue-800 rounded-full flex items-center justify-center text-white text-lg">
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-blue-800 rounded-full flex items-center justify-center text-white text-lg hidden md:flex">
               {index + 1}
             </div>
           </div>
