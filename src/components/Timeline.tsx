@@ -24,7 +24,7 @@ const milestones = [
   },
   {
     date: "2019 - 2022",
-    text: "After \"HackYourFuture\", I enrolled into a full time software engineering programme, where I was introduced to many concepts, such as object-oriented programming and test driven development. I also got to understand software design architectures. This is where I learnt the most, including C#, TypeScript, Tailwind, React, and React Native.",
+    text: "After \"HackYourFuture\"&apos; I enrolled into a full time software engineering programme, where I was introduced to many concepts, such as object-oriented programming and test driven development. I also got to understand software design architectures. This is where I learnt the most, including C#, TypeScript, Tailwind, React, and React Native.",
     image: "/imojies/graduation.png",
     alt: "VIA University College",
     tech: [
@@ -38,7 +38,7 @@ const milestones = [
   },
   {
     date: "2022 - 2023",
-    text: "After graduating I wanted to take a short break and I started to learn the know-how side of development such as cloud services and micro services. I also worked on multiple e-commerce projects. learning AWS, Kubernetes, Go, and Python.",
+    text: "After graduating I wanted to take a short break and I started to learn the know-how side of development, such as cloud services and micro services. I also worked on multiple e-commerce projects. learning AWS, Kubernetes, Go, and Python.",
     image: "/imojies/busy.png",
     alt: "Freelance",
     tech: [
