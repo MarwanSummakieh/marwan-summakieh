@@ -117,12 +117,12 @@ const ProjectGrid: React.FC = () => {
               }
               icon={project.icon}
               footer={
-                <div className="flex justify-center mt-4">
+                <div className="flex justify-between mt-4">
                   <a href={project.tutorialLink}>
-                    <FaBook size="l" />
+                    <FaBook size="25" />
                   </a>
                   <a href={project.repoLink}>
-                    <FaGithub size="m" />
+                    <FaGithub size="25" />
                   </a>
                 </div>
               }
