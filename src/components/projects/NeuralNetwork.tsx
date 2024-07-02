@@ -65,7 +65,7 @@ print("Updated weights (W):", W)`
 
       <h2 className="text-2xl font-bold mb-4">Step 1: Forward Propagation</h2>
       <p className="mb-4">
-        Forward propagation is the process of passing input data through the neural network to obtain an output. Let's
+        Forward propagation is the process of passing input data through the neural network to obtain an output. Let&apos;s
         start with the basics:
       </p>
       <div style={codeStyle}>
@@ -118,7 +118,7 @@ print("Updated weights (W):", W)`
 
       <h2 className="text-2xl font-bold mb-4">Conclusion</h2>
       <p className="mb-4">
-        Congratulations! You've learned the basic steps of how a neural network works: forward propagation, activation functions, loss calculation, and backpropagation. This is a simplified example, and real-world neural networks involve many more layers and neurons.
+        Congratulations! You&apos;ve learned the basic steps of how a neural network works: forward propagation, activation functions, loss calculation, and backpropagation. This is a simplified example, and real-world neural networks involve many more layers and neurons.
       </p>
     </div>
   );
