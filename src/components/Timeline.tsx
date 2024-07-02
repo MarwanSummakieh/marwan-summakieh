@@ -38,7 +38,7 @@ const milestones = [
   },
   {
     date: "2022 - 2023",
-    text: "After graduating I wanted to take a short break and I started to learn the know-how side of development, such as cloud services and micro services. I also worked on multiple e-commerce projects. learning AWS, Kubernetes, Go, and Python.",
+    text: "After graduating I wanted to take a short break and I started to learn the know-how side of development, such as cloud services and micro services. I also worked on multiple e-commerce learn. learning AWS, Kubernetes, Go, and Python.",
     image: "/imojies/busy.png",
     alt: "Freelance",
     tech: [
@@ -89,7 +89,7 @@ const Timeline: React.FC = () => {
                 ))}
               </div>
             </div>
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-blue-800 rounded-full flex items-center justify-center text-white text-lg hidden md:flex">
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-blue-800 rounded-full items-center justify-center text-white text-lg hidden md:flex">
               {index + 1}
             </div>
           </div>

@@ -36,7 +36,7 @@ const Hero = () => {
               <Image className="flex justify-center items-center" src={'/images/laptop wave.png'} alt={'comp Marwan'} width={500} height={500} />
               <div className="w-full relative flex items-center justify-center top-0 left-0 p-1">
                 <span className="p-1">
-                  <Link href="/projects" legacyBehavior>
+                  <Link href="/learn" legacyBehavior>
                     <NormalButton title="Check out my work" icon={undefined} position="" />
                   </Link>
                 </span>

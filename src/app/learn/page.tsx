@@ -1,5 +1,5 @@
 import Footer from '@/components/Footer'
-import ProjectsGrid from '@/components/ProjectsGrid'
+import ProjectGrid from '@/components/ProjectsGrid'
 import { FloatingNav } from '@/components/ui/FLoatingNavBar'
 import React from 'react'
 
@@ -16,11 +16,11 @@ const page = () => {
           link: "/chat",
         },
         {
-          name: "Projects",
-          link: "/projects",
+          name: "Learn",
+          link: "/learn",
         },
       ]} />
-      <ProjectsGrid />
+      <ProjectGrid />
 
     </div><Footer /></>
   )

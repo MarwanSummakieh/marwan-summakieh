@@ -21,7 +21,7 @@ const Chat: React.FC = () => {
 
   const placeholders = [
     "What's your experience in software engineering?",
-    "Can you tell me more about your projects?",
+    "Can you tell me more about your learn?",
     "What technologies do you specialize in?",
     "How can I contact you?",
   ];

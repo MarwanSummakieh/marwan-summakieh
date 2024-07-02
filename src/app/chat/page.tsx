@@ -16,8 +16,8 @@ const ChatPage = () => {
           link: "/chat",
         },
         {
-          name: "Projects",
-          link: "/projects",
+          name: "Learn",
+          link: "/learn",
         },
       ]} />
       <Chat />

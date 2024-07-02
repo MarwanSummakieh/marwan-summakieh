@@ -1,6 +1,5 @@
 import Footer from "@/components/Footer";
-import Hero from "@/components/Hero";
-import Timeline from "@/components/Timeline";
+import NeuralNetwork from "@/components/projects/NeuralNetwork";
 import { FloatingNav } from "@/components/ui/FLoatingNavBar";
 
 export default function Home() {
@@ -22,8 +21,7 @@ export default function Home() {
           link: "/learn",
         },
       ]} />
-      <Hero />
-      <Timeline />
+      <NeuralNetwork />
       <Footer />
       </div>
     </main>

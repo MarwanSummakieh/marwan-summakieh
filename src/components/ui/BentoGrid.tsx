@@ -1,21 +1,14 @@
-import { cn } from "@/utils/cn";
+import React from 'react';
 
-export const BentoGrid = ({
-  className,
-  children,
-}: {
+interface BentoGridProps {
   className?: string;
-  children?: React.ReactNode;
-}) => {
+  children: React.ReactNode;
+}
+
+export const BentoGrid: React.FC<BentoGridProps> = ({ className, children }) => {
   return (
-    <div
-      className={cn(
-        "grid md:auto-rows-[18rem] grid-cols-1 md:grid-cols-3 gap-4 max-w-7xl mx-auto ",
-        className
-      )}
-    >
+    <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ${className}`}>
       {children}
     </div>
   );
 };
-
