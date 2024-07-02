@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { ThemeProvider } from './ThemeProvider';
 import { BentoGridItem } from './ui/BentoGridItem';
 import { Spotlight } from './ui/Spotlight';
-
+import { FaBook, FaGithub } from 'react-icons/fa';
 // Define the type for project items
 interface ProjectItem {
   title: string;
@@ -118,8 +118,12 @@ const ProjectGrid: React.FC = () => {
               icon={project.icon}
               footer={
                 <div className="flex justify-center mt-4">
-                  <a href={project.tutorialLink} className="text-blue-400 underline mr-4"><Image className='rounded-3xl bg-green-500' src={'/icons/read.svg'} alt={'read'} width={25} height={25} /></a>
-                  <a href={project.repoLink} className="text-blue-400 underline"><Image className='rounded-3xl bg-white' src={'/icons/Github.svg'} alt={'read'} width={25} height={25} /></a>
+                  <a href={project.tutorialLink} className="text-blue-400 mr-4">
+                    <FaBook size="2x" />
+                  </a>
+                  <a href={project.repoLink} className="text-blue-400">
+                    <FaGithub size="2x" />
+                  </a>
                 </div>
               }
             />
