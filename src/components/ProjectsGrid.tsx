@@ -122,7 +122,7 @@ const ProjectGrid: React.FC = () => {
                     <FaBook size="l" />
                   </a>
                   <a href={project.repoLink}>
-                    <FaGithub size="l" />
+                    <FaGithub size="m" />
                   </a>
                 </div>
               }
