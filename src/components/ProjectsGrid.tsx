@@ -7,10 +7,10 @@ import { ThemeProvider } from './ThemeProvider';
 import { BentoGridItem } from './ui/BentoGridItem';
 import { Spotlight } from './ui/Spotlight';
 import { FaBook, FaGithub } from 'react-icons/fa';
+
 // Define the type for project items
 interface ProjectItem {
   title: string;
-  description: string;
   image: string;
   icon: React.ReactNode;
   tutorialLink: string;
@@ -21,7 +21,6 @@ interface ProjectItem {
 const learn: ProjectItem[] = [
   {
     title: 'Neural Network using Python',
-    description: 'Implemented a neural network for image recognition using Python.',
     image: '/images/neuralnetwork.webp',
     icon: <Image src={'/icons/Python.svg'} alt={'Python'} width={30} height={30} />,
     tutorialLink: '/learn/projects/neural-networks',
@@ -29,7 +28,6 @@ const learn: ProjectItem[] = [
   },
   {
     title: 'AR Portal in Unity/C#',
-    description: 'A project to create an augmented reality portal using Unity and C#.',
     image: '/images/portals.webp',
     icon: <Image src={'/icons/CSharp.svg'} alt={'C#'} width={30} height={30} />,
     tutorialLink: '/learn/projects/ar-portal',
@@ -37,7 +35,6 @@ const learn: ProjectItem[] = [
   },
   {
     title: 'Crypto Currency and Blockchain using Kotlin',
-    description: 'Developed a cryptocurrency and blockchain implementation using Kotlin.',
     image: '/images/crypto.webp',
     icon: <Image src={'/icons/Kotlin.svg'} alt={'Kotlin'} width={30} height={30} />,
     tutorialLink: '/learn/projects/crypto-blockchain',
@@ -45,7 +42,6 @@ const learn: ProjectItem[] = [
   },
   {
     title: 'Game Engine using Java',
-    description: 'Built a custom game engine from scratch using Java.',
     image: '/images/gameengine.webp',
     icon: <Image src={'/icons/Java.svg'} alt={'Java'} width={30} height={30} />,
     tutorialLink: '/learn/projects/game-engine',
@@ -53,7 +49,6 @@ const learn: ProjectItem[] = [
   },
   {
     title: 'Terminal using GO',
-    description: 'Created a terminal emulator application using the Go programming language.',
     image: '/images/terminal.webp',
     icon: <Image src={'/icons/Go.svg'} alt={'GO'} width={30} height={30} />,
     tutorialLink: '/learn/projects/terminal-go',
@@ -61,7 +56,6 @@ const learn: ProjectItem[] = [
   },
   {
     title: 'WebAssembly Compiler using TypeScript',
-    description: 'Developed a compiler targeting WebAssembly using TypeScript.',
     image: '/images/assembly.webp',
     icon: <Image src={'/icons/TypeScript.svg'} alt={'ts'} width={30} height={30} />,
     tutorialLink: '/learn/projects/webassembly-compiler',
@@ -105,28 +99,21 @@ const ProjectGrid: React.FC = () => {
               key={i}
               className="p-3 rounded-2xl shadow transition-all duration-300 ease-in-out transform bg-gray-900 text-white"
               title={project.title}
-              description={project.description}
-              header={
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  width={600}
-                  height={400}
-                  className="w-full h-48 object-cover mb-2"
-                />
-              }
+              header={<Image
+                src={project.image}
+                alt={project.title}
+                width={600}
+                height={400}
+                className="w-full h-48 object-cover mb-2" />}
               icon={project.icon}
-              footer={
-                <div className="flex justify-between mt-4">
-                  <a title='1' href={project.tutorialLink}>
-                    <FaBook size="25" />
-                  </a>
-                  <a title='2' href={project.repoLink}>
-                    <FaGithub size="25" />
-                  </a>
-                </div>
-              }
-            />
+              footer={<div className="flex justify-between mt-4">
+                <a title="Documentation" href={project.tutorialLink} className="absolute bottom-4 left-4">
+                  <FaBook size="25" />
+                </a>
+                <a title="GitHub" href={project.repoLink} className="absolute bottom-4 right-4">
+                  <FaGithub size="25" />
+                </a>
+              </div>} description={''}            />
           ))}
         </BentoGrid>
       </div>
