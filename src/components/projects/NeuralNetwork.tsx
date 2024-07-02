@@ -1,127 +1,213 @@
-import React from 'react';
+"use client";
+import React, { useEffect } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
-const NeuralNetwork: React.FC = () => {
-  const codeStyle: React.CSSProperties = {
-    padding: '1em',
-    backgroundColor: '#2d2d2d',
-    border: '1px solid #444',
-    borderRadius: '5px',
-    margin: '1em 0'
-  };
+const CodeBlock: React.FC<{ code: string }> = ({ code }) => (
+  <SyntaxHighlighter language="python" style={dracula} className="rounded-lg overflow-x-auto my-4 p-6">
+    {code}
+  </SyntaxHighlighter>
+);
 
-  const codeBlocks = [
-    `import numpy as np
+const Equation: React.FC<{ tex: string }> = ({ tex }) => (
+  <div className="my-4 text-center">
+    <script
+      type="math/tex"
+      dangerouslySetInnerHTML={{ __html: tex }}
+    />
+  </div>
+);
 
-# Input data (X) and weights (W)
-X = np.array([1, 2, 3])
-W = np.array([0.1, 0.2, 0.3])
+const NeuralNetworkTutorial: React.FC = () => {
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML';
+    script.async = true;
+    document.body.appendChild(script);
 
-# Weighted sum (dot product)
-Z = np.dot(X, W)
-print("Weighted sum (Z):", Z)`,
-    `# Sigmoid activation function
-def sigmoid(z):
-    return 1 / (1 + np.exp(-z))
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
-# Apply activation function
-A = sigmoid(Z)
-print("Activated output (A):", A)`,
-    `# Actual output (Y)
-Y = np.array([0.5])
-
-# Mean Squared Error (MSE) loss function
-def mse_loss(y_true, y_pred):
-    return np.mean((y_true - y_pred) ** 2)
-
-# Calculate loss
-loss = mse_loss(Y, A)
-print("Loss:", loss)`,
-    `# Derivative of the Sigmoid function
-def sigmoid_derivative(z):
-    return sigmoid(z) * (1 - sigmoid(z))
-
-# Calculate gradients
-dZ = A - Y
-dW = np.dot(X.T, dZ * sigmoid_derivative(Z))
-
-# Update weights
-learning_rate = 0.01
-W -= learning_rate * dW
-print("Updated weights (W):", W)`
-  ];
+  useEffect(() => {
+    if ((window as any).MathJax) {
+      (window as any).MathJax.Hub.Queue(['Typeset', (window as any).MathJax.Hub]);
+    }
+  });
 
   return (
-    <div className="p-10 mt-12">
-      <h1 className="text-4xl font-bold mb-8">Neural Network Tutorial</h1>
+    <div className="font-sans max-w-3xl mx-auto p-8">
+      <h1 className="text-4xl font-bold text-center mb-8 mt-16">Understanding Neural Networks</h1>
 
-      <h2 className="text-2xl font-bold mb-4">Introduction to Neural Networks</h2>
-      <p className="mb-4">
-        A neural network is a series of algorithms that attempts to recognize underlying relationships in a set of data
-        through a process that mimics the way the human brain operates. It consists of layers of neurons, where each
-        neuron in one layer is connected to every neuron in the next layer.
-      </p>
+      <section className="mb-8">
+        <h2 className="text-2xl font-bold mb-4">1. Introduction</h2>
+        <p>
+          Neural networks are a subset of machine learning modeled after the human brain. They consist of layers of neurons that process input data to produce outputs. This tutorial explores the mathematical foundation and coding implementation of neural networks. 
+          Neural networks are used in various applications like image and speech recognition, game playing, and many others.
+        </p>
+      </section>
 
-      <h2 className="text-2xl font-bold mb-4">Step 1: Forward Propagation</h2>
-      <p className="mb-4">
-        Forward propagation is the process of passing input data through the neural network to obtain an output. Let&apos;s
-        start with the basics:
-      </p>
-      <div style={codeStyle}>
-        <SyntaxHighlighter language="python" style={dracula}>
-          {codeBlocks[0]}
-        </SyntaxHighlighter>
-      </div>
-      <p className="mb-4">
-        This code calculates the weighted sum of the inputs using the dot product of input data (X) and weights (W).
-      </p>
+      <section className="mb-8">
+        <h2 className="text-2xl font-bold mb-4">2. Basic Concepts</h2>
+        <h3 className="text-xl font-bold mb-2">Neurons and Layers</h3>
+        <p>
+          A neural network is composed of neurons organized in layers:
+        </p>
+        <ul className="list-disc list-inside ml-4">
+          <li><strong>Input layer:</strong> Where data is fed into the network.</li>
+          <li><strong>Hidden layers:</strong> Intermediate layers that process the inputs.</li>
+          <li><strong>Output layer:</strong> The final layer that produces the output.</li>
+        </ul>
+        <p>
+          Each connection between neurons has an associated weight that adjusts during the learning process to minimize errors in the output.
+        </p>
+      </section>
 
-      <h2 className="text-2xl font-bold mb-4">Step 2: Activation Function</h2>
-      <p className="mb-4">
-        Activation functions introduce non-linearity into the network. One commonly used activation function is the Sigmoid function:
-      </p>
-      <div style={codeStyle}>
-        <SyntaxHighlighter language="python" style={dracula}>
-          {codeBlocks[1]}
-        </SyntaxHighlighter>
-      </div>
-      <p className="mb-4">
-        This code applies the Sigmoid activation function to the weighted sum (Z) to obtain the activated output (A).
-      </p>
+      <section className="mb-8">
+        <h2 className="text-2xl font-bold mb-4">3. Mathematical Operations</h2>
+        <h3 className="text-xl font-bold mb-2">Dot Product</h3>
+        <p>
+          The dot product is a fundamental operation in neural networks, where inputs and their corresponding weights are multiplied and summed:
+        </p>
+        <Equation tex="y = \sum_{i=1}^n x_i w_i + b" />
+        <p>Where:</p>
+        <ul className="list-disc list-inside ml-4">
+          <li>y is the output</li>
+          <li>x_i are the inputs</li>
+          <li>w_i are the weights</li>
+          <li>b is the bias</li>
+        </ul>
+        <CodeBlock code={`
+import numpy as np
 
-      <h2 className="text-2xl font-bold mb-4">Step 3: Loss Calculation</h2>
-      <p className="mb-4">
-        The loss function measures the difference between the predicted output and the actual output. Here, we use the Mean Squared Error (MSE) as an example:
-      </p>
-      <div style={codeStyle}>
-        <SyntaxHighlighter language="python" style={dracula}>
-          {codeBlocks[2]}
-        </SyntaxHighlighter>
-      </div>
-      <p className="mb-4">
-        This code calculates the MSE loss between the actual output (Y) and the predicted output (A).
-      </p>
+inputs = np.array([1, 2, 3])
+weights = np.array([0.2, 0.8, -0.5])
+bias = 2
 
-      <h2 className="text-2xl font-bold mb-4">Step 4: Backpropagation</h2>
-      <p className="mb-4">
-        Backpropagation is the process of updating the weights to minimize the loss. This involves calculating the gradients of the loss with respect to the weights:
-      </p>
-      <div style={codeStyle}>
-        <SyntaxHighlighter language="python" style={dracula}>
-          {codeBlocks[3]}
-        </SyntaxHighlighter>
-      </div>
-      <p className="mb-4">
-        This code calculates the gradients and updates the weights using gradient descent.
-      </p>
+output = np.dot(inputs, weights) + bias
+print(output)
+        `} />
+      </section>
 
-      <h2 className="text-2xl font-bold mb-4">Conclusion</h2>
-      <p className="mb-4">
-        Congratulations! You&apos;ve learned the basic steps of how a neural network works: forward propagation, activation functions, loss calculation, and backpropagation. This is a simplified example, and real-world neural networks involve many more layers and neurons.
-      </p>
+      <section className="mb-8">
+        <h2 className="text-2xl font-bold mb-4">4. Activation Functions</h2>
+        <p>
+          Activation functions introduce non-linearity to the model, enabling it to learn complex patterns. Common functions include:
+        </p>
+        <h3 className="text-xl font-bold mb-2">ReLU (Rectified Linear Unit)</h3>
+        <Equation tex="f(x) = \max(0, x)" />
+        <CodeBlock code={`
+def relu(x):
+    return np.maximum(0, x)
+
+inputs = np.array([-1, 2, -0.5, 3])
+outputs = relu(inputs)
+print(outputs)
+        `} />
+        <h3 className="text-xl font-bold mb-2">Softmax</h3>
+        <Equation tex="softmax(x_i) = \frac{e^{x_i}}{\sum_{j=1}^n e^{x_j}}" />
+        <p>
+          The softmax function is useful for classification tasks, converting logits into probabilities.
+        </p>
+      </section>
+
+      <section className="mb-8">
+        <h2 className="text-2xl font-bold mb-4">5. Loss Functions</h2>
+        <p>
+          Loss functions measure how well the neural network&apos;s predictions match the actual data.
+        </p>
+        <h3 className="text-xl font-bold mb-2">Categorical Cross-Entropy Loss</h3>
+        <Equation tex="L = -\sum_{i=1}^C y_i \log(\hat{y_i})" />
+        <p>Where:</p>
+        <ul className="list-disc list-inside ml-4">
+          <li>C is the number of classes</li>
+          <li>y_i is the true probability of class i</li>
+          <li>ŷ_i is the predicted probability of class i</li>
+        </ul>
+        <CodeBlock code={`
+def categorical_cross_entropy_loss(predictions, targets):
+    return -np.sum(targets * np.log(predictions))
+
+predictions = np.array([0.2, 0.6, 0.2])
+targets = np.array([0, 1, 0])
+
+loss = categorical_cross_entropy_loss(predictions, targets)
+print(loss)
+        `} />
+      </section>
+
+      <section className="mb-8">
+        <h2 className="text-2xl font-bold mb-4">6. Training Neural Networks</h2>
+        <p>
+          Neural networks are typically trained using empirical risk minimization. This involves adjusting the weights to minimize the difference between the predicted output and the actual target values. Techniques such as backpropagation are commonly used to update the weights by calculating gradients and performing gradient descent.
+        </p>
+        <h3 className="text-xl font-bold mb-2">Backpropagation</h3>
+        <p>
+          Backpropagation is an algorithm for supervised learning of artificial neural networks using gradient descent. It calculates the gradient of the loss function with respect to each weight by the chain rule, computing the gradient one layer at a time, iterating backward from the last layer to avoid redundant calculations of intermediate terms in the chain rule【62†source】.
+        </p>
+      </section>
+
+      <section className="mb-8">
+        <h2 className="text-2xl font-bold mb-4">7. Implementation</h2>
+        <p>
+          Let&apos;s implement a basic neural network:
+        </p>
+        <CodeBlock code={`
+import numpy as np
+
+class NeuralNetwork:
+    def __init__(self):
+        self.layers = []
+
+    def add_layer(self, layer):
+        self.layers.append(layer)
+
+    def forward(self, inputs):
+        for layer in self.layers:
+            inputs = layer.forward(inputs)
+        return inputs
+
+class Layer:
+    def __init__(self, weights, biases):
+        self.weights = weights
+        self.biases = biases
+
+    def forward(self, inputs):
+        return np.dot(inputs, self.weights.T) + self.biases
+
+def softmax(x):
+    exp_values = np.exp(x - np.max(x, axis=1, keepdims=True))
+    return exp_values / np.sum(exp_values, axis=1, keepdims=True)
+
+# Define the network
+network = NeuralNetwork()
+
+# Add a layer
+weights1 = np.array([[0.2, 0.8, -0.5], [0.5, -0.91, 0.26], [-0.26, -0.27, 0.17]])
+biases1 = np.array([2, 3, 0.5])
+layer1 = Layer(weights1, biases1)
+network.add_layer(layer1)
+
+# Forward pass
+inputs = np.array([[1, 2, 3]])
+outputs = network.forward(inputs)
+softmax_outputs = softmax(outputs)
+
+print("Network output:", outputs)
+print("Softmax output:", softmax_outputs)
+        `} />
+      </section>
+
+      <section className="mb-8">
+        <h2 className="text-Sure, I'll continue from where it was left off.
+
+```tsx
+2xl font-bold mb-4">7. Conclusion</h2>
+        <p>This tutorial covered the basics of neural networks, including mathematical operations, activation functions, and loss functions. We also implemented a simple neural network in Python. By understanding these fundamental concepts, you can start building more complex neural networks and exploring advanced machine learning techniques.</p>
+      </section>
     </div>
   );
 };
 
-export default NeuralNetwork;
+export default NeuralNetworkTutorial;

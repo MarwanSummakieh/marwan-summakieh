@@ -20,6 +20,14 @@ interface ProjectItem {
 // Define the project data
 const learn: ProjectItem[] = [
   {
+    title: 'Neural Network using Python',
+    description: 'Implemented a neural network for image recognition using Python.',
+    image: '/images/neuralnetwork.webp',
+    icon: <Image src={'/icons/Python.svg'} alt={'Python'} width={30} height={30} />,
+    tutorialLink: '/learn/projects/neural-networks',
+    repoLink: 'https://github.com/MarwanSummakieh/neural-network'
+  },
+  {
     title: 'AR Portal in Unity/C#',
     description: 'A project to create an augmented reality portal using Unity and C#.',
     image: '/images/portals.webp',
@@ -42,14 +50,6 @@ const learn: ProjectItem[] = [
     icon: <Image src={'/icons/Java.svg'} alt={'Java'} width={30} height={30} />,
     tutorialLink: '/learn/projects/game-engine',
     repoLink: 'https://github.com/yourusername/game-engine'
-  },
-  {
-    title: 'Neural Network using Python',
-    description: 'Implemented a neural network for image recognition using Python.',
-    image: '/images/neuralnetwork.webp',
-    icon: <Image src={'/icons/Python.svg'} alt={'Python'} width={30} height={30} />,
-    tutorialLink: '/learn/projects/neural-networks',
-    repoLink: 'https://github.com/yourusername/neural-network'
   },
   {
     title: 'Terminal using GO',
