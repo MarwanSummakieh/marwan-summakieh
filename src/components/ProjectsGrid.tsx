@@ -70,6 +70,16 @@ const ProjectGrid: React.FC = () => {
       defaultTheme="dark"
       disableTransitionOnChange
     >
+      <style jsx>{`
+        @keyframes pulse {
+          0%, 100% {
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+          }
+          50% {
+            box-shadow: 0 0 20px rgba(255, 255, 255, 1);
+          }
+        }
+      `}</style>
       <div>
         <Spotlight className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen" fill="white" />
         <Spotlight className="-top-10 -left-full h-[80vh] w-[50vw]" fill="purple" />
@@ -97,7 +107,7 @@ const ProjectGrid: React.FC = () => {
           {learn.map((project, i) => (
             <BentoGridItem
               key={i}
-              className="p-3 rounded-2xl shadow transition-all duration-300 ease-in-out transform bg-gray-900 text-white"
+              className="relative p-3 rounded-2xl transition-all duration-300 ease-in-out transform bg-gray-900 text-white before:absolute before:top-0 before:left-0 before:w-full before:h-full before:rounded-2xl before:border-4 before:border-transparent before:transition-all before:duration-300 before:ease-in-out hover:before:border-gradient-to-r hover:before:from-purple-500 hover:before:via-pink-500 hover:before:to-red-500 hover:shadow-lg hover:shadow-purple-500/50 group"
               title={project.title}
               header={<Image
                 src={project.image}
@@ -107,13 +117,21 @@ const ProjectGrid: React.FC = () => {
                 className="w-full h-48 object-cover mb-2" />}
               icon={project.icon}
               footer={<div className="flex justify-between mt-4">
-                <a title="Documentation" href={project.tutorialLink} className="absolute bottom-4 left-4">
-                  <FaBook size="25" />
-                </a>
-                <a title="GitHub" href={project.repoLink} className="absolute bottom-4 right-4">
-                  <FaGithub size="25" />
-                </a>
-              </div>} description={''}            />
+                <FaBook
+                  className="absolute bottom-4 left-4 bg-transparent cursor-pointer"
+                  size="25"
+                  title="Documentation"
+                  onClick={() => window.location.href = project.tutorialLink}
+                />
+                <FaGithub
+                  className="absolute bottom-4 right-4 bg-transparent cursor-pointer"
+                  size="25"
+                  title="GitHub"
+                  onClick={() => window.location.href = project.repoLink}
+                />
+              </div>}
+              description={''}
+            />
           ))}
         </BentoGrid>
       </div>
