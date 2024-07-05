@@ -32,34 +32,6 @@ const learn: ProjectItem[] = [
     icon: <Image src={'/icons/CSharp.svg'} alt={'C#'} width={30} height={30} />,
     tutorialLink: '/learn/projects/ar-portal',
     repoLink: 'https://github.com/yourusername/ar-portal'
-  },
-  {
-    title: 'Crypto Currency and Blockchain using Kotlin',
-    image: '/images/crypto.webp',
-    icon: <Image src={'/icons/Kotlin.svg'} alt={'Kotlin'} width={30} height={30} />,
-    tutorialLink: '/learn/projects/crypto-blockchain',
-    repoLink: 'https://github.com/yourusername/crypto-blockchain'
-  },
-  {
-    title: 'Game Engine using Java',
-    image: '/images/gameengine.webp',
-    icon: <Image src={'/icons/Java.svg'} alt={'Java'} width={30} height={30} />,
-    tutorialLink: '/learn/projects/game-engine',
-    repoLink: 'https://github.com/yourusername/game-engine'
-  },
-  {
-    title: 'Terminal using GO',
-    image: '/images/terminal.webp',
-    icon: <Image src={'/icons/Go.svg'} alt={'GO'} width={30} height={30} />,
-    tutorialLink: '/learn/projects/terminal-go',
-    repoLink: 'https://github.com/yourusername/terminal-go'
-  },
-  {
-    title: 'WebAssembly Compiler using TypeScript',
-    image: '/images/assembly.webp',
-    icon: <Image src={'/icons/TypeScript.svg'} alt={'ts'} width={30} height={30} />,
-    tutorialLink: '/learn/projects/webassembly-compiler',
-    repoLink: 'https://github.com/yourusername/webassembly-compiler'
   }
 ];
 
