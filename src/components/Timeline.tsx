@@ -85,7 +85,7 @@ const Timeline: React.FC = () => {
             animate={{ height: '100%' }}
             transition={{ duration: 2 }} // Slower animation
           ></motion.div>
-          {milestones.map((milestone, index) => (
+          {milestones.slice().reverse().map((milestone, index) => ( // Reversing the array here
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 50 }}
@@ -94,9 +94,6 @@ const Timeline: React.FC = () => {
               viewport={{ once: true }}
               className={`flex ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center mb-10 relative`}
             >
-              <div className="w-1/2 p-5 hidden md:block">
-                <Image src={milestone.image} alt={milestone.alt} width={400} height={300} className="rounded-xl shadow-lg" />
-              </div>
               <div className="w-full md:w-1/2 p-5">
                 <div className="bg-blue-800 text-white p-6 rounded-xl shadow-lg mb-4">
                   <h2 className="text-2xl font-bold mb-4">{milestone.date}</h2>
@@ -113,8 +110,11 @@ const Timeline: React.FC = () => {
                   ))}
                 </div>
               </div>
+              <div className="w-1/2 p-5 hidden md:block">
+                <Image src={milestone.image} alt={milestone.alt} width={400} height={300} className="rounded-xl shadow-lg" />
+              </div>
               <div className="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-blue-800 rounded-full items-center justify-center text-white text-lg hidden md:flex">
-                {index + 1}
+                {milestones.length - index} {/* Displaying the correct index number */}
               </div>
             </motion.div>
           ))}
