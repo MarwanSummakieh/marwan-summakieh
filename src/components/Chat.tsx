@@ -182,7 +182,7 @@ const Chat: React.FC = () => {
                 className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-gray-100 dark:from-gray-800 to-transparent pointer-events-none z-10 opacity-0 transition-opacity duration-300"
               ></div>
             </div>
-            <div className="w-full">
+            <div className="w-[50vw]">
               <PlaceholdersAndVanishInput
                 placeholders={placeholders}
                 onChange={handleChange}

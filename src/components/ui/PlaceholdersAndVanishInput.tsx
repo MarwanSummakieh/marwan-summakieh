@@ -220,7 +220,7 @@ export function PlaceholdersAndVanishInput({
               strokeDashoffset: value ? 0 : "50%",
             }}
             transition={{
-              duration: 0.3,
+              duration: 1,
               ease: "linear",
             }}
           />

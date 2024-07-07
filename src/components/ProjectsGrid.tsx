@@ -15,6 +15,7 @@ interface ProjectItem {
   icon: React.ReactNode;
   tutorialLink: string;
   repoLink: string;
+  status: 'complete' | 'in-progress';
 }
 
 // Define the project data
@@ -24,34 +25,61 @@ const learn: ProjectItem[] = [
     image: '/images/neuralnetwork.webp',
     icon: <Image src={'/icons/Python.svg'} alt={'Python'} width={30} height={30} />,
     tutorialLink: '/learn/projects/neural-networks',
-    repoLink: 'https://github.com/MarwanSummakieh/neural-network'
+    repoLink: 'https://github.com/MarwanSummakieh/neural-network',
+    status: 'complete'
   },
   {
     title: 'AR Portal in Unity/C#',
     image: '/images/portals.webp',
     icon: <Image src={'/icons/CSharp.svg'} alt={'C#'} width={30} height={30} />,
     tutorialLink: '/learn/projects/ar-portal',
-    repoLink: 'https://github.com/yourusername/ar-portal'
+    repoLink: 'https://github.com/yourusername/ar-portal',
+    status: 'in-progress'
+  },
+  {
+    title: 'Crypto Currency and Blockchain using Kotlin',
+    image: '/images/crypto.webp',
+    icon: <Image src={'/icons/Kotlin.svg'} alt={'Kotlin'} width={30} height={30} />,
+    tutorialLink: '/learn/projects/crypto-blockchain',
+    repoLink: 'https://github.com/yourusername/crypto-blockchain',
+    status: 'in-progress'
+  },
+  {
+    title: 'Game Engine using Java',
+    image: '/images/gameengine.webp',
+    icon: <Image src={'/icons/Java.svg'} alt={'Java'} width={30} height={30} />,
+    tutorialLink: '/learn/projects/game-engine',
+    repoLink: 'https://github.com/yourusername/game-engine',
+    status: 'in-progress'
+  },
+  {
+    title: 'Terminal using GO',
+    image: '/images/terminal.webp',
+    icon: <Image src={'/icons/Go.svg'} alt={'GO'} width={30} height={30} />,
+    tutorialLink: '/learn/projects/terminal-go',
+    repoLink: 'https://github.com/yourusername/terminal-go',
+    status: 'in-progress'
+  },
+  {
+    title: 'WebAssembly Compiler using TypeScript',
+    image: '/images/assembly.webp',
+    icon: <Image src={'/icons/TypeScript.svg'} alt={'ts'} width={30} height={30} />,
+    tutorialLink: '/learn/projects/webassembly-compiler',
+    repoLink: 'https://github.com/yourusername/webassembly-compiler',
+    status: 'in-progress'
   }
 ];
 
 const ProjectGrid: React.FC = () => {
+  const completeProjects = learn.filter(project => project.status === 'complete');
+  const inProgressProjects = learn.filter(project => project.status === 'in-progress');
+
   return (
     <ThemeProvider
       attribute="class"
       defaultTheme="dark"
       disableTransitionOnChange
     >
-      <style jsx>{`
-        @keyframes pulse {
-          0%, 100% {
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
-          }
-          50% {
-            box-shadow: 0 0 20px rgba(255, 255, 255, 1);
-          }
-        }
-      `}</style>
       <div>
         <Spotlight className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen" fill="white" />
         <Spotlight className="-top-10 -left-full h-[80vh] w-[50vw]" fill="purple" />
@@ -75,37 +103,68 @@ const ProjectGrid: React.FC = () => {
             />
           </div>
         </div>
-        <BentoGrid className="p-3 w-auto mx-auto h-auto gap-4">
-          {learn.map((project, i) => (
-            <BentoGridItem
-              key={i}
-              className="relative p-3 rounded-2xl transition-all duration-300 ease-in-out transform bg-gray-900 text-white before:absolute before:top-0 before:left-0 before:w-full before:h-full before:rounded-2xl before:border-4 before:border-transparent before:transition-all before:duration-300 before:ease-in-out hover:before:border-gradient-to-r hover:before:from-purple-500 hover:before:via-pink-500 hover:before:to-red-500 hover:shadow-lg hover:shadow-purple-500/50 group"
-              title={project.title}
-              header={<Image
-                src={project.image}
-                alt={project.title}
-                width={600}
-                height={400}
-                className="w-full h-48 object-cover mb-2" />}
-              icon={project.icon}
-              footer={<div className="flex justify-between mt-4">
-                <FaBook
-                  className="absolute bottom-4 left-4 bg-transparent cursor-pointer"
-                  size="25"
-                  title="Documentation"
-                  onClick={() => window.location.href = project.tutorialLink}
-                />
-                <FaGithub
-                  className="absolute bottom-4 right-4 bg-transparent cursor-pointer"
-                  size="25"
-                  title="GitHub"
-                  onClick={() => window.location.href = project.repoLink}
-                />
-              </div>}
-              description={''}
-            />
-          ))}
-        </BentoGrid>
+
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold mb-4 text-white">available Projects</h2>
+          <BentoGrid className="p-3 w-auto mx-auto h-auto gap-4">
+            {completeProjects.map((project, i) => (
+              <BentoGridItem
+                key={i}
+                className="relative p-3 rounded-2xl transition-all duration-300 ease-in-out transform bg-gray-900 text-white before:absolute before:top-0 before:left-0 before:w-full before:h-full before:rounded-2xl before:border-4 before:border-transparent before:transition-all before:duration-300 before:ease-in-out hover:before:border-gradient-to-r hover:before:from-purple-500 hover:before:via-pink-500 hover:before:to-red-500 hover:shadow-lg hover:shadow-green-500/50 group"
+                title={project.title}
+                header={<Image
+                  src={project.image}
+                  alt={project.title}
+                  width={600}
+                  height={400}
+                  className="w-full h-48 object-cover mb-2" />}
+                icon={project.icon}
+                footer={
+                  <div className="flex justify-between mt-4">
+                    <a
+                      title="Documentation"
+                      href={project.tutorialLink}
+                      className="absolute bottom-4 left-4"
+                    >
+                      <FaBook size="25" />
+                    </a>
+                    <a
+                      title="GitHub"
+                      href={project.repoLink}
+                      className="absolute bottom-4 right-4"
+                    >
+                      <FaGithub size="25" />
+                    </a>
+                  </div>
+                }
+                description={''}
+              />
+            ))}
+          </BentoGrid>
+        </div>
+
+        <div className="w-full h-1 rounded bg-purple-500 my-12"></div>
+
+        <div>
+          <h2 className="text-3xl font-bold mb-4 text-white">Coming soon</h2>
+          <BentoGrid className="p-3 w-auto mx-auto h-auto gap-4">
+            {inProgressProjects.map((project, i) => (
+              <BentoGridItem
+                key={i}
+                className="relative p-3 rounded-2xl transition-all duration-300 ease-in-out transform bg-gray-900 text-white before:absolute before:top-0 before:left-0 before:w-full before:h-full before:rounded-2xl before:border-4 before:border-transparent before:transition-all before:duration-300 before:ease-in-out hover:before:border-gradient-to-r hover:before:from-purple-500 hover:before:via-pink-500 hover:before:to-red-500 hover:shadow-lg hover:shadow-red-500/50 group"
+                title={project.title}
+                header={<Image
+                  src={project.image}
+                  alt={project.title}
+                  width={600}
+                  height={400}
+                  className="w-full h-48 object-cover mb-2" />}
+                icon={project.icon}
+                description={''}
+              />
+            ))}
+          </BentoGrid>
+        </div>
       </div>
     </ThemeProvider>
   );
