@@ -105,7 +105,7 @@ const ProjectGrid: React.FC = () => {
         </div>
 
         <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-4 text-white">available Projects</h2>
+          <h2 className="text-3xl font-bold mb-4 text-white">Available projects</h2>
           <BentoGrid className="p-3 w-auto mx-auto h-auto gap-4">
             {completeProjects.map((project, i) => (
               <BentoGridItem
