@@ -18,6 +18,7 @@ const Chat: React.FC = () => {
   const [imageSrc, setImageSrc] = useState<string>('/imojies/hey.png');
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const [currentTypingMessage, setCurrentTypingMessage] = useState<string>('');
+  const [chatStarted, setChatStarted] = useState<boolean>(false);
 
   const placeholders = [
     "What's your experience in software engineering?",
@@ -56,6 +57,7 @@ const Chat: React.FC = () => {
     if (message.trim() && threadId) {
       setMessages((prevMessages) => [...prevMessages, { text: message, type: 'sent' }]);
       setImageSrc('/imojies/hmmm.png');
+      setChatStarted(true); // Set chatStarted to true when a message is sent
       await sendMessageToOpenAI(message);
     }
   };
@@ -185,17 +187,19 @@ const Chat: React.FC = () => {
                 className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-gray-100 dark:from-gray-800 to-transparent pointer-events-none z-10 opacity-0 transition-opacity duration-300"
               ></div>
             </div>
-            <div>
-              {placeholders.map((option, index) => (
-                <button
-                  key={index}
-                  onClick={() => handleOptionClick(option)}
-                  className="w-36 h-28 m-2 p-2 bg-gray-200 dark:bg-gray-700 align-top text-gray-800 dark:text-gray-200 rounded-md"
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
+            {!chatStarted && (
+              <div className="flex flex-wrap justify-center mb-4">
+                {placeholders.map((option, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleOptionClick(option)}
+                    className="w-36 h-28 m-2 p-2 bg-gray-200 dark:bg-gray-700 align-top text-gray-800 dark:text-gray-200 rounded-md"
+                  >
+                    {option}
+                  </button>
+                ))}
+              </div>
+            )}
             <div className="mb-4">
               <PlaceholdersAndVanishInput
                 placeholders={placeholders}
@@ -203,7 +207,6 @@ const Chat: React.FC = () => {
                 onSubmit={handleSubmit}
               />
             </div>
-            
           </div>
         </div>
       </div>
