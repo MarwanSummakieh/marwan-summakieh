@@ -139,9 +139,9 @@ const Chat: React.FC = () => {
         <Spotlight className="-top-10 -left-full h-[80vh] w-[50vw]" fill="purple" />
         <Spotlight className="top-28 left-80 h-[80vh] w-[50vw]" fill="blue" />
       </div>
-      <div className="relative flex mb-32 mt-16 justify-center items-center h-auto">
+      <div className="relative flex justify-center items-center h-screen">
         <div className="flex flex-col md:flex-row w-full max-w-6xl h-full items-center justify-between space-x-0 md:space-x-4 p-4">
-          <div className="flex-1 mb-10 md:mb-0 flex items-end justify-center">
+          <div className="hidden md:flex flex-1 mb-10 md:mb-0 items-end justify-center">
             <Image
               src={imageSrc}
               alt="Chat Illustration"
@@ -151,7 +151,7 @@ const Chat: React.FC = () => {
               className="rounded-2xl"
             />
           </div>
-          <div className="flex-1 h-full flex flex-col justify-between shadow-lg p-4">
+          <div className="flex-1 h-full flex flex-col justify-between shadow-lg p-4 overflow-hidden">
             <div
               id="chat-container"
               ref={chatContainerRef}
