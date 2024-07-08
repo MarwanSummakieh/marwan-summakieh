@@ -193,7 +193,7 @@ const Chat: React.FC = () => {
                   <button
                     key={index}
                     onClick={() => handleOptionClick(option)}
-                    className="w-36 h-28 sm:w-scren m-2 p-2 bg-gray-200 dark:bg-gray-700 align-top text-gray-800 dark:text-gray-200 rounded-md"
+                    className="w-36 h-28 sm:w-scren m-2 p-2 bg-gray-200 dark:bg-gray-700 align-top text-gray-800 dark:text-gray-200 rounded-md text-start"
                   >
                     {option}
                   </button>
