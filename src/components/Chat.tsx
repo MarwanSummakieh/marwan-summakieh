@@ -139,7 +139,7 @@ const Chat: React.FC = () => {
         <Spotlight className="-top-10 -left-full h-[80vh] w-[50vw]" fill="purple" />
         <Spotlight className="top-28 left-80 h-[80vh] w-[50vw]" fill="blue" />
       </div>
-      <div className="relative flex justify-center items-center h-screen">
+      <div className="relative flex justify-center items-center h-screen pt-10">
         <div className="flex flex-col md:flex-row w-full max-w-6xl h-full items-center justify-between space-x-0 md:space-x-4 p-4">
           <div className="hidden md:flex flex-1 mb-10 md:mb-0 items-end justify-center">
             <Image
@@ -193,7 +193,7 @@ const Chat: React.FC = () => {
                   <button
                     key={index}
                     onClick={() => handleOptionClick(option)}
-                    className="w-36 h-28 m-2 p-2 bg-gray-200 dark:bg-gray-700 align-top text-gray-800 dark:text-gray-200 rounded-md"
+                    className="w-36 h-28 sm:w-scren m-2 p-2 bg-gray-200 dark:bg-gray-700 align-top text-gray-800 dark:text-gray-200 rounded-md"
                   >
                     {option}
                   </button>
