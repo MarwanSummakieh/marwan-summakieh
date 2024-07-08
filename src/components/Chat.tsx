@@ -139,7 +139,7 @@ const Chat: React.FC = () => {
         <Spotlight className="-top-10 -left-full h-[80vh] w-[50vw]" fill="purple" />
         <Spotlight className="top-28 left-80 h-[80vh] w-[50vw]" fill="blue" />
       </div>
-      <div className="relative flex mb-32 mt-16 justify-center items-center h-[90vh] overflow-scroll">
+      <div className="relative flex mb-32 mt-16 justify-center items-center h-auto">
         <div className="flex flex-col md:flex-row w-full max-w-6xl h-full items-center justify-between space-x-0 md:space-x-4 p-4">
           <div className="flex-1 mb-10 md:mb-0 flex items-end justify-center">
             <Image
