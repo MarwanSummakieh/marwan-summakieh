@@ -21,7 +21,6 @@ const Chat: React.FC = () => {
 
   const placeholders = [
     "What's your experience in software engineering?",
-    "Can you tell me more about your learn?",
     "What technologies do you specialize in?",
     "How can I contact you?",
   ];
@@ -116,6 +115,10 @@ const Chat: React.FC = () => {
     setInputValue('');
   };
 
+  const handleOptionClick = (option: string) => {
+    handleSend(option);
+  };
+
   useEffect(() => {
     const chatContainer = chatContainerRef.current;
     if (chatContainer) {
@@ -182,13 +185,25 @@ const Chat: React.FC = () => {
                 className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-gray-100 dark:from-gray-800 to-transparent pointer-events-none z-10 opacity-0 transition-opacity duration-300"
               ></div>
             </div>
-            <div className="w-[50vw]">
+            <div>
+              {placeholders.map((option, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleOptionClick(option)}
+                  className="w-36 h-28 m-2 p-2 bg-gray-200 dark:bg-gray-700 align-top text-gray-800 dark:text-gray-200 rounded-md"
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
+            <div className="mb-4">
               <PlaceholdersAndVanishInput
                 placeholders={placeholders}
                 onChange={handleChange}
                 onSubmit={handleSubmit}
               />
             </div>
+            
           </div>
         </div>
       </div>
