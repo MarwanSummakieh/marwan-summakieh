@@ -21,7 +21,8 @@ const Hero = () => {
           <div className="relative pointer-events-none inset-0 flex items-center justify-center dark:bg-black-100 bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
           <div className="flex justify-center relative my-20 z-10">
             <div className="max-w-auto md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center">
-              <LampContainer children={<><TextGenerateEffect
+              <LampContainer>
+                <TextGenerateEffect
                 className="text-center text-[40px] md:text-5xl lg:text-6xl"
                 words="Bring your imagination to light" />
                 <div className="w-96 flex justify-between mt-10">
@@ -30,8 +31,8 @@ const Hero = () => {
                       {char}
                     </span>
                   ))}
-                </div></>
-              } />
+                </div>
+              </LampContainer>
 
               <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
                 Hi, I&apos;m Marwan Summakieh, a passionate software engineer based in Copenhagen.
