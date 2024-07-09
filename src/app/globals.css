@@ -19,4 +19,8 @@
     margin-top: 1rem;
     margin-bottom: 1rem;
   }
-  
+
+  body {
+    background-color: #121212; /* Dark background */
+    color: white; /* Default text color */
+  }

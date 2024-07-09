@@ -56,9 +56,9 @@ const learn: ProjectItem[] = [
     title: 'Terminal using GO',
     image: '/images/terminal.webp',
     icon: <Image src={'/icons/Go.svg'} alt={'GO'} width={30} height={30} />,
-    tutorialLink: '/learn/projects/terminal-go',
-    repoLink: 'https://github.com/yourusername/terminal-go',
-    status: 'in-progress'
+    tutorialLink: '/learn/projects/terminal',
+    repoLink: 'https://github.com/MarwanSummakieh/terminal',
+    status: 'complete'
   },
   {
     title: 'WebAssembly Compiler using TypeScript',
