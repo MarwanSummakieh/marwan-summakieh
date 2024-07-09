@@ -35,7 +35,7 @@ const TerminalEmulatorTutorial: React.FC = () => {
       <section className="mb-8">
         <h2 className="text-2xl font-bold mb-4">User Interface</h2>
         <p>
-          We'll start by creating a basic UI with Fyne:
+          We&apos;ll start by creating a basic UI with Fyne:
         </p>
         <CodeBlock code={`package main
 
