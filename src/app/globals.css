@@ -23,4 +23,5 @@
   body {
     background-color: #121212; /* Dark background */
     color: white; /* Default text color */
+    size: 12px;
   }
