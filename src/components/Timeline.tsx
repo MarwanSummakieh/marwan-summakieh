@@ -68,9 +68,9 @@ const Timeline: React.FC = () => {
         viewport={{ once: true }}
         className="relative"
       >
-        {/* Vertical line */}
-        <div className="absolute left-1/3 transform -translate-x-1/2 w-px bg-gray-300 h-full"></div>
-        
+        {/* Vertical line only on medium and larger screens */}
+        <div className="hidden md:block absolute left-1/3 transform -translate-x-1/2 w-px bg-gray-300 h-full"></div>
+
         {milestones.map((milestone, index) => (
           <motion.div
             key={index}
@@ -89,8 +89,8 @@ const Timeline: React.FC = () => {
               </p>
             </motion.div>
 
-            {/* Timeline node */}
-            <div className="absolute left-1/3 transform -translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full z-10"></div>
+            {/* Timeline node only on medium and larger screens */}
+            <div className="hidden md:block absolute left-1/3 transform -translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full z-10"></div>
 
             {/* Content column */}
             <motion.div
@@ -98,7 +98,7 @@ const Timeline: React.FC = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 1.5, delay: index * 0.4 }}
               viewport={{ once: true }}
-              className="w-[35vw] md:col-span-1 p-5 md:pl-8"
+              className="w-full md:w-[35vw] md:col-span-1 p-5 md:pl-8"
             >
               <div className="bg-gradient-to-br from-cyan-950 to-transparent text-white font-mono text-xs p-6 rounded-xl shadow-lg">
                 <p className="text-sm mb-4">{milestone.text}</p>
