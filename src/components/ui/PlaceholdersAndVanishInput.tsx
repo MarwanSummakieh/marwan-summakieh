@@ -8,10 +8,12 @@ export function PlaceholdersAndVanishInput({
   placeholders,
   onChange,
   onSubmit,
+  isDisabled, // New prop to handle disabling input
 }: {
   placeholders: string[];
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  isDisabled: boolean; // New prop to handle disabling input
 }) {
   const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
 
@@ -158,6 +160,7 @@ export function PlaceholdersAndVanishInput({
     vanishAndSubmit();
     onSubmit && onSubmit(e);
   };
+
   return (
     <form
       className={cn(
@@ -174,9 +177,9 @@ export function PlaceholdersAndVanishInput({
         ref={canvasRef}
       />
       <input
-        title="fdsf"
+        title="input"
         onChange={(e) => {
-          if (!animating) {
+          if (!animating && !isDisabled) {
             setValue(e.target.value);
             onChange && onChange(e);
           }
@@ -189,10 +192,11 @@ export function PlaceholdersAndVanishInput({
           "w-full relative text-sm sm:text-base z-50 border-none text-black bg-transparent h-full rounded-full focus:outline-none focus:ring-0 pl-4 sm:pl-10 pr-20",
           animating && "text-transparent"
         )}
+        disabled={isDisabled} // Disable the input if isDisabled is true
       />
 
       <button
-      title="t"
+        title="submit"
         disabled={!value}
         type="submit"
         className="absolute right-2 top-1/2 z-50 -translate-y-1/2 h-8 w-8 rounded-full disabled:bg-slate-400-100 bg-slate-800 transition duration-200 flex items-center justify-center"

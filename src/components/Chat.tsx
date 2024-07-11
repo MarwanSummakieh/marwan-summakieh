@@ -19,6 +19,7 @@ const Chat: React.FC = () => {
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const [currentTypingMessage, setCurrentTypingMessage] = useState<string>('');
   const [chatStarted, setChatStarted] = useState<boolean>(false);
+  const [isTyping, setIsTyping] = useState<boolean>(false);
 
   const placeholders = [
     "What's your experience in software engineering?",
@@ -54,10 +55,11 @@ const Chat: React.FC = () => {
   }, []);
 
   const handleSend = async (message: string) => {
-    if (message.trim() && threadId) {
+    if (message.trim() && threadId && !isTyping) {
       setMessages((prevMessages) => [...prevMessages, { text: message, type: 'sent' }]);
       setImageSrc('/imojies/hmmm.png');
-      setChatStarted(true); // Set chatStarted to true when a message is sent
+      setChatStarted(true);
+      setIsTyping(true); // Disable input while typing
       await sendMessageToOpenAI(message);
     }
   };
@@ -85,6 +87,7 @@ const Chat: React.FC = () => {
       console.error("Error sending message:", error);
       setMessages((prevMessages) => [...prevMessages, { text: "Sorry, I couldn't process your request.", type: 'received' }]);
       setImageSrc('/imojies/oops.png');
+      setIsTyping(false); // Enable input if there is an error
     }
   };
 
@@ -104,6 +107,7 @@ const Chat: React.FC = () => {
       setMessages((prevMessages) => [...prevMessages, { text, type: 'received' }]);
       setCurrentTypingMessage('');
       setImageSrc('/imojies/smiling.png');
+      setIsTyping(false); // Enable input when done typing
     }
   };
 
@@ -193,7 +197,8 @@ const Chat: React.FC = () => {
                   <button
                     key={index}
                     onClick={() => handleOptionClick(option)}
-                    className="w-36 h-28 sm:w-scren m-2 p-2 bg-gray-200 dark:bg-gray-700 align-top text-gray-800 dark:text-gray-200 rounded-md text-start"
+                    className="w-36 h-28 sm:w-screen m-2 p-2 bg-gray-200 dark:bg-gray-700 align-top text-gray-800 dark:text-gray-200 rounded-md text-start"
+                    disabled={isTyping} // Disable the button while typing
                   >
                     {option}
                   </button>
@@ -205,6 +210,7 @@ const Chat: React.FC = () => {
                 placeholders={placeholders}
                 onChange={handleChange}
                 onSubmit={handleSubmit}
+                isDisabled={isTyping} // Pass the isTyping state as isDisabled
               />
             </div>
           </div>
