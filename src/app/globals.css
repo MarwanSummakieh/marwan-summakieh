@@ -24,4 +24,17 @@
     background-color: #121212; /* Dark background */
     color: white; /* Default text color */
     size: 12px;
+    font-family: 'monospace' ;
   }
+
+  @layer utilities {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+   /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+  }
+}

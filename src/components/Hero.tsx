@@ -1,13 +1,35 @@
 "use"
 
 import React from 'react';
-import { Spotlight } from './ui/Spotlight';
 import { ThemeProvider } from './ThemeProvider';
-import { TextGenerateEffect } from './ui/TextGenerateEffect';
 import MagicButton from './ui/MagicButton';
 import NormalButton from './ui/NormalButton';
 import Link from 'next/link';
 import { LampContainer } from './ui/Lamp';
+import { TypewriterEffectSmooth } from './ui/Typewritter';
+
+const words = [
+  {
+    text: "Bring",
+    className: "text-4xl"
+  },
+  {
+    text: "your",
+    className: "text-4xl"
+  },
+  {
+    text: "imagination",
+    className: "text-4xl"
+  },
+  {
+    text: "to",
+    className: "text-4xl"
+  },
+  {
+    text: "light.",
+    className: "text-4xl"
+  },
+];
 
 const Hero = () => {
   return (
@@ -16,15 +38,13 @@ const Hero = () => {
       defaultTheme="dark"
       disableTransitionOnChange
     >
-      <div className="pd-20">
-        <div className="h-full w-full dark:bg-black-100 dark:bg-grid-white/[0.03] bg-grid-black/[0.02] relative flex items-center justify-center top-0 left-0 ">
+      <div>
+        <div className="w-full dark:bg-black-100 dark:bg-grid-white/[0.03] bg-grid-black/[0.02] relative flex items-center justify-center">
           <div className="relative pointer-events-none inset-0 flex items-center justify-center dark:bg-black-100 bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
           <div className="flex justify-center relative my-20 z-10">
-            <div className="max-w-auto md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center">
+            <div className="max-w-auto md:max-w-2xl flex flex-col items-center justify-center">
               <LampContainer>
-                <TextGenerateEffect
-                className="text-center text-[40px] md:text-5xl lg:text-6xl"
-                words="Bring your imagination to light" />
+              <TypewriterEffectSmooth words={words} />
                 <div className="w-96 flex justify-between mt-10">
                   {Array.from("MARWAN SUMMAKIEH").map((char, index) => (
                     <span key={index} className="font-medium text-slate-800">
