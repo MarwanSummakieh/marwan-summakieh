@@ -11,23 +11,23 @@ import { TypewriterEffectSmooth } from './ui/Typewritter';
 const words = [
   {
     text: "Bring",
-    className: "text-4xl"
+    className: "text-2xl"
   },
   {
     text: "your",
-    className: "text-4xl"
+    className: "text-2xl"
   },
   {
     text: "imagination",
-    className: "text-4xl"
+    className: "text-2xl"
   },
   {
     text: "to",
-    className: "text-4xl"
+    className: "text-2xl"
   },
   {
     text: "light.",
-    className: "text-4xl"
+    className: "text-2xl"
   },
 ];
 
