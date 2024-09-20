@@ -21,6 +21,9 @@ const Chat: React.FC = () => {
   const [chatStarted, setChatStarted] = useState<boolean>(false);
   const [isTyping, setIsTyping] = useState<boolean>(false);
 
+  // Use a ref to manage the typing message state
+  const typingMessageRef = useRef<string>('');
+
   const placeholders = [
     "What's your experience in software engineering?",
     "What technologies do you specialize in?",
@@ -30,19 +33,11 @@ const Chat: React.FC = () => {
   useEffect(() => {
     const createNewThread = async () => {
       try {
-        const response = await fetch('/api/chat', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ message: '', threadId: null }),
-        });
-
+        const response = await fetch('/api/chat/new'); // Adjusted endpoint
         if (!response.ok) {
           const errorData = await response.json();
           throw new Error(errorData.message || 'Failed to create new thread');
         }
-
         const data = await response.json();
         setThreadId(data.threadId);
       } catch (error) {
@@ -50,7 +45,6 @@ const Chat: React.FC = () => {
         setImageSrc('/imojies/oops.png');
       }
     };
-
     createNewThread();
   }, []);
 
@@ -59,7 +53,7 @@ const Chat: React.FC = () => {
       setMessages((prevMessages) => [...prevMessages, { text: message, type: 'sent' }]);
       setImageSrc('/imojies/hmmm.png');
       setChatStarted(true);
-      setIsTyping(true); // Disable input while typing
+      setIsTyping(true);
       await sendMessageToOpenAI(message);
     }
   };
@@ -82,32 +76,46 @@ const Chat: React.FC = () => {
       }
 
       const data = await response.json();
-      startTypingEffect(data.messages);
+
+      // Assuming the API returns a 'reply' field with the assistant's response
+      if (data.reply) {
+        startTypingEffect(data.reply);
+      } else {
+        console.error("Unexpected API response:", data);
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          { text: "Sorry, I couldn't process your request.", type: 'received' },
+        ]);
+        setImageSrc('/imojies/oops.png');
+        setIsTyping(false);
+      }
     } catch (error) {
       console.error("Error sending message:", error);
-      setMessages((prevMessages) => [...prevMessages, { text: "Sorry, I couldn't process your request.", type: 'received' }]);
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { text: "Sorry, I couldn't process your request.", type: 'received' },
+      ]);
       setImageSrc('/imojies/oops.png');
-      setIsTyping(false); // Enable input if there is an error
+      setIsTyping(false);
     }
   };
 
-  const startTypingEffect = (newMessages: Message[]) => {
-    const receivedMessages = newMessages.filter(msg => msg.type === 'received');
-    if (receivedMessages.length > 0) {
-      const fullText = receivedMessages.map(msg => msg.text).join(' ');
-      typeMessage(fullText, 0);
-    }
+  const startTypingEffect = (text: string) => {
+    typingMessageRef.current = '';
+    typeMessage(text, 0);
   };
 
   const typeMessage = (text: string, index: number) => {
     if (index < text.length) {
-      setCurrentTypingMessage((prev) => prev + text[index]);
-      setTimeout(() => typeMessage(text, index + 1), 50); // Adjust the speed as needed
+      typingMessageRef.current += text[index];
+      setCurrentTypingMessage(typingMessageRef.current);
+      setTimeout(() => typeMessage(text, index + 1), 50);
     } else {
       setMessages((prevMessages) => [...prevMessages, { text, type: 'received' }]);
+      typingMessageRef.current = '';
       setCurrentTypingMessage('');
       setImageSrc('/imojies/smiling.png');
-      setIsTyping(false); // Enable input when done typing
+      setIsTyping(false);
     }
   };
 
@@ -138,33 +146,37 @@ const Chat: React.FC = () => {
       defaultTheme="dark"
       disableTransitionOnChange
     >
+      {/* Spotlights for background decoration */}
       <div>
         <Spotlight className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen" fill="white" />
         <Spotlight className="-top-10 -left-full h-[80vh] w-[50vw]" fill="purple" />
         <Spotlight className="top-28 left-80 h-[80vh] w-[50vw]" fill="blue" />
       </div>
+
+      {/* Main chat container */}
       <div className="relative flex justify-center items-center h-screen pt-10">
-        <div className="flex flex-col md:flex-row w-full max-w-6xl h-full items-center justify-between space-x-0 md:space-x-4 p-4">
+        <div className="flex flex-col md:flex-row w-full max-w-6xl items-center justify-between space-x-0 md:space-x-4 p-4">
+          {/* Image section */}
           <div className="hidden md:flex flex-1 mb-10 md:mb-0 items-end justify-center">
-            <Image
-              src={imageSrc}
-              alt="Chat Illustration"
-              objectFit="cover"
-              width={500}
-              height={500}
-              className="rounded-2xl"
-            />
+            <div className="relative w-80 h-80">
+              <Image
+                src={imageSrc}
+                alt="Chat Illustration"
+                style={{ objectFit: 'cover' }}
+                fill
+                className="rounded-2xl"
+              />
+            </div>
           </div>
-          <div className="flex-1 h-full flex flex-col justify-between shadow-lg p-4 overflow-hidden">
+
+          {/* Chat interface */}
+          <div className="flex-1 flex flex-col justify-between shadow-lg p-4 h-auto bg-white dark:bg-gray-900 rounded-2xl">
+            {/* Chat messages container */}
             <div
               id="chat-container"
               ref={chatContainerRef}
-              className="relative flex-grow overflow-y-auto p-4 rounded-2xl mb-4 w-full h-full scrollbar-hide"
+              className="relative flex-grow overflow-y-auto p-4 w-full h-full scrollbar-hide"
             >
-              <div
-                id="top-fade"
-                className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-gray-100 dark:from-gray-800 to-transparent pointer-events-none z-10 opacity-0 transition-opacity duration-300"
-              ></div>
               {messages.map((msg, index) => (
                 <div
                   key={index}
@@ -186,43 +198,45 @@ const Chat: React.FC = () => {
                   </div>
                 </div>
               )}
-              <div
-                id="bottom-fade"
-                className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-gray-100 dark:from-gray-800 to-transparent pointer-events-none z-10 opacity-0 transition-opacity duration-300"
-              ></div>
             </div>
+
+            {/* Placeholder options */}
             {!chatStarted && (
               <div className="flex flex-wrap justify-center mb-4">
                 {placeholders.map((option, index) => (
                   <button
                     key={index}
                     onClick={() => handleOptionClick(option)}
-                    className="w-36 h-28 sm:w-screen m-2 p-2 bg-gray-200 dark:bg-gray-700 align-top text-gray-800 dark:text-gray-200 rounded-md text-start"
-                    disabled={isTyping} // Disable the button while typing
+                    className="w-full md:w-1/3 m-2 p-4 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-md text-left"
+                    disabled={isTyping}
                   >
                     {option}
                   </button>
                 ))}
               </div>
             )}
+
+            {/* Input field */}
             <div className="mb-4">
               <PlaceholdersAndVanishInput
                 placeholders={placeholders}
                 onChange={handleChange}
                 onSubmit={handleSubmit}
-                isDisabled={isTyping} // Pass the isTyping state as isDisabled
+                isDisabled={isTyping}
               />
             </div>
           </div>
         </div>
       </div>
+
+      {/* Global styles */}
       <style jsx global>{`
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
         }
         .scrollbar-hide {
-          -ms-overflow-style: none; /* IE and Edge */
-          scrollbar-width: none; /* Firefox */
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
       `}</style>
     </ThemeProvider>
