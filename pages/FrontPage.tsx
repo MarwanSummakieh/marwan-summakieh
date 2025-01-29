@@ -1,0 +1,57 @@
+"use client";
+
+import { GoogleGeminiEffect } from "@/components/ui/GLowingLines";
+import { motion, useTransform, useScroll } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+
+export default function RenovationNotice() {
+  const ref = useRef(null);
+  return (
+    <div className="min-h-[110vh] bg-black">
+      <GoogleGeminiEffect>
+        <div className="h-screen flex flex-col items-center justify-center text-center px-4 py-4 ">
+          <motion.div
+            ref={ref}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-neutral-50 to-neutral-400 py-4"
+          >
+            Evolution in Progress
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-neutral-300 text-lg md:text-xl max-w-2xl mx-auto h-10 "
+          >
+            We're rebuilding everything from the ground up with artificial intelligence at its core.
+            The future of smart web experiences is coming soon.
+          </motion.p>
+
+          {/* Animated Dots for Visual Interest */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="mt-8 flex space-x-2"
+          >
+            {[...Array(3)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="w-2 h-2 bg-neutral-400 rounded-full"
+                animate={{ y: [0, -10, 0] }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  delay: i * 0.2,
+                }}
+              />
+            ))}
+          </motion.div>
+        </div>
+      </GoogleGeminiEffect>      
+    </div>
+  );
+}
