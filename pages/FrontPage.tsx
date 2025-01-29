@@ -1,8 +1,8 @@
 "use client";
 
 import { GoogleGeminiEffect } from "@/components/ui/GLowingLines";
-import { motion, useTransform, useScroll } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { useRef } from "react";
 
 export default function RenovationNotice() {
   const ref = useRef(null);
@@ -26,8 +26,11 @@ export default function RenovationNotice() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-neutral-100 text-2xl md:text-xl max-w-2xl mx-auto h-10 bg-slate-900/50"
           >
-            We're rebuilding everything from the ground up with artificial intelligence at its core.
-            The future of smart web experiences is coming soon.
+            <span>
+              We&apos;re rebuilding everything from the ground up with artificial intelligence at its core.
+              The future of smart web experiences is coming soon.
+            </span>
+
           </motion.p>
 
           {/* Animated Dots for Visual Interest */}
@@ -51,7 +54,7 @@ export default function RenovationNotice() {
             ))}
           </motion.div>
         </div>
-      </GoogleGeminiEffect>      
+      </GoogleGeminiEffect>
     </div>
   );
 }
