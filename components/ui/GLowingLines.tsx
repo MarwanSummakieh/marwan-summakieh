@@ -43,57 +43,62 @@ export const GoogleGeminiEffect = ({
 }) => {
   return (
     <div className={cn("sticky top-auto", className)}>
-      {children}
-      <svg
-        width="100%"
-        height="auto"
-        viewBox="0 0 1440 890"
-        preserveAspectRatio="xMidYMid meet"
-        className="absolute -top-60 md:-top-40 w-full h-auto"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {PATHS.map((item, index) => {
-          // For each path, we add a delay so that they start at different times
-          const delay = index * 0.5; // 0.5-second offset for each line
+      <div className="relative">
+        {/* The lines, set behind with z-0 */}
+        <svg
+          width="100%"
+          height="auto"
+          viewBox="0 0 1440 890"
+          preserveAspectRatio="xMidYMid meet"
+          xmlns="http://www.w3.org/2000/svg"
+          className="absolute -top-60 md:-top-40 w-full h-auto z-0"
+        >
+          {PATHS.map((item, index) => {
+            // For each path, we add a delay so that they start at different times
+            const delay = index * 0.5; // 0.5-second offset for each line
 
-          return (
-            <motion.path
-              key={index}
+            return (
+              <motion.path
+                key={index}
+                d={item.d}
+                stroke={item.stroke}
+                strokeWidth="2"
+                fill="none"
+                animate={{
+                  pathLength: [0, 1, 1],
+                  pathOffset: [0, 0, 1],
+                }}
+                transition={{
+                  ...BASE_TRANSITION,
+                  delay,
+                }}
+              />
+            );
+          })}
+
+          {/* Blurred static lines in the background */}
+          {PATHS.map((item, index) => (
+            <path
+              key={index + "blur"}
               d={item.d}
               stroke={item.stroke}
               strokeWidth="2"
               fill="none"
-              animate={{
-                pathLength: [0, 1, 1],
-                pathOffset: [0, 0, 1],
-              }}
-              transition={{
-                ...BASE_TRANSITION,
-                delay,
-              }}
+              pathLength={1}
+              filter="url(#blurMe)"
             />
-          );
-        })}
+          ))}
 
-        {/* Blurred static lines in the background */}
-        {PATHS.map((item, index) => (
-          <path
-            key={index + "blur"}
-            d={item.d}
-            stroke={item.stroke}
-            strokeWidth="2"
-            fill="none"
-            pathLength={1}
-            filter="url(#blurMe)"
-          />
-        ))}
+          <defs>
+            <filter id="blurMe">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="5" />
+            </filter>
+          </defs>
+        </svg>
 
-        <defs>
-          <filter id="blurMe">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="5" />
-          </filter>
-        </defs>
-      </svg>
+        {/* Children placed on top with z-10 */}
+        <div className="relative z-10">{children}</div>
+      </div>
     </div>
   );
 };

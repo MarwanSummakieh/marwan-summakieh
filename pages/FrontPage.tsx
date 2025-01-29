@@ -24,7 +24,7 @@ export default function RenovationNotice() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-neutral-300 text-lg md:text-xl max-w-2xl mx-auto h-10 "
+            className="text-neutral-100 text-2xl md:text-xl max-w-2xl mx-auto h-10 bg-slate-900/50"
           >
             We're rebuilding everything from the ground up with artificial intelligence at its core.
             The future of smart web experiences is coming soon.
