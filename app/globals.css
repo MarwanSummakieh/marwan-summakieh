@@ -70,3 +70,17 @@ body {
     @apply bg-background text-foreground;
   }
 }
+@media (forced-colors: active) {
+  /* Disabling forced color adjustment for specific elements if you want
+     them to keep their original color (not overridden by forced-colors) */
+  * {
+    forced-color-adjust: none;
+  }
+
+  /* Or providing custom colors in forced color mode: */
+  a {
+    color: LinkText; /* system color keyword */
+    background: Canvas; /* system background color */
+  }
+}
+

@@ -32,27 +32,6 @@ export default function RenovationNotice() {
             </span>
 
           </motion.p>
-
-          {/* Animated Dots for Visual Interest */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-8 flex space-x-2"
-          >
-            {[...Array(3)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="w-2 h-2 bg-neutral-400 rounded-full"
-                animate={{ y: [0, -10, 0] }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  delay: i * 0.2,
-                }}
-              />
-            ))}
-          </motion.div>
         </div>
       </GoogleGeminiEffect>
     </div>
