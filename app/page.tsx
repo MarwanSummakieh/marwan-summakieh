@@ -4,13 +4,13 @@ import { useState } from "react";
 import Chatbot from "@/components/Chatbot";
 import { GoogleGeminiEffect } from "@/components/ui/GLowingLines";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDownIcon, ChevronUpIcon, UserCircleIcon, SparklesIcon as SparklesOutlineIcon } from "@heroicons/react/24/outline";
+import { ChevronDownIcon, ChevronUpIcon, UserCircleIcon, SparklesIcon as SparklesOutlineIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/solid";
 import React from 'react';
 import AboutMeProfile from "@/components/AboutMeProfile";
 
 // Define view states as a type for better clarity
-type ViewState = 'intro' | 'options' | 'profile';
+type ViewState = 'intro' | 'options' | 'profile' | 'creative';
 
 const Home: React.FC = () => {
   const [currentView, setCurrentView] = useState<ViewState>('intro');
@@ -48,12 +48,17 @@ const Home: React.FC = () => {
     setIsChatDrawerOpen(prev => !prev);
   };
 
+  // Handler to switch view to Creative Space (Coming Soon)
+  const handleCreativeSpaceClick = () => {
+    setCurrentView('creative');
+  };
+
   return (
     <div className={`min-h-screen bg-gradient-to-br from-[#0b0f19] via-[#121433] to-[#0b0f19] p-4 relative overflow-hidden flex flex-col justify-center items-center`}>
 
       <AnimatePresence>
-        {/* Keep background effect only in intro and options, not profile */}
-        {(currentView === 'intro' || currentView === 'options') && (
+        {/* Keep background effect only in intro, options, and creative */}
+        {(currentView === 'intro' || currentView === 'options' || currentView === 'creative') && (
           <motion.div
             key="background-effect"
             className="absolute inset-0 w-full h-full z-0"
@@ -91,8 +96,8 @@ const Home: React.FC = () => {
           </motion.div>
         )}
 
-        {/* Render Options view only when not in profile or intro and chat isn't fully open */}
-        {currentView === 'options' && !isChatDrawerOpen && (
+        {/* Render Options view only when currentView is 'options' */}
+        {currentView === 'options' && (
           <motion.div
             key="options"
             initial={{ opacity: 0, scale: 0.9 }}
@@ -111,6 +116,7 @@ const Home: React.FC = () => {
               <span className="font-semibold text-sm md:text-base">About Me</span>
             </motion.button>
             <motion.button
+              onClick={handleCreativeSpaceClick}
               whileHover={{ scale: 1.05, boxShadow: "0px 0px 15px rgba(255,255,255,0.3)" }}
               whileTap={{ scale: 0.95 }}
               className="flex flex-col items-center justify-center p-4 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 text-white w-full max-w-xs md:w-44 md:h-36 text-center transition-all duration-300"
@@ -124,6 +130,31 @@ const Home: React.FC = () => {
         {/* Render Profile view */}
         {currentView === 'profile' && (
             <AboutMeProfile onBack={handleBackToOptions} />
+        )}
+
+        {/* Render Creative Space Coming Soon view */}
+        {currentView === 'creative' && (
+          <motion.div
+            key="creative"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.3 }}
+            className="z-10 flex flex-col items-center justify-center gap-4 md:gap-8 mt-8 w-full px-4 text-center text-white"
+          >
+            <SparklesOutlineIcon className="h-16 w-16 mb-4 text-purple-400" />
+            <h2 className="text-3xl font-bold mb-2">Creative Space</h2>
+            <p className="text-xl text-neutral-300 mb-6">Coming Soon!</p>
+            <motion.button
+              onClick={handleBackToOptions}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-2 px-6 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold hover:bg-white/20 transition-colors duration-300"
+            >
+              <ArrowLeftIcon className="h-5 w-5" />
+              Back
+            </motion.button>
+          </motion.div>
         )}
       </AnimatePresence>
 
@@ -177,9 +208,9 @@ const Home: React.FC = () => {
         </motion.div>
       )}
 
-      {/* Persistent Arrow Toggle Button - Separate AnimatePresence */}
+      {/* Persistent Arrow Toggle Button - Rendered when chat opened & drawer closed */}
       <AnimatePresence>
-         {chatHasBeenOpened && currentView === 'options' && !isChatDrawerOpen && (
+         {chatHasBeenOpened && !isChatDrawerOpen && (
             <motion.div
                    key="chat-arrow-toggle-wrapper"
                    className="fixed bottom-4 inset-x-0 z-40 flex justify-center pointer-events-none"
@@ -189,7 +220,7 @@ const Home: React.FC = () => {
                >
                    <motion.button
                        key="chat-arrow-toggle"
-                       className="p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white shadow-lg pointer-events-auto"
+                       className="p-3 rounded-full bg-gradient-to-br from-blue-900/80 via-purple-900/50 to-gray-900/80 backdrop-blur-sm border border-blue-500/50 text-white shadow-lg shadow-blue-500/30 hover:shadow-blue-400/50 hover:border-blue-400 transition-all duration-300 pointer-events-auto hover:-translate-y-1"
                        onClick={handleToggleChatClick}
                        whileHover={{ scale: 1.1 }}
                        whileTap={{ scale: 0.9 }}
