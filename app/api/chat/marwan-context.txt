@@ -1,0 +1,68 @@
+SOFTWARE ENGINEER
+Marwan Summakieh
++45 27 29 78 28	 	marwansummakieh97@gmail.com
+Copenhagen
+
+Results-driven Software Engineer specializing in scalable solutions for manufacturing environments. While my C# experience is limited, I'm eager to strengthen these skills. Proficient with React and experienced in cloud architecture, CI/CD pipelines, and Git. Proven track record collaborating with global teams to optimize operational efficiency. Committed to exploring emerging technologies like microservices and event-driven systems to deliver innovative solutions.
+
+WHY I'M EXCITED ABOUT LEGO
+I'm genuinely excited about LEGO's innovative approach to manufacturing technology and its global impact. Joining a team that develops solutions used across international production facilities represents an ideal professional opportunity. The "you build it – you own it" philosophy aligns perfectly with my desire for ownership and accountability in my work. LEGO's collaborative environment and commitment to continuous learning provide the growth-oriented culture I value. What particularly resonates with me is the company's meaningful purpose - using technology to support creativity and learning for children worldwide. Contributing to this mission through manufacturing technology would be both professionally fulfilling and personally meaningful.
+
+EXPERIENCE
+
+OUTLOOK FILE MANAGEMENT EXTENSION | JOKER IT (2024)
+Description: Built a Microsoft Outlook extension that streamlines document workflow by enabling users to manage email attachments and upload files directly to SharePoint without leaving their email interface.
+Responsibilities:
+• Developed the Outlook add-in using Microsoft's Office Add-in framework.
+• Implemented secure authentication with SharePoint.
+• Created intuitive UI for file management operations.
+• Built robust error handling for network issues and file conflicts.
+• Provided documentation and user training materials.
+Technologies Used: Microsoft Office Add-in Framework, JavaScript/React, SharePoint REST API, OAuth authentication.
+
+AZURE PROVISIONING TOOL | JOKER IT (2023)
+Description: Developed an automated provisioning tool for streamlining resource allocation and management within Azure environments. This solution significantly reduced manual configuration time and ensured consistent deployment of resources across projects.
+Responsibilities:
+• Designed and implemented the core provisioning architecture.
+• Created an intuitive dashboard for monitoring resource allocation.
+• Developed automated workflows for common provisioning tasks.
+• Implemented robust error handling and logging mechanisms.
+Technologies Used: Azure Resource Manager, PowerShell/Azure CLI, Azure Functions, REST APIs.
+
+ZAKIS-SKRAEDDER-OG-RENSERI | FREELANCING (2024)
+Description: Created and implemented a website and order tracking application for ZAKI'S Skrædder & Renseri, a tailoring and dry-cleaning service. The website provides detailed information on services, pricing, and the owner's background to inform customers. The order-tracking application facilitates the management of customer orders, enhancing operational efficiency.
+Responsibilities:
+• Provided end-to-end solutions.
+• Used Vercel's AWS-based infrastructure.
+• Developed web and mobile applications with Next.js and React Native.
+• Created responsive, visually appealing interfaces with Tailwind CSS.
+• Utilized Relume and Figma for precise UI design and prototyping.
+Technologies Used: Vercel, AWS, Next.JS, Tailwind CSS, UX with Figma and Relume.
+
+EDUCATION
+
+BACHELOR'S IN SOFTWARE ENGINEERING | VIA UNIVERSITY COLLEGE - DENMARK | 2019 - 2022
+Key Subjects and Grades:
+• Algorithms and Data Structures: C
+• Dot Net development: A 
+• Game Development: B
+• Interaction Design: A
+
+MICROSOFT CERTIFIED: POWER PLATFORM APP MAKER ASSOCIATE 
+Credential ID: F3E768ADDBF1844
+Certification number: ADE462-0AECAQ
+Earned on: 28 April 2024
+
+LANGUAGES
+
+English - Bilingual
+Danish - Speaking
+Arabic - Native
+
+HOBBIES
+
+Football, watching and playing
+Table tennis
+Listening to music
+Writing short stories
+Video games development 
