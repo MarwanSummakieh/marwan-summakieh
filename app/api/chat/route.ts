@@ -3,7 +3,6 @@ import {
     GoogleGenerativeAI, 
     HarmCategory, 
     HarmBlockThreshold, 
-    Content 
 } from "@google/generative-ai";
 import { Ratelimit } from "@upstash/ratelimit";
 import { kv } from "@vercel/kv";
@@ -248,11 +247,14 @@ export async function POST(req: NextRequest) {
     // Return the response
     return NextResponse.json({ reply: responseText });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("API Route Error:", error);
-    const errorMessage = process.env.NODE_ENV === 'development'
-        ? error.message || 'Internal Server Error'
-        : 'An internal error occurred.';
+    let errorMessage = 'An internal error occurred.';
+    if (error instanceof Error) {
+        errorMessage = process.env.NODE_ENV === 'development'
+            ? error.message
+            : 'An internal error occurred.';
+    }
     return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 } 

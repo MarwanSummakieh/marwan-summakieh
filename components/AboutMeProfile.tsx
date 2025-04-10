@@ -5,7 +5,6 @@ import {
   AcademicCapIcon,
   BriefcaseIcon,
   CodeBracketIcon,
-  CpuChipIcon,
   HeartIcon,
   LanguageIcon,
   UserCircleIcon,
@@ -138,7 +137,15 @@ const AboutMeProfile: React.FC<AboutMeProfileProps> = ({ onBack }) => {
     const lineSpacing = 12; // Base line spacing
     const sectionSpacing = 20; // Space between sections
 
-    const addText = (text: string | string[], x: number, y: number, options?: any) => {
+    // Define options type explicitly
+    type TextOptions = { 
+      fontSize?: number; 
+      fontStyle?: 'normal' | 'bold' | 'italic' | 'bolditalic';
+      // Add other jsPDF text options if needed
+    };
+
+    // Updated addText to use TextOptions type
+    const addText = (text: string | string[], x: number, y: number, options?: TextOptions) => {
         const fontSize = options?.fontSize || pdf.getFontSize();
         const fontStyle = options?.fontStyle || 'normal';
         const currentFontStyle = pdf.getFont().fontStyle;

@@ -36,9 +36,9 @@ const Chatbot: React.FC = () => {
       setInput(e.target.value);
   }, []);
 
-  const submit = useCallback(() => {
+  const submit = () => {
       handleFormSubmit(input);
-  }, [input]);
+  };
 
   const handleKeyPress = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {

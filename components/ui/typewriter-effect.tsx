@@ -43,8 +43,8 @@ export const TypewriterEffect = ({
         }
       );
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isInView]);
+    // Added missing dependency
+  }, [isInView, animate]);
 
   const renderWords = () => {
     return (
