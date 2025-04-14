@@ -4,12 +4,49 @@ import React, { useState, useRef, useEffect, useCallback } from "react";
 import CopilotInput from "./ui/CopilotInput";
 import { Content } from "@google/generative-ai";
 import { motion } from "framer-motion";
+import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/solid";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
 
 interface Message {
   id: number;
   role: "user" | "model";
   text: string;
 }
+
+// Helper function to parse contact info block
+const parseContactInfo = (text: string) => {
+  const startMarker = 'CONTACT_INFO_START';
+  const endMarker = 'CONTACT_INFO_END';
+  const startIndex = text.indexOf(startMarker);
+  const endIndex = text.indexOf(endMarker);
+
+  if (startIndex === -1 || endIndex === -1 || endIndex <= startIndex) {
+    return null; // Markers not found or in wrong order
+  }
+
+  const content = text.substring(startIndex + startMarker.length, endIndex).trim();
+  const lines = content.split('\n');
+  const contactLinks = { linkedIn: '', email: '', gitHub: '', phone: '' };
+
+  lines.forEach(line => {
+    const trimmedLine = line.trim();
+    if (trimmedLine.startsWith('LinkedIn:')) {
+      contactLinks.linkedIn = trimmedLine.substring('LinkedIn:'.length).trim();
+    } else if (trimmedLine.startsWith('Email:')) {
+      contactLinks.email = trimmedLine.substring('Email:'.length).trim();
+    } else if (trimmedLine.startsWith('GitHub:')) {
+      contactLinks.gitHub = trimmedLine.substring('GitHub:'.length).trim();
+    } else if (trimmedLine.startsWith('Phone:')) {
+      contactLinks.phone = trimmedLine.substring('Phone:'.length).trim();
+    }
+  });
+
+  // Only return if at least one link was found
+  if (contactLinks.linkedIn || contactLinks.email || contactLinks.gitHub || contactLinks.phone) {
+    return contactLinks;
+  }
+  return null;
+};
 
 const Chatbot: React.FC = () => {
   const initialMessages: Message[] = [
@@ -89,6 +126,8 @@ const Chatbot: React.FC = () => {
       const data = await response.json();
       const botReply = data.reply || "Sorry, I couldn't get a response.";
       
+      console.log("Raw bot reply:", botReply);
+
       const newBotMessage: Message = {
         id: Date.now() + 3,
         text: botReply,
@@ -118,31 +157,80 @@ const Chatbot: React.FC = () => {
         key="messages"
         className="flex-1 overflow-y-auto px-3 md:px-6 pt-2 md:pt-6 space-y-4 md:space-y-6"
       >
-        {messages.map((message) => (
-          <motion.div 
-            key={message.id} 
-            className="message-item w-full"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-          >
-            {message.role === 'model' ? (
-              <div className="text-left bot-message max-w-full overflow-x-hidden">
-                <p className="text-xs md:text-sm text-purple-300 mb-1 font-medium">AI Assistant</p>
-                <p className="text-sm md:text-base text-left text-neutral-100 whitespace-pre-wrap">
-                  {message.text}
-                </p>
-              </div>
-            ) : (
-              <div className="text-left user-message">
-                <p className="text-xs md:text-sm text-blue-400 mb-1 font-medium">You</p>
-                <p className="text-sm md:text-base text-neutral-100 whitespace-pre-wrap">
-                  {message.text}
-                </p>
-              </div>
-            )}
-          </motion.div>
-        ))}
+        {messages.map((message) => {
+          // --- Check if it's a contact info message --- > MODIFIED SECTION START
+          let contactInfo = null;
+          if (message.role === 'model') {
+            contactInfo = parseContactInfo(message.text);
+          }
+          // --- END CHECK --- 
+
+          return (
+            <motion.div 
+              key={message.id} 
+              className="message-item w-full"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
+              {message.role === 'model' ? (
+                <div className="text-left bot-message max-w-full overflow-x-hidden">
+                  <p className="text-xs md:text-sm text-purple-300 mb-1 font-medium">AI Assistant</p>
+                  {/* --- Render contact card or normal message --- */}
+                  {contactInfo ? (
+                    <div className="mt-2 p-4 rounded-lg bg-white/10 border border-purple-400/30 space-y-3">
+                      <p className="text-sm font-semibold text-purple-200 mb-2">Contact Information:</p>
+                      {contactInfo.linkedIn && (
+                        <div className="flex items-center gap-3">
+                          <FaLinkedin className="h-5 w-5 text-purple-300 flex-shrink-0" />
+                          <a href={contactInfo.linkedIn} target="_blank" rel="noopener noreferrer" className="text-sm text-blue-400 hover:text-blue-300 underline truncate">
+                            LinkedIn Profile
+                          </a>
+                        </div>
+                      )}
+                      {contactInfo.email && (
+                        <div className="flex items-center gap-3">
+                          <EnvelopeIcon className="h-5 w-5 text-purple-300 flex-shrink-0" />
+                          <a href={`mailto:${contactInfo.email}`} className="text-sm text-blue-400 hover:text-blue-300 underline truncate">
+                            {contactInfo.email}
+                          </a>
+                        </div>
+                      )}
+                      {contactInfo.gitHub && (
+                        <div className="flex items-center gap-3">
+                          <FaGithub className="h-5 w-5 text-purple-300 flex-shrink-0" />
+                          <a href={contactInfo.gitHub} target="_blank" rel="noopener noreferrer" className="text-sm text-blue-400 hover:text-blue-300 underline truncate">
+                            GitHub Profile
+                          </a>
+                        </div>
+                      )}
+                      {contactInfo.phone && (
+                        <div className="flex items-center gap-3">
+                          <PhoneIcon className="h-5 w-5 text-purple-300 flex-shrink-0" />
+                          <a href={`tel:${contactInfo.phone.replace(/\s+/g, '')}`} className="text-sm text-blue-400 hover:text-blue-300 underline truncate">
+                            {contactInfo.phone}
+                          </a>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <p className="text-sm md:text-base text-left text-neutral-100 whitespace-pre-wrap">
+                      {message.text} {/* Render normal text if not contact info */}
+                    </p>
+                  )}
+                  {/* --- End Render --- */}
+                </div>
+              ) : (
+                <div className="text-left user-message">
+                  <p className="text-xs md:text-sm text-blue-400 mb-1 font-medium">You</p>
+                  <p className="text-sm md:text-base text-neutral-100 whitespace-pre-wrap">
+                    {message.text}
+                  </p>
+                </div>
+              )}
+            </motion.div>
+          );
+        })}
         <div ref={messagesEndRef} />
       </div>
 
