@@ -238,15 +238,15 @@ const Chatbot: React.FC = () => {
         {/* This div creates the fade effect */}
       </div>
 
-      <div
-        className={`w-full max-w-4xl mx-auto px-3 pb-3 md:px-6 md:pb-6 pt-2 z-20`}
-      >
-        <CopilotInput 
-          value={input} 
-          onChange={handleInputChange} 
-          onSubmit={submit}
-          onKeyPress={handleKeyPress}
-        />
+      <div className="w-full px-3 pb-3 md:px-6 md:pb-6 pt-2 z-20 flex justify-center">
+        <div className="w-full max-w-4xl">
+          <CopilotInput 
+            value={input} 
+            onChange={handleInputChange} 
+            onSubmit={submit}
+            onKeyPress={handleKeyPress}
+          />
+        </div>
       </div>
     </div>
   );
