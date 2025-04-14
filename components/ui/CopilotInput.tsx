@@ -48,20 +48,20 @@ const CopilotInput: React.FC<CopilotInputProps> = ({
 
   return (
     <div className="w-full bg-[#1a1f36]/70 backdrop-blur-md rounded-full p-2 flex items-center space-x-2 shadow-lg border border-blue-900/50">
-      {/* Input Field */}
+      {/* Input Field - Added min-w-0 */}
       <input
         type="text"
         value={value}
         onChange={onChange}
         onKeyPress={onKeyPress}
         placeholder="Ask me anything... or click the ✨ for a suggestion"
-        className="flex-1 bg-transparent text-neutral-100 placeholder-neutral-400 focus:outline-none text-lg px-2"
+        className="flex-1 bg-transparent text-neutral-100 placeholder-neutral-400 focus:outline-none text-lg px-2 min-w-0"
         aria-label="Chat input"
       />
 
-      {/* Grouping auxiliary action buttons */}
-      <div className="flex items-center space-x-1">
-        {/* Sparkles Icon Button - Now functional */}
+      {/* Grouping auxiliary action buttons - Added flex-shrink-0 */}
+      <div className="flex items-center space-x-1 flex-shrink-0">
+        {/* Sparkles Icon Button */}
         <button 
           onClick={handleSparkleClick}
           className="p-2 text-neutral-300 hover:text-yellow-300 transition-colors rounded-full hover:bg-blue-800/50"
@@ -73,11 +73,11 @@ const CopilotInput: React.FC<CopilotInputProps> = ({
         {/* Mic Icon Button Removed */}
       </div>
 
-      {/* Submit Button: Apply Gemini gradient */}
+      {/* Submit Button - Added flex-shrink-0 */}
       <button
         onClick={onSubmit}
         disabled={inputIsEmpty}
-        className="p-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white disabled:bg-neutral-600 disabled:opacity-50 hover:shadow-lg transition-all flex items-center justify-center"
+        className="p-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white disabled:bg-neutral-600 disabled:opacity-50 hover:shadow-lg transition-all flex items-center justify-center flex-shrink-0"
         aria-label="Send message"
       >
         <PaperAirplaneIcon className="h-6 w-6" />
