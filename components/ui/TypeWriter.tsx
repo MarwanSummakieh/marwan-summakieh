@@ -29,7 +29,7 @@ export const TypewriterEffect = ({
 
   const animateCallback = useCallback(() => {
     if (isInView) {
-      animate(
+      return animate(
         "span",
         {
           display: "inline-block",
@@ -43,11 +43,14 @@ export const TypewriterEffect = ({
         }
       );
     }
+    return undefined;
   }, [isInView, animate]);
 
   useEffect(() => {
     const controls = animateCallback();
-    return controls?.stop;
+    return () => {
+      controls?.stop();
+    };
   }, [animateCallback]);
 
   const renderWords = () => {
