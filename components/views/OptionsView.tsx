@@ -53,7 +53,7 @@ const OptionsView: React.FC<OptionsViewProps> = ({
         >
           <CodeBracketIcon className="h-8 md:h-10 w-8 md:w-10 mb-3 text-green-300" />
           <span className="font-semibold text-sm md:text-lg mb-2">Projects</span>
-          <p className="text-xs md:text-sm text-neutral-300 px-2">Browse my public code repositories on GitHub.</p>
+          <p className="text-xs md:text-sm text-neutral-300 px-2">Check out some of my projects.</p>
         </motion.button>
         
         {/* Creative Space Button Card */}
