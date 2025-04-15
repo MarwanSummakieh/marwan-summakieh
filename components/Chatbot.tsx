@@ -74,9 +74,9 @@ const Chatbot: React.FC = () => {
       setInput(e.target.value);
   }, []);
 
-  const submit = () => {
+  const submit = useCallback(() => {
       handleFormSubmit(input);
-  };
+  }, [input, handleFormSubmit]);
 
   const handleKeyPress = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
@@ -218,7 +218,7 @@ const Chatbot: React.FC = () => {
                     <div className="text-sm md:text-base text-left text-neutral-100 whitespace-pre-wrap">
                       <ReactMarkdown
                         components={{
-                          a: ({node, ...props}) => <a {...props} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline"/>
+                          a: ({/*node,*/ ...props}) => <a {...props} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline"/>
                         }}
                       >
                         {message.text}

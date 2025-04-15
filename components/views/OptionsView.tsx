@@ -28,7 +28,7 @@ const OptionsView: React.FC<OptionsViewProps> = ({
       transition={{ duration: 0.3 }}
       className="z-10 flex flex-col items-center justify-center gap-6 md:gap-10 mt-8 w-full px-4"
     >
-      <h2 className="text-3xl font-semibold text-neutral-200 mb-4">Explore Marwan's Space</h2>
+      <h2 className="text-3xl font-semibold text-neutral-200 mb-4">Explore Marwan&apos;s Space</h2>
       
       <div className="grid grid-cols-1 md:grid-cols-3 items-stretch justify-center gap-4 md:gap-6 w-full max-w-4xl">
         
