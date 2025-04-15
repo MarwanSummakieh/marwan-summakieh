@@ -74,16 +74,6 @@ const Chatbot: React.FC = () => {
       setInput(e.target.value);
   }, []);
 
-  const submit = useCallback(() => {
-      handleFormSubmit(input);
-  }, [input, handleFormSubmit]);
-
-  const handleKeyPress = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-        submit();
-    }
-  }, [submit]);
-
   const handleFormSubmit = useCallback(async (passedValue: string) => {
     const trimmedValue = passedValue.trim();
     if (trimmedValue === "" || isLoading) return;
@@ -95,17 +85,15 @@ const Chatbot: React.FC = () => {
       role: "user",
     };
     
-    // Prepare history, filtering out the initial model greeting if present
     const messagesForHistory = messages.length > 0 && messages[0].role === 'model' 
-        ? messages.slice(1) // Exclude the first message if it's the initial greeting
-        : messages; // Otherwise, use all messages
+        ? messages.slice(1) 
+        : messages;
 
     const history: Content[] = messagesForHistory.map(msg => ({
         role: msg.role,
         parts: [{ text: msg.text }]
     }));
 
-    // Add user message to local state AFTER preparing history
     setMessages((prev) => [...prev, newUserMessage]);
     setInput("");
 
@@ -150,6 +138,16 @@ const Chatbot: React.FC = () => {
     }
 
   }, [isLoading, messages]);
+
+  const submit = useCallback(() => {
+      handleFormSubmit(input);
+  }, [input, handleFormSubmit]);
+
+  const handleKeyPress = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+        submit();
+    }
+  }, [submit]);
 
   return (
     <div className={`w-full h-full flex flex-col bg-transparent pt-0 relative`}>

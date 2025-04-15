@@ -43,7 +43,7 @@ export const TypewriterEffect = ({
         }
       );
     }
-  }, [isInView]);
+  }, [isInView, animate]);
 
   useEffect(() => {
     const controls = animateCallback();
