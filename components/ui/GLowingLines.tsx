@@ -51,7 +51,7 @@ export const GoogleGeminiEffect = ({
           viewBox="0 0 1440 890"
           preserveAspectRatio="xMidYMid meet"
           xmlns="http://www.w3.org/2000/svg"
-          className="absolute -top-60 md:-top-40 w-full h-auto z-0"
+          className="w-full h-auto z-0"
         >
           {PATHS.map((item, index) => {
             // For each path, we add a delay so that they start at different times

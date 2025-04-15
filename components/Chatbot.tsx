@@ -6,6 +6,7 @@ import { Content } from "@google/generative-ai";
 import { motion } from "framer-motion";
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/solid";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
+import ReactMarkdown from 'react-markdown';
 
 interface Message {
   id: number;
@@ -214,9 +215,15 @@ const Chatbot: React.FC = () => {
                       )}
                     </div>
                   ) : (
-                    <p className="text-sm md:text-base text-left text-neutral-100 whitespace-pre-wrap">
-                      {message.text} {/* Render normal text if not contact info */}
-                    </p>
+                    <div className="text-sm md:text-base text-left text-neutral-100 whitespace-pre-wrap">
+                      <ReactMarkdown
+                        components={{
+                          a: ({node, ...props}) => <a {...props} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline"/>
+                        }}
+                      >
+                        {message.text}
+                      </ReactMarkdown>
+                    </div>
                   )}
                   {/* --- End Render --- */}
                 </div>
