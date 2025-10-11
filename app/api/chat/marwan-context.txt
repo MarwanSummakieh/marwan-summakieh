@@ -1,78 +1,72 @@
-SOFTWARE ENGINEER
+SOFTWARE ENGINEER | HUMAN-CENTERED AI GRADUATE STUDENT
 Marwan Summakieh
-+45 27 29 78 28	 	marwansummakieh97@gmail.com
-Copenhagen
+Phone: +45 27 29 78 28   Email: marwansummakieh97@gmail.com
+Copenhagen, Denmark
 
-Results-driven Software Engineer specializing in scalable solutions for manufacturing environments. While my C# experience is limited, I'm eager to strengthen these skills. Proficient with React and experienced in cloud architecture, CI/CD pipelines, and Git. Proven track record collaborating with global teams to optimize operational efficiency. Committed to exploring emerging technologies like microservices and event-driven systems to deliver innovative solutions.
+SUMMARY
+Front-end focused software engineer pursuing a master's degree in Human-Centered Artificial Intelligence. I translate user research and systems thinking into trustworthy interfaces, while balancing graduate coursework with client consulting. Experienced across React, Next.js, Python, Azure tooling, and UX prototyping.
 
-WHY I'M EXCITED ABOUT LEGO
-I'm genuinely excited about LEGO's innovative approach to manufacturing technology and its global impact. Joining a team that develops solutions used across international production facilities represents an ideal professional opportunity. The "you build it – you own it" philosophy aligns perfectly with my desire for ownership and accountability in my work. LEGO's collaborative environment and commitment to continuous learning provide the growth-oriented culture I value. What particularly resonates with me is the company's meaningful purpose - using technology to support creativity and learning for children worldwide. Contributing to this mission through manufacturing technology would be both professionally fulfilling and personally meaningful.
+CURRENT FOCUS
+Pursuing a master's in Human-Centered AI with research centered on explainable interfaces, accessibility, and collaborative tooling for design and engineering teams.
 
 EXPERIENCE
 
+SHADE ANALYSIS PLATFORM UI REFRESH | SECOND SUN (2025)
+Elevated the UI for a golf-course shade analysis product by restructuring journeys and aligning design standards.
+• Designed reusable interface components that improved clarity for course designers.
+• Audited the existing front-end implementation and produced a roadmap of usability improvements.
+• Authored implementation guidelines to keep engineering and design teams aligned.
+Technologies: Python Flask, HTML, CSS, JavaScript.
+
 OUTLOOK FILE MANAGEMENT EXTENSION | JOKER IT (2024)
-Description: Built a Microsoft Outlook extension that streamlines document workflow by enabling users to manage email attachments and upload files directly to SharePoint without leaving their email interface.
-Responsibilities:
-• Developed the Outlook add-in using Microsoft's Office Add-in framework.
-• Implemented secure authentication with SharePoint.
-• Created intuitive UI for file management operations.
-• Built robust error handling for network issues and file conflicts.
-• Provided documentation and user training materials.
-Technologies Used: Microsoft Office Add-in Framework, JavaScript/React, SharePoint REST API, OAuth authentication.
+Built an Outlook extension that lets consultants upload attachments to SharePoint without leaving the mail client.
+• Developed the add-in with Microsoft's Office Add-in framework and React.
+• Implemented secure authentication flows and resilient error handling for file transfers.
+• Produced user documentation and training assets to accelerate onboarding.
+Technologies: Microsoft Office Add-in Framework, React, SharePoint REST API, OAuth.
 
 AZURE PROVISIONING TOOL | JOKER IT (2023)
-Description: Developed an automated provisioning tool for streamlining resource allocation and management within Azure environments. This solution significantly reduced manual configuration time and ensured consistent deployment of resources across projects.
-Responsibilities:
-• Designed and implemented the core provisioning architecture.
-• Created an intuitive dashboard for monitoring resource allocation.
-• Developed automated workflows for common provisioning tasks.
-• Implemented robust error handling and logging mechanisms.
-Technologies Used: Azure Resource Manager, PowerShell/Azure CLI, Azure Functions, REST APIs.
+Delivered an automated provisioning tool that standardised Azure resource allocation and reduced manual setup.
+• Designed the provisioning architecture and dashboards for monitoring resource usage.
+• Automated common workflows with PowerShell, Azure CLI, and Functions.
+• Established logging and error handling for reliable deployments.
+Technologies: Azure Resource Manager, PowerShell, Azure CLI, Azure Functions, REST APIs.
 
-ZAKIS-SKRAEDDER-OG-RENSERI | FREELANCING (2024)
-Description: Created and implemented a website and order tracking application for ZAKI'S Skrædder & Renseri, a tailoring and dry-cleaning service. The website provides detailed information on services, pricing, and the owner's background to inform customers. The order-tracking application facilitates the management of customer orders, enhancing operational efficiency.
-Responsibilities:
-• Provided end-to-end solutions.
-• Used Vercel's AWS-based infrastructure.
-• Developed web and mobile applications with Next.js and React Native.
-• Created responsive, visually appealing interfaces with Tailwind CSS.
-• Utilized Relume and Figma for precise UI design and prototyping.
-Technologies Used: Vercel, AWS, Next.JS, Tailwind CSS, UX with Figma and Relume.
+TAILORING ORDER TRACKING SUITE | FREELANCE (2024)
+Launched a marketing site and order tracking app for a tailoring business to improve customer visibility.
+• Built responsive web and mobile experiences with Next.js and React Native.
+• Deployed via Vercel using AWS-backed infrastructure.
+• Created Figma and Relume prototypes to align stakeholders before implementation.
+Technologies: Next.js, React Native, Tailwind CSS, AWS, Vercel, Figma, Relume.
 
 EDUCATION
-
-BACHELOR'S IN SOFTWARE ENGINEERING | VIA UNIVERSITY COLLEGE - DENMARK | 2019 - 2022
-Key Subjects and Grades:
+Master's in Human-Centered Artificial Intelligence (In progress)
+Bachelor's in Software Engineering, VIA University College, Denmark (2019 - 2022)
 • Algorithms and Data Structures: C
-• Dot Net development: A 
+• .NET Development: A
 • Game Development: B
 • Interaction Design: A
 
-MICROSOFT CERTIFIED: POWER PLATFORM APP MAKER ASSOCIATE 
-Credential ID: F3E768ADDBF1844
-Certification number: ADE462-0AECAQ
-Earned on: 28 April 2024
+CERTIFICATIONS
+Microsoft Certified: Power Platform App Maker Associate
+Credential ID: F3E768ADDBF1844   Certification Number: ADE462-0AECAQ   Earned: 28 April 2024
+
+SKILLS
+Front-end: React, Next.js, TypeScript, Tailwind CSS, Microsoft Office Add-in Framework
+Back-end & Scripting: Python, C# (learning), PowerShell, Azure CLI, REST APIs
+Cloud & DevOps: Azure Resource Manager, Azure Functions, AWS, Vercel, CI/CD, Git
+Collaboration & Design: Figma, Relume, design system governance, human-centered research synthesis
 
 LANGUAGES
-
 English - Bilingual
 Danish - Speaking
 Arabic - Native
 
 HOBBIES
-
-Football, watching and playing
-Table tennis
-Listening to music
-Writing short stories
-Video games development
+Football (watching and playing), Table tennis, Listening to music, Writing short stories, Video game development, D&D campaign design
 
 ## Contact Information
-
-*   **LinkedIn:** https://www.linkedin.com/in/marwan-summakieh-36aab4290/
-*   **Email:** marwansummakieh97@hotmail.com
-*   **GitHub:** https://github.com/MarwanSummakieh
-*   **Phone:** +4527297828
-
-*   **Email:** marwansummakieh97@gmail.com
-*   **GitHub:** https://github.com/MarwanSummakieh 
+* **LinkedIn:** https://www.linkedin.com/in/marwan-summakieh-36aab4290/
+* **Email:** marwansummakieh97@gmail.com
+* **GitHub:** https://github.com/MarwanSummakieh
+* **Phone:** +45 27 29 78 28

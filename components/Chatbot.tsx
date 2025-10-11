@@ -2,17 +2,45 @@
 
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import CopilotInput from "./ui/CopilotInput";
-import { Content } from "@google/generative-ai";
 import { motion } from "framer-motion";
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/solid";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
-import ReactMarkdown from 'react-markdown';
+import ReactMarkdown from "react-markdown";
+import { cn } from "@/lib/utils";
 
 interface Message {
   id: number;
   role: "user" | "model";
   text: string;
 }
+
+interface HistoryEntry {
+  role: "user" | "model";
+  parts: { text: string }[];
+}
+
+const LoadingIndicator: React.FC = () => (
+  <motion.div
+    className="inline-flex items-center gap-2 rounded-full border border-purple-400/40 bg-white/10 px-4 py-2"
+    initial={{ opacity: 0, y: 6 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.25, ease: "easeOut" }}
+  >
+    {Array.from({ length: 3 }).map((_, index) => (
+      <motion.span
+        key={index}
+        className="h-2 w-2 rounded-full bg-purple-300"
+        animate={{ opacity: [0.4, 1, 0.4], scale: [0.85, 1.05, 0.85] }}
+        transition={{
+          repeat: Infinity,
+          duration: 1,
+          ease: "easeInOut",
+          delay: index * 0.2,
+        }}
+      />
+    ))}
+  </motion.div>
+);
 
 // Helper function to parse contact info block
 const parseContactInfo = (text: string) => {
@@ -54,13 +82,41 @@ const Chatbot: React.FC = () => {
     {
       id: Date.now(),
       role: "model",
-      text: "Hey! I'm the AI version of Marwan, here to help you get to know him. Got any questions about my projects, skills, or why pizza is the best food? Ask away!"
+      text: "This assistant provides details about Marwan Summakieh's experience, projects, and skills. Ask for summaries, specific responsibilities, or contact information."
     }
   ];
+  const STORAGE_KEY = "marwan-chat-session";
   const [messages, setMessages] = useState<Message[]>(initialMessages);
   const [input, setInput] = useState<string>("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const hasRestoredRef = useRef(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      const stored = window.sessionStorage.getItem(STORAGE_KEY);
+      if (!stored) return;
+      const parsed: Message[] = JSON.parse(stored);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        setMessages(parsed);
+      }
+    } catch (error) {
+      console.error("Failed to restore chat history:", error);
+    } finally {
+      hasRestoredRef.current = true;
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (!hasRestoredRef.current) return;
+    try {
+      window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
+    } catch (error) {
+      console.error("Failed to persist chat history:", error);
+    }
+  }, [messages]);
 
   const scrollToBottom = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -89,7 +145,7 @@ const Chatbot: React.FC = () => {
         ? messages.slice(1) 
         : messages;
 
-    const history: Content[] = messagesForHistory.map(msg => ({
+  const history: HistoryEntry[] = messagesForHistory.map(msg => ({
         role: msg.role,
         parts: [{ text: msg.text }]
     }));
@@ -150,11 +206,10 @@ const Chatbot: React.FC = () => {
   }, [submit]);
 
   return (
-    <div className={`w-full h-full flex flex-col bg-transparent pt-0 relative`}>
-      
+  <div className="relative flex h-full flex-col overflow-hidden bg-[#080d1f]/90 shadow-lg shadow-blue-900/30 backdrop-blur-xl">
       <div
         key="messages"
-        className="flex-1 overflow-y-auto px-3 md:px-6 pt-2 md:pt-6 space-y-4 md:space-y-6"
+        className="flex-1 space-y-4 overflow-y-auto px-4 md:space-y-6 md:px-6"
       >
         {messages.map((message) => {
           // --- Check if it's a contact info message --- > MODIFIED SECTION START
@@ -172,84 +227,140 @@ const Chatbot: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
             >
-              {message.role === 'model' ? (
-                <div className="text-left bot-message max-w-full overflow-x-hidden">
-                  <p className="text-xs md:text-sm text-purple-300 mb-1 font-medium">AI Assistant</p>
-                  {/* --- Render contact card or normal message --- */}
-                  {contactInfo ? (
-                    <div className="mt-2 p-4 rounded-lg bg-white/10 border border-purple-400/30 space-y-3">
-                      <p className="text-sm font-semibold text-purple-200 mb-2">Contact Information:</p>
-                      {contactInfo.linkedIn && (
-                        <div className="flex items-center gap-3">
-                          <FaLinkedin className="h-5 w-5 text-purple-300 flex-shrink-0" />
-                          <a href={contactInfo.linkedIn} target="_blank" rel="noopener noreferrer" className="text-sm text-blue-400 hover:text-blue-300 underline truncate">
-                            LinkedIn Profile
-                          </a>
-                        </div>
-                      )}
-                      {contactInfo.email && (
-                        <div className="flex items-center gap-3">
-                          <EnvelopeIcon className="h-5 w-5 text-purple-300 flex-shrink-0" />
-                          <a href={`mailto:${contactInfo.email}`} className="text-sm text-blue-400 hover:text-blue-300 underline truncate">
-                            {contactInfo.email}
-                          </a>
-                        </div>
-                      )}
-                      {contactInfo.gitHub && (
-                        <div className="flex items-center gap-3">
-                          <FaGithub className="h-5 w-5 text-purple-300 flex-shrink-0" />
-                          <a href={contactInfo.gitHub} target="_blank" rel="noopener noreferrer" className="text-sm text-blue-400 hover:text-blue-300 underline truncate">
-                            GitHub Profile
-                          </a>
-                        </div>
-                      )}
-                      {contactInfo.phone && (
-                        <div className="flex items-center gap-3">
-                          <PhoneIcon className="h-5 w-5 text-purple-300 flex-shrink-0" />
-                          <a href={`tel:${contactInfo.phone.replace(/\s+/g, '')}`} className="text-sm text-blue-400 hover:text-blue-300 underline truncate">
-                            {contactInfo.phone}
-                          </a>
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    <div className="text-sm md:text-base text-left text-neutral-100 whitespace-pre-wrap">
-                      <ReactMarkdown
-                        components={{
-                          a: ({/*node,*/ ...props}) => <a {...props} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline"/>
-                        }}
-                      >
-                        {message.text}
-                      </ReactMarkdown>
-                    </div>
-                  )}
-                  {/* --- End Render --- */}
-                </div>
-              ) : (
-                <div className="text-left user-message">
-                  <p className="text-xs md:text-sm text-blue-400 mb-1 font-medium">You</p>
-                  <p className="text-sm md:text-base text-neutral-100 whitespace-pre-wrap">
-                    {message.text}
+              <div
+                className={cn(
+                  "flex w-full",
+                  message.role === "model" ? "justify-start" : "justify-end"
+                )}
+              >
+                <div className="max-w-full space-y-1 text-left">
+                  <p
+                    className={cn(
+                      "text-[11px] font-medium uppercase tracking-[0.25em]",
+                      message.role === "model" ? "text-purple-200/80" : "text-sky-300/70"
+                    )}
+                  >
+                    {message.role === "model" ? "AI Assistant" : "You"}
                   </p>
+                  <div
+                    className={cn(
+                      "overflow-hidden border px-4 py-3 text-sm leading-relaxed shadow-lg",
+                      message.role === "model"
+                        ? "border-white/10 bg-white/10 text-slate-100"
+                        : "border-sky-500/30 bg-gradient-to-r from-sky-500/60 to-purple-500/60 text-white"
+                    )}
+                  >
+                    {/* --- Render contact card or normal message --- */}
+                    {message.role === "model" && contactInfo ? (
+                      <div className="space-y-3">
+                        <p className="text-sm font-semibold text-purple-200">
+                          Contact information
+                        </p>
+                        {contactInfo.linkedIn && (
+                          <div className="flex items-center gap-3">
+                            <FaLinkedin className="h-5 w-5 text-purple-200" />
+                            <a
+                              href={contactInfo.linkedIn}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-sm text-blue-200 underline-offset-4 transition hover:text-white hover:underline"
+                            >
+                              LinkedIn profile
+                            </a>
+                          </div>
+                        )}
+                        {contactInfo.email && (
+                          <div className="flex items-center gap-3">
+                            <EnvelopeIcon className="h-5 w-5 text-purple-200" />
+                            <a
+                              href={`mailto:${contactInfo.email}`}
+                              className="text-sm text-blue-200 underline-offset-4 transition hover:text-white hover:underline"
+                            >
+                              {contactInfo.email}
+                            </a>
+                          </div>
+                        )}
+                        {contactInfo.gitHub && (
+                          <div className="flex items-center gap-3">
+                            <FaGithub className="h-5 w-5 text-purple-200" />
+                            <a
+                              href={contactInfo.gitHub}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-sm text-blue-200 underline-offset-4 transition hover:text-white hover:underline"
+                            >
+                              GitHub profile
+                            </a>
+                          </div>
+                        )}
+                        {contactInfo.phone && (
+                          <div className="flex items-center gap-3">
+                            <PhoneIcon className="h-5 w-5 text-purple-200" />
+                            <a
+                              href={`tel:${contactInfo.phone.replace(/\s+/g, "")}`}
+                              className="text-sm text-blue-200 underline-offset-4 transition hover:text-white hover:underline"
+                            >
+                              {contactInfo.phone}
+                            </a>
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="text-sm text-left text-slate-100 md:text-base">
+                        <ReactMarkdown
+                          components={{
+                            a: ({ ...props }) => (
+                              <a
+                                {...props}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-200 underline underline-offset-4 transition hover:text-white"
+                              />
+                            ),
+                          }}
+                        >
+                          {message.text}
+                        </ReactMarkdown>
+                      </div>
+                    )}
+                    {/* --- End Render --- */}
+                  </div>
                 </div>
-              )}
+              </div>
             </motion.div>
           );
         })}
+        {isLoading && (
+          <motion.div
+            className="message-item w-full"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+          >
+            <div className="flex w-full justify-start">
+              <div className="space-y-1">
+                <p className="text-[11px] font-medium uppercase tracking-[0.25em] text-purple-200/80">
+                  AI Assistant
+                </p>
+                <div className="rounded-2xl border border-white/10 bg-white/10 px-4 py-3">
+                  <LoadingIndicator />
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="sticky bottom-0 inset-x-0 h-16 bg-gradient-to-t from-[#121433] to-transparent pointer-events-none z-10">
-        {/* This div creates the fade effect */}
-      </div>
-
-      <div className="w-full px-3 pb-3 md:px-6 md:pb-6 pt-2 z-20 flex justify-center">
-        <div className="w-full max-w-4xl">
-          <CopilotInput 
-            value={input} 
-            onChange={handleInputChange} 
+      <div className="relative border-t border-white/10 bg-[#060916]/80 px-4 py-3 md:px-6">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-10 bg-gradient-to-t from-[#060916] to-transparent" />
+        <div className="relative z-10 w-full">
+          <CopilotInput
+            value={input}
+            onChange={handleInputChange}
             onSubmit={submit}
             onKeyPress={handleKeyPress}
+            isLoading={isLoading}
           />
         </div>
       </div>

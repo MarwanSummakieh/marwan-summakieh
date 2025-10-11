@@ -8,6 +8,7 @@ interface CopilotInputProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: () => void;
   onKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  isLoading?: boolean;
 }
 
 // Sample relevant prompts about Marwan
@@ -26,11 +27,16 @@ const CopilotInput: React.FC<CopilotInputProps> = ({
     value, 
     onChange, 
     onSubmit, 
-    onKeyPress 
+    onKeyPress,
+    isLoading = false,
 }) => {
   const inputIsEmpty = value.trim() === "";
+  const isSendDisabled = inputIsEmpty || isLoading;
 
   const handleSparkleClick = () => {
+    if (isLoading) {
+      return;
+    }
     // Select a random prompt
     const randomIndex = Math.floor(Math.random() * samplePrompts.length);
     const randomPrompt = samplePrompts[randomIndex];
@@ -47,7 +53,10 @@ const CopilotInput: React.FC<CopilotInputProps> = ({
   };
 
   return (
-    <div className="w-full bg-[#1a1f36]/70 backdrop-blur-md rounded-full p-2 flex items-center space-x-2 shadow-lg border border-blue-900/50">
+    <div
+      className="w-full bg-[#1a1f36]/70 backdrop-blur-md rounded-full p-2 flex items-center space-x-2 shadow-lg border border-blue-900/50"
+      aria-busy={isLoading}
+    >
       {/* Input Field - Added min-w-0 */}
       <input
         type="text"
@@ -57,6 +66,7 @@ const CopilotInput: React.FC<CopilotInputProps> = ({
         placeholder="Ask me anything... or click the ✨ for a suggestion"
         className="flex-1 bg-transparent text-neutral-100 placeholder-neutral-400 focus:outline-none text-lg px-2 min-w-0"
         aria-label="Chat input"
+        disabled={isLoading}
       />
 
       {/* Grouping auxiliary action buttons - Added flex-shrink-0 */}
@@ -66,6 +76,7 @@ const CopilotInput: React.FC<CopilotInputProps> = ({
           onClick={handleSparkleClick}
           className="p-2 text-neutral-300 hover:text-yellow-300 transition-colors rounded-full hover:bg-blue-800/50"
           aria-label="Suggest a prompt"
+          disabled={isLoading}
         >
           <SparklesIcon className="h-6 w-6" />
         </button>
@@ -76,11 +87,15 @@ const CopilotInput: React.FC<CopilotInputProps> = ({
       {/* Submit Button - Added flex-shrink-0 */}
       <button
         onClick={onSubmit}
-        disabled={inputIsEmpty}
+        disabled={isSendDisabled}
         className="p-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white disabled:bg-neutral-600 disabled:opacity-50 hover:shadow-lg transition-all flex items-center justify-center flex-shrink-0"
         aria-label="Send message"
       >
-        <PaperAirplaneIcon className="h-6 w-6" />
+        {isLoading ? (
+          <span className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-white/70 border-t-transparent" />
+        ) : (
+          <PaperAirplaneIcon className="h-6 w-6" />
+        )}
       </button>
     </div>
   );

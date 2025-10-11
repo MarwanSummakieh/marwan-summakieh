@@ -1,164 +1,134 @@
-"use client";
+import Link from "next/link";
+import {
+  journeyOverview,
+} from "@/lib/gameJourney";
+import { profileContent } from "@/lib/profile";
 
-import { useState, useCallback } from "react";
-import Chatbot from "@/components/Chatbot";
-import { GoogleGeminiEffect } from "@/components/ui/GLowingLines";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
-import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/solid";
-
-// Import View Components
-import IntroView from "@/components/views/IntroView";
-import OptionsView from "@/components/views/OptionsView";
-import CreativeSpaceView from "@/components/views/CreativeSpaceView";
-import AboutMeProfile from "@/components/AboutMeProfile";
-import ProjectsView from "@/components/ProjectsView";
-
-// Define view states as a type for better clarity
-type ViewState = 'intro' | 'options' | 'profile' | 'creative' | 'projects';
-
-const Home = () => {
-  const [currentView, setCurrentView] = useState<ViewState>('intro');
-  const [isChatDrawerOpen, setIsChatDrawerOpen] = useState(false);
-  const [chatHasBeenOpened, setChatHasBeenOpened] = useState(false);
-
-  // --- Event Handlers ---
-  // Use useCallback for handlers passed to memoized components
-  const handleBeginClick = useCallback(() => setCurrentView('options'), []);
-  const handleAboutMeClick = useCallback(() => setCurrentView('profile'), []);
-  const handleBackToOptions = useCallback(() => setCurrentView('options'), []);
-  const handleCreativeSpaceClick = useCallback(() => setCurrentView('creative'), []);
-  const handleProjectsClick = useCallback(() => setCurrentView('projects'), []);
-  
-  const handleAskAboutMeClick = useCallback(() => {
-    setIsChatDrawerOpen(true);
-    setChatHasBeenOpened(true);
-  }, []);
-  
-  const handleCloseChatClick = useCallback(() => setIsChatDrawerOpen(false), []);
-  const handleToggleChatClick = useCallback(() => setIsChatDrawerOpen(prev => !prev), []);
-  // --- End Event Handlers ---
+export default function Home() {
+  const experienceHighlight = profileContent.experiences.slice(0, 2);
+  const topSkills = profileContent.skills.strengths.slice(0, 4);
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br from-[#0b0f19] via-[#121433] to-[#0b0f19] p-4 relative overflow-hidden flex flex-col justify-center items-center`}>
-
-      {/* Background Effect */}
-      <AnimatePresence>
-        {currentView === 'intro' && (
-          <motion.div
-            key="background-effect"
-            className="absolute inset-0 w-full h-full z-0"
-            initial={{ opacity: 1 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }} 
-            transition={{ duration: 1.0 }}
-          >
-            <GoogleGeminiEffect className="w-full h-full opacity-70" />
-          </motion.div>
-        )}
-      </AnimatePresence>
-      
-      {/* Main Content Area - Renders different views */}
-      {/* Wrap views in a container for consistent centering/positioning */}
-      <div className="relative z-10 w-full h-full flex flex-col justify-center items-center">
-         <AnimatePresence mode="wait">
-            {currentView === 'intro' && (
-              <IntroView onBeginClick={handleBeginClick} />
-            )}
-            {currentView === 'options' && (
-              <OptionsView 
-                onAboutMeClick={handleAboutMeClick} 
-                onProjectsClick={handleProjectsClick}
-                onCreativeSpaceClick={handleCreativeSpaceClick}
-              />
-            )}
-            {currentView === 'profile' && (
-                <AboutMeProfile onBack={handleBackToOptions} />
-            )}
-            {currentView === 'projects' && (
-                <ProjectsView onBack={handleBackToOptions} />
-            )}
-            {currentView === 'creative' && (
-              <CreativeSpaceView onBack={handleBackToOptions} />
-            )}
-          </AnimatePresence>
-      </div>
-
-      {/* --- Chat UI Elements --- */}
-      {/* Initial Ask About Me Button */}
-      <AnimatePresence>
-            {!chatHasBeenOpened && currentView === 'options' && (
-                <motion.div
-                    key="ask-me-wrapper"
-                    className="fixed bottom-6 inset-x-0 z-40 flex justify-center pointer-events-none"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 30 }}
-                    transition={{ duration: 0.3 }}
-                >
-                    <motion.button
-                        key="ask-me-btn-bottom"
-                        onClick={handleAskAboutMeClick}
-                        whileHover={{ scale: 1.05, boxShadow: "0px 0px 15px rgba(192, 132, 252, 0.6)" }}
-                        whileTap={{ scale: 0.95 }}
-                        className="flex items-center gap-2 px-6 py-2 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold shadow-lg shadow-purple-500/40 hover:shadow-purple-400/60 transition-all duration-300 pointer-events-auto"
-                    >
-                        <ChatBubbleLeftRightIcon className="h-5 w-5" />
-                        <span>Ask About Me</span>
-                    </motion.button>
-                </motion.div>
-            )}
-        </AnimatePresence>
-
-      {/* Chat Drawer */}
-      {chatHasBeenOpened && (
-        <motion.div
-          key="chat-drawer"
-          className="fixed inset-0 z-30 flex justify-center items-end p-0 pointer-events-none"
-          initial={{ y: "100%" }}
-          animate={{ y: isChatDrawerOpen ? "0%" : "100%" }}
-          transition={{ type: "spring", stiffness: 150, damping: 25 }}
-        >
-          <div className="relative w-full max-w-4xl h-[80vh] md:h-[85vh] bg-[#121433]/95 backdrop-blur-xl rounded-t-2xl shadow-2xl border-t border-blue-900/50 flex flex-col overflow-hidden pointer-events-auto">
-            <button
-              onClick={handleCloseChatClick}
-              className="absolute top-4 right-4 p-2 text-neutral-400 hover:text-white hover:bg-white/10 rounded-full z-40"
-              aria-label="Close chat"
-            >
-              <ChevronDownIcon className="h-6 w-6" />
-            </button>
-            <div className="flex-1 h-full overflow-hidden pt-12">
-              <Chatbot />
-            </div>
+    <div className="space-y-16">
+      <section className="grid gap-8 rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur lg:grid-cols-[2fr,1fr]">
+        <div className="space-y-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-purple-200">
+            {profileContent.role}
+          </p>
+          <h1 className="text-3xl font-bold sm:text-4xl lg:text-5xl">
+            {profileContent.name}
+          </h1>
+          <p className="max-w-3xl text-lg text-slate-100">
+            {profileContent.tagline}
+          </p>
+          <p className="max-w-3xl text-base text-slate-200">
+            {journeyOverview.mission}
+          </p>
+          <div className="flex flex-col gap-3 text-sm text-slate-200">
+            {journeyOverview.introduction.slice(0, 2).map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </div>
-        </motion.div>
-      )}
+          <div className="flex flex-col gap-4 sm:flex-row">
+            <Link
+              href="/projects"
+              className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-purple-500/40 transition hover:-translate-y-0.5 hover:shadow-purple-400/60"
+            >
+              View portfolio highlights
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:border-white/50 hover:bg-white/10"
+            >
+              Schedule a conversation
+            </Link>
+          </div>
+        </div>
+        <div className="space-y-4 rounded-3xl border border-white/10 bg-black/30 p-6 text-sm text-slate-100">
+          <div>
+            <p className="text-xs uppercase tracking-[0.3em] text-purple-200/80">Location</p>
+            <p className="mt-1 text-base text-white">{profileContent.location}</p>
+          </div>
+          <div>
+            <p className="text-xs uppercase tracking-[0.3em] text-purple-200/80">Availability</p>
+            <p className="mt-1 text-base text-white">{profileContent.availability}</p>
+          </div>
+          <div>
+            <p className="text-xs uppercase tracking-[0.3em] text-purple-200/80">Primary focus</p>
+            <p className="mt-1 text-base text-white">
+              Pursuing a master's in human-centered AI while translating research into practical product experiences.
+            </p>
+          </div>
+          <div>
+            <p className="text-xs uppercase tracking-[0.3em] text-purple-200/80">Core strengths</p>
+            <ul className="mt-2 space-y-2">
+              {topSkills.map((skill) => (
+                <li key={skill} className="flex gap-2">
+                  <span aria-hidden className="mt-1 block h-2 w-2 rounded-full bg-purple-400" />
+                  <span>{skill}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
 
-      {/* Persistent Arrow Toggle Button */}
-      <AnimatePresence>
-         {chatHasBeenOpened && !isChatDrawerOpen && (
-            <motion.div
-                   key="chat-arrow-toggle-wrapper"
-                   className="fixed bottom-4 inset-x-0 z-40 flex justify-center pointer-events-none"
-                   initial={{ opacity: 0, y: 30 }}
-                   animate={{ opacity: 1, y: 0 }}
-                   exit={{ opacity: 0, y: 30 }}
-               >
-                   <motion.button
-                       key="chat-arrow-toggle"
-                       className="p-3 rounded-full bg-gradient-to-br from-blue-900/80 via-purple-900/50 to-gray-900/80 backdrop-blur-sm border border-blue-500/50 text-white shadow-lg shadow-blue-500/30 hover:shadow-blue-400/50 hover:border-blue-400 transition-all duration-300 pointer-events-auto hover:-translate-y-1"
-                       onClick={handleToggleChatClick}
-                       whileHover={{ scale: 1.1 }}
-                       whileTap={{ scale: 0.9 }}
-                       aria-label="Open chat"
-                   >
-                      <ChevronUpIcon className="h-6 w-6" />
-                   </motion.button>
-              </motion.div>
-           )}
-      </AnimatePresence>
+      <section className="space-y-6">
+        <header className="space-y-2">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-purple-200/80">
+            Recent impact
+          </p>
+          <h2 className="text-2xl font-semibold">How I have been delivering outcomes</h2>
+        </header>
+        <div className="grid gap-6 md:grid-cols-2">
+          {experienceHighlight.map((exp) => (
+            <div
+              key={`${exp.company}-${exp.period}`}
+              className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur"
+            >
+              <div className="text-xs uppercase tracking-[0.3em] text-purple-200/70">
+                {exp.company}
+              </div>
+              <h3 className="mt-2 text-lg font-semibold text-white">{exp.role}</h3>
+              <p className="text-sm text-slate-300">{exp.period}</p>
+              <p className="mt-3 text-sm text-slate-200">{exp.summary}</p>
+              <ul className="mt-4 space-y-2 text-sm text-slate-100">
+                {exp.contributions.slice(0, 3).map((item) => (
+                  <li key={item} className="flex gap-2">
+                    <span aria-hidden className="mt-1 block h-2 w-2 rounded-full bg-purple-400" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="rounded-3xl border border-white/15 bg-gradient-to-r from-purple-600/15 via-pink-500/10 to-orange-400/10 p-8 text-center backdrop-blur">
+        <h2 className="text-2xl font-semibold text-white">
+          Let&apos;s discuss how this experience fits your team
+        </h2>
+        <p className="mt-3 text-base text-slate-100">
+          I welcome conversations about gameplay systems, UX-focused engineering, and tools that help small teams ship faster.
+        </p>
+        <div className="mt-6 flex flex-col justify-center gap-4 sm:flex-row">
+          <Link
+            href="/contact"
+            className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-purple-800 transition hover:-translate-y-0.5 hover:bg-purple-100"
+          >
+            Contact details
+          </Link>
+          <Link
+            href="https://github.com/MarwanSummakieh"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center rounded-full border border-white/40 px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:border-white/60 hover:bg-white/10"
+          >
+            Review GitHub repositories
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }
-
-export default Home;
