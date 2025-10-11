@@ -224,7 +224,10 @@ const Chatbot: React.FC<ChatbotProps> = ({ onClose }) => {
       )}
       <div
         key="messages"
-        className="flex-1 space-y-4 overflow-y-auto px-4 md:space-y-6 md:px-6"
+        className={cn(
+          "flex-1 space-y-4 overflow-y-auto px-4 md:space-y-6 md:px-6",
+          onClose ? "pt-12" : ""
+        )}
       >
         {messages.map((message) => {
           // --- Check if it's a contact info message --- > MODIFIED SECTION START
