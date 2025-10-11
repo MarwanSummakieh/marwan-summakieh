@@ -7,6 +7,7 @@ import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/solid";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import ReactMarkdown from "react-markdown";
 import { cn } from "@/lib/utils";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 
 interface Message {
   id: number;
@@ -77,7 +78,11 @@ const parseContactInfo = (text: string) => {
   return null;
 };
 
-const Chatbot: React.FC = () => {
+interface ChatbotProps {
+  onClose?: () => void;
+}
+
+const Chatbot: React.FC<ChatbotProps> = ({ onClose }) => {
   const initialMessages: Message[] = [
     {
       id: Date.now(),
@@ -207,6 +212,16 @@ const Chatbot: React.FC = () => {
 
   return (
   <div className="relative flex h-full flex-col overflow-hidden bg-[#080d1f]/90 shadow-lg shadow-blue-900/30 backdrop-blur-xl">
+      {onClose && (
+        <button
+          type="button"
+          onClick={onClose}
+          className="absolute right-3 top-3 z-10 rounded-full border border-white/20 bg-black/40 p-2 text-white transition hover:border-white/50 hover:bg-white/10"
+          aria-label="Close chat"
+        >
+          <XMarkIcon className="h-5 w-5" aria-hidden />
+        </button>
+      )}
       <div
         key="messages"
         className="flex-1 space-y-4 overflow-y-auto px-4 md:space-y-6 md:px-6"

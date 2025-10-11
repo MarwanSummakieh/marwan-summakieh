@@ -77,7 +77,7 @@ const ChatDrawer = () => {
                 </button>
               </div>
               <div className="flex-1 overflow-hidden">
-                <Chatbot />
+                <Chatbot onClose={handleClose} />
               </div>
             </motion.aside>
           </motion.div>
