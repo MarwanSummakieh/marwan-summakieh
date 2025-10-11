@@ -56,7 +56,7 @@ export default function Home() {
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-purple-200/80">Primary focus</p>
             <p className="mt-1 text-base text-white">
-              Pursuing a master's in human-centered AI while translating research into practical product experiences.
+              Pursuing a master&apos;s in human-centered AI while translating research into practical product experiences.
             </p>
           </div>
           <div>

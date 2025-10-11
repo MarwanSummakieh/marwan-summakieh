@@ -36,7 +36,7 @@ const AboutPage = () => {
           <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-purple-200/80">
             Current focus
           </h3>
-          <p className="text-sm text-slate-200">Pursuing a master's in human-centered AI with research aimed at explainable, accessible product experiences.</p>
+          <p className="text-sm text-slate-200">Pursuing a master&apos;s in human-centered AI with research aimed at explainable, accessible product experiences.</p>
         </div>
       </section>
 
