@@ -27,13 +27,13 @@ export interface ResourceLink {
 }
 
 export const journeyOverview = {
-  role: "Game Developer in Progress",
+  role: "Software engineer learning game development basics",
   mission:
-    "Building narrative-driven experiences that blend systems thinking, player empathy, and human-centered AI research.",
-  headline: "Charting the game development journey of Marwan Summakieh",
+    "Documenting the shift from product engineering into game development by studying core fundamentals and translating past delivery experience into new engines.",
+  headline: "Following how Marwan Summakieh is learning game development",
   introduction: [
-    "I prototype small worlds, experiment with combat and progression systems, and document every iteration so the craft is visible.",
-    "This site tracks the evolution from interactive fiction experiments to full gameplay loops, covering tooling decisions and shipped milestones.",
+    "After shipping enterprise tooling with teams like Second Sun and Joker IT, I am carving out time to become a beginner again and learn the essentials of game creation.",
+    "The current plan is to focus on Unreal Engine while exploring Unity, applying front-end and automation skills to small exercises, prototypes, and repeatable learning routines.",
   ],
   callToAction: {
     primary: { label: "View Projects", href: "/projects" },

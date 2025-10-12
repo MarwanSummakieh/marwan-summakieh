@@ -22,10 +22,10 @@ const AboutPage = () => {
         <div className="space-y-4 rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
           <h2 className="text-lg font-semibold text-white">My background</h2>
           <p className="text-sm text-slate-200">
-            Marwan is a software engineer specialising in human-centered AI and front-end architecture. He applies that foundation to interactive narrative prototypes, combat sandboxes, and tooling that improves iteration speed for small teams.
+            Marwan is a software engineer and Human-Centered AI graduate student based in Copenhagen. His work focuses on front-end architecture, user journey analysis, and automation that removes friction for product teams.
           </p>
           <p className="text-sm text-slate-200">
-            Ongoing studies in Human-Centered AI inform research around player empathy, accessible feedback loops, and responsible telemetry. Weekly tabletop campaigns and creative writing drive the narrative direction of prototype work.
+            Recent roles include delivering UI improvements for Second Sun&apos;s shade analysis platform, building productivity tooling for Joker IT teams, and shipping a tailoring order tracking suite as a freelancer. He is now learning the fundamentals of game development with an emphasis on Unreal Engine while exploring Unity, carrying forward the same evidence-based approach that guided past delivery.
           </p>
         </div>
         <div className="space-y-4 rounded-3xl border border-white/10 bg-black/30 p-6 backdrop-blur">
