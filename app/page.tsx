@@ -46,7 +46,7 @@ export default function Home() {
         </div>
         <div className="space-y-4 rounded-3xl border border-white/10 bg-black/30 p-6 text-sm text-slate-100">
           <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-purple-200/80">Location</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-purple-200/80">Where I live</p>
             <p className="mt-1 text-base text-white">{profileContent.location}</p>
           </div>
           <div>
@@ -54,13 +54,13 @@ export default function Home() {
             <p className="mt-1 text-base text-white">{profileContent.availability}</p>
           </div>
           <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-purple-200/80">Primary focus</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-purple-200/80">What I&apos;m focused on</p>
             <p className="mt-1 text-base text-white">
               Pursuing a master&apos;s in human-centered AI while translating research into practical product experiences.
             </p>
           </div>
           <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-purple-200/80">Core strengths</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-purple-200/80">Key skills</p>
             <ul className="mt-2 space-y-2">
               {topSkills.map((skill) => (
                 <li key={skill} className="flex gap-2">
@@ -76,9 +76,9 @@ export default function Home() {
       <section className="space-y-6">
         <header className="space-y-2">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-purple-200/80">
-            Recent impact
+            Recent work
           </p>
-          <h2 className="text-2xl font-semibold">How I have been delivering outcomes</h2>
+          <h2 className="text-2xl font-semibold">Professional experience</h2>
         </header>
         <div className="grid gap-6 md:grid-cols-2">
           {experienceHighlight.map((exp) => (
@@ -107,7 +107,7 @@ export default function Home() {
 
       <section className="rounded-3xl border border-white/15 bg-gradient-to-r from-purple-600/15 via-pink-500/10 to-orange-400/10 p-8 text-center backdrop-blur">
         <h2 className="text-2xl font-semibold text-white">
-          Let&apos;s discuss how this experience fits your team
+          Let&apos;s talk about working together
         </h2>
         <p className="mt-3 text-base text-slate-100">
           I welcome conversations about gameplay systems, UX-focused engineering, and tools that help small teams ship faster.

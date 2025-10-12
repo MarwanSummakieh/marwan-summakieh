@@ -12,9 +12,9 @@ const ContactPage = () => {
     <div className="space-y-10">
       <header className="space-y-4 text-center">
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-purple-200/80">
-          Contact
+          Contact me
         </p>
-        <h1 className="text-3xl font-bold sm:text-4xl">Start a collaboration</h1>
+        <h1 className="text-3xl font-bold sm:text-4xl">Get in touch</h1>
         <p className="mx-auto max-w-2xl text-base text-slate-200">
           Reach out to discuss game development partnerships, contract work on tooling, or collaborative research into human-centered AI for interactive media.
         </p>
@@ -34,7 +34,7 @@ const ContactPage = () => {
       </section>
 
       <section className="space-y-4 text-center">
-        <h2 className="text-lg font-semibold text-white">Social profiles</h2>
+  <h2 className="text-lg font-semibold text-white">Find me online</h2>
         <div className="flex justify-center gap-4 text-purple-200">
           {socials.map((link) => {
             const icon = link.label === "LinkedIn" ? (

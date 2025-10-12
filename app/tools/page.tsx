@@ -9,9 +9,9 @@ const ToolsPage = () => {
     <div className="space-y-10">
       <header className="space-y-4">
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-purple-200/80">
-          Toolkit
+          Tools
         </p>
-        <h1 className="text-3xl font-bold sm:text-4xl">Core engines, languages, and collaboration tools</h1>
+        <h1 className="text-3xl font-bold sm:text-4xl">Tools I use every day</h1>
         <p className="max-w-3xl text-base text-slate-200">
           A snapshot of the technical stack supporting current prototypes, testing workflows, and collaboration habits.
         </p>

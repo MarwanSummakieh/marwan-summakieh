@@ -10,7 +10,7 @@ const AboutPage = () => {
     <div className="space-y-10">
       <header className="space-y-4">
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-purple-200/80">
-          About
+          About me
         </p>
         <h1 className="text-3xl font-bold sm:text-4xl">Marwan Summakieh</h1>
         <p className="max-w-3xl text-base text-slate-200">
@@ -20,7 +20,7 @@ const AboutPage = () => {
 
       <section className="grid gap-6 md:grid-cols-[2fr,1fr]">
         <div className="space-y-4 rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
-          <h2 className="text-lg font-semibold text-white">Background</h2>
+          <h2 className="text-lg font-semibold text-white">My background</h2>
           <p className="text-sm text-slate-200">
             Marwan is a software engineer specialising in human-centered AI and front-end architecture. He applies that foundation to interactive narrative prototypes, combat sandboxes, and tooling that improves iteration speed for small teams.
           </p>
@@ -30,18 +30,18 @@ const AboutPage = () => {
         </div>
         <div className="space-y-4 rounded-3xl border border-white/10 bg-black/30 p-6 backdrop-blur">
           <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-purple-200/80">
-            Location
+            Where I live
           </h3>
           <p className="text-base text-white">{profileContent.location}</p>
           <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-purple-200/80">
-            Current focus
+            What I&apos;m working on
           </h3>
           <p className="text-sm text-slate-200">Pursuing a master&apos;s in human-centered AI with research aimed at explainable, accessible product experiences.</p>
         </div>
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-lg font-semibold text-white">Guiding principles</h2>
+  <h2 className="text-lg font-semibold text-white">How I work</h2>
         <div className="grid gap-4 md:grid-cols-3">
           {focusAreas.map((area) => (
             <div key={area.title} className="rounded-3xl border border-white/10 bg-black/30 p-5 backdrop-blur">
@@ -53,7 +53,7 @@ const AboutPage = () => {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-lg font-semibold text-white">Professional experience</h2>
+  <h2 className="text-lg font-semibold text-white">Work history</h2>
         <div className="space-y-5">
           {profileContent.experiences.map((exp) => (
             <div

@@ -13,9 +13,9 @@ const ProjectsPage = () => {
     <div className="space-y-10">
       <header className="space-y-4">
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-purple-200/80">
-          Projects
+          Project highlights
         </p>
-        <h1 className="text-3xl font-bold sm:text-4xl">Selected projects across game development and client delivery</h1>
+        <h1 className="text-3xl font-bold sm:text-4xl">Projects from game experiments and client work</h1>
         <p className="max-w-3xl text-base text-slate-200">
           The work below splits into two tracks: ongoing game development experiments and professional engagements with shipped impact. Each entry outlines the problem, the solution path, and measurable outcomes.
         </p>
@@ -24,9 +24,9 @@ const ProjectsPage = () => {
       <section className="space-y-6">
         <header className="space-y-2">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-purple-200/80">
-            Game development
+            Game projects
           </p>
-          <h2 className="text-2xl font-semibold">Prototypes and tooling in active development</h2>
+          <h2 className="text-2xl font-semibold">In-progress game work</h2>
         </header>
         <div className="space-y-8">
           {gameProjects.map((project) => (
@@ -90,9 +90,9 @@ const ProjectsPage = () => {
       <section className="space-y-6">
         <header className="space-y-2">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-purple-200/80">
-            Professional engagements
+            Client projects
           </p>
-          <h2 className="text-2xl font-semibold">Shipped solutions for teams and clients</h2>
+          <h2 className="text-2xl font-semibold">Work delivered for teams</h2>
         </header>
         <div className="space-y-8">
           {professionalProjects.map((project) => (
