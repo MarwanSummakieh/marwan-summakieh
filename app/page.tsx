@@ -1,196 +1,174 @@
 import Link from "next/link";
-import {
-  journeyOverview,
-} from "@/lib/gameJourney";
+import { gameProjects } from "@/lib/gameJourney";
 import { profileContent } from "@/lib/profile";
 
 export default function Home() {
-  const experienceHighlight = profileContent.experiences;
-  const topSkills = profileContent.skills.strengths;
-
-  const skillCategories = [
-    { label: "Languages", items: ["Python", "JavaScript", "TypeScript", "Java", "C#"] },
-    { label: "Front-End", items: ["React", "Next.js", "React Native", "Tailwind"] },
-    { label: "Back-End", items: ["Flask", "Node.js", "MongoDB", "SQL"] },
-    { label: "Cloud & DevOps", items: ["Azure", "Docker", "Vercel", "CI/CD"] },
+  const featuredSlugs = ["vibe-opsy", "real-time-strategie", "basket-ball-vr"];
+  const featuredProjects = gameProjects.filter((p) => featuredSlugs.includes(p.slug));
+  const focusAreas = [
+    "Full-stack product engineering",
+    "Creative technology and VR",
+    "Human-centered AI applications",
   ];
 
   return (
     <div className="space-y-20">
-      {/* Hero */}
-      <section className="relative grid gap-8 rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.06] to-white/[0.02] p-8 backdrop-blur lg:grid-cols-[2fr,1fr]">
-        <div className="absolute -left-32 -top-32 h-64 w-64 rounded-full bg-purple-600/20 blur-[100px]" />
-        <div className="absolute -bottom-20 -right-20 h-48 w-48 rounded-full bg-pink-500/15 blur-[80px]" />
-        <div className="relative space-y-5">
-          <p className="inline-block rounded-full border border-purple-400/30 bg-purple-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.3em] text-purple-200">
+      <section className="relative space-y-8 pt-8">
+        <div className="space-y-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-600 dark:text-emerald-400">
             {profileContent.role}
           </p>
-          <h1 className="text-4xl font-bold sm:text-5xl lg:text-6xl">
+          <h1 className="text-4xl font-bold text-slate-900 dark:text-white sm:text-5xl lg:text-6xl">
             {profileContent.name}
           </h1>
-          <p className="max-w-3xl text-lg leading-relaxed text-slate-100">
+          <p className="max-w-3xl text-lg leading-relaxed text-slate-600 dark:text-slate-300">
             {profileContent.tagline}
           </p>
-          <div className="flex flex-col gap-3 text-sm leading-relaxed text-slate-300">
-            {journeyOverview.introduction.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
+          <div className="flex flex-wrap gap-2 pt-2">
+            {focusAreas.map((area) => (
+              <span
+                key={area}
+                className="rounded-full bg-slate-100 px-3 py-1 text-xs text-slate-600 dark:bg-white/5 dark:text-slate-300"
+              >
+                {area}
+              </span>
             ))}
           </div>
-          <div className="flex flex-col gap-4 pt-2 sm:flex-row">
+          <div className="flex flex-col gap-4 pt-3 sm:flex-row">
             <Link
               href="/projects"
-              className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-purple-500/30 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-purple-400/40"
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 px-7 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-emerald-700 hover:shadow-md dark:bg-emerald-600 dark:hover:bg-emerald-500"
             >
-              View my projects
+              Explore projects
               <span className="transition-transform group-hover:translate-x-0.5">&rarr;</span>
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded-full border border-white/20 px-7 py-3.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/10"
+              className="inline-flex items-center justify-center rounded-full border border-slate-200 px-7 py-3 text-sm font-semibold text-slate-700 transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:bg-slate-50 dark:border-white/20 dark:text-white dark:hover:border-white/40 dark:hover:bg-white/5"
             >
               Get in touch
             </Link>
           </div>
         </div>
-        <div className="relative space-y-5 rounded-3xl border border-white/10 bg-black/40 p-6 text-sm text-slate-100">
+        <div className="grid gap-4 rounded-2xl border border-slate-200/80 bg-white/70 p-5 text-sm backdrop-blur-sm dark:border-white/10 dark:bg-white/5 sm:grid-cols-2">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-purple-300/70">Location</p>
-            <p className="mt-1 text-base font-medium text-white">{profileContent.location}</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-slate-400 dark:text-slate-500">Location</p>
+            <p className="mt-1 font-medium text-slate-900 dark:text-white">{profileContent.location}</p>
           </div>
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-purple-300/70">Availability</p>
-            <p className="mt-1 text-base text-white">{profileContent.availability}</p>
-          </div>
-          <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-purple-300/70">Education</p>
-            <p className="mt-1 text-base text-white">
-              MSc Human-Centered AI @ DTU
-            </p>
-            <p className="text-sm text-slate-300">
-              BSc Software Engineering @ VIA
-            </p>
-          </div>
-          <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-purple-300/70">Core Strengths</p>
-            <ul className="mt-2 space-y-2">
-              {topSkills.map((skill) => (
-                <li key={skill} className="flex gap-2">
-                  <span aria-hidden className="mt-1.5 block h-1.5 w-1.5 rounded-full bg-gradient-to-r from-purple-400 to-pink-400" />
-                  <span className="text-slate-200">{skill}</span>
-                </li>
-              ))}
-            </ul>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-slate-400 dark:text-slate-500">Availability</p>
+            <p className="mt-1 text-slate-700 dark:text-slate-200">{profileContent.availability}</p>
           </div>
         </div>
       </section>
 
-      {/* Skills Grid */}
-      <section className="space-y-6">
+      <hr className="border-slate-200 dark:border-white/10" />
+
+      <section className="space-y-8">
         <header className="space-y-2">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-purple-300/70">
-            Technical skills
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-600 dark:text-emerald-400">
+            Featured work
           </p>
-          <h2 className="text-2xl font-semibold">What I work with</h2>
+          <h2 className="text-2xl font-semibold text-slate-900 dark:text-white">Selected projects</h2>
+          <p className="max-w-2xl text-sm text-slate-500 dark:text-slate-400">
+            A quick look at recent builds. The full project archive lives on the projects page.
+          </p>
         </header>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {skillCategories.map((cat) => (
-            <div
-              key={cat.label}
-              className="group rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition-all hover:border-purple-400/30 hover:bg-white/[0.06]"
-            >
-              <h3 className="text-sm font-semibold text-purple-200">{cat.label}</h3>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {cat.items.map((item) => (
+
+        <div className="grid gap-8 md:grid-cols-3">
+          {featuredProjects.map((project) => (
+            <article key={project.slug} className="space-y-3 rounded-2xl border border-slate-200/80 bg-white/70 p-5 backdrop-blur-sm dark:border-white/10 dark:bg-white/5">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400">
+                {project.status}
+              </p>
+              <h3 className="text-base font-semibold text-slate-900 dark:text-white">{project.title}</h3>
+              <p className="text-sm leading-relaxed text-slate-500 dark:text-slate-400">{project.summary}</p>
+              <div className="flex flex-wrap gap-2">
+                {project.tech.slice(0, 3).map((item) => (
                   <span
                     key={item}
-                    className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-200"
+                    className="rounded-full bg-slate-100 px-3 py-1 text-[11px] text-slate-600 dark:bg-white/5 dark:text-slate-400"
                   >
                     {item}
                   </span>
                 ))}
               </div>
-            </div>
+              {project.links && project.links.length > 0 && (
+                <div className="flex flex-wrap gap-3">
+                  {project.links.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-medium text-emerald-600 underline decoration-emerald-300/40 underline-offset-4 transition hover:text-emerald-800 dark:text-emerald-400 dark:decoration-emerald-400/30 dark:hover:text-white"
+                    >
+                      {link.label} &rarr;
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </article>
           ))}
         </div>
-        <div className="text-center">
+        <div>
           <Link
-            href="/tools"
-            className="text-sm font-medium text-purple-300 underline decoration-purple-400/40 underline-offset-4 transition hover:text-white hover:decoration-white/60"
+            href="/projects"
+            className="inline-flex items-center gap-2 text-sm font-medium text-emerald-600 underline decoration-emerald-300/40 underline-offset-4 transition hover:text-emerald-800 dark:text-emerald-400 dark:decoration-emerald-400/30 dark:hover:text-white"
           >
-            View full skills &amp; toolkit &rarr;
+            See all projects &rarr;
           </Link>
         </div>
       </section>
 
-      {/* Experience */}
-      <section className="space-y-6">
-        <header className="space-y-2">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-purple-300/70">
-            Experience
-          </p>
-          <h2 className="text-2xl font-semibold">Where I&apos;ve shipped code</h2>
-        </header>
-        <div className="grid gap-6 md:grid-cols-3">
-          {experienceHighlight.map((exp) => (
-            <div
-              key={`${exp.company}-${exp.period}`}
-              className="group rounded-3xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur transition-all hover:border-purple-400/25 hover:bg-white/[0.06]"
-            >
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold uppercase tracking-[0.3em] text-purple-200/70">
-                  {exp.company}
-                </span>
-                <span className="text-xs text-slate-400">{exp.period}</span>
-              </div>
-              <h3 className="mt-2 text-lg font-semibold text-white">{exp.role}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-slate-300">{exp.summary}</p>
-              <ul className="mt-4 space-y-2 text-sm text-slate-200">
-                {exp.contributions.slice(0, 2).map((item) => (
-                  <li key={item} className="flex gap-2">
-                    <span aria-hidden className="mt-1.5 block h-1.5 w-1.5 rounded-full bg-purple-400" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-4 flex flex-wrap gap-1.5">
-                {exp.tech.slice(0, 4).map((t) => (
-                  <span key={t} className="rounded-full border border-white/5 bg-white/5 px-2.5 py-0.5 text-[10px] text-slate-400">
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+      <hr className="border-slate-200 dark:border-white/10" />
+
+      <section className="grid gap-6 sm:grid-cols-3">
+        <Link
+          href="/about"
+          className="rounded-2xl border border-slate-200/80 bg-white/70 p-5 transition hover:-translate-y-0.5 hover:border-slate-300 dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20"
+        >
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400">About</p>
+          <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Background, values, and the way I like to work.</p>
+        </Link>
+        <Link
+          href="/tools"
+          className="rounded-2xl border border-slate-200/80 bg-white/70 p-5 transition hover:-translate-y-0.5 hover:border-slate-300 dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20"
+        >
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400">Toolkit</p>
+          <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Tech stack, workflows, and platforms I use to ship.</p>
+        </Link>
+        <Link
+          href="/devlog"
+          className="rounded-2xl border border-slate-200/80 bg-white/70 p-5 transition hover:-translate-y-0.5 hover:border-slate-300 dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20"
+        >
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400">Devlog</p>
+          <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Notes from experiments, ideas, and ongoing builds.</p>
+        </Link>
       </section>
 
-      {/* CTA */}
-      <section className="relative overflow-hidden rounded-3xl border border-white/15 bg-gradient-to-r from-purple-600/20 via-pink-500/15 to-orange-400/10 p-10 text-center backdrop-blur">
-        <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-purple-500/20 blur-[80px]" />
-        <div className="absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-pink-500/15 blur-[80px]" />
-        <div className="relative">
-          <h2 className="text-2xl font-semibold text-white sm:text-3xl">
-            Let&apos;s build something together
-          </h2>
-          <p className="mt-3 mx-auto max-w-lg text-base text-slate-200">
-            I&apos;m open to full-stack engineering roles, freelance projects, and conversations about building great products.
-          </p>
-          <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-purple-900 transition-all hover:-translate-y-0.5 hover:bg-purple-100 hover:shadow-lg"
-            >
-              Contact me
-            </Link>
-            <Link
-              href="https://github.com/MarwanSummakieh"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full border border-white/30 px-7 py-3.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:border-white/50 hover:bg-white/10"
-            >
-              View GitHub
-            </Link>
-          </div>
+      <section className="rounded-2xl border border-slate-200/80 bg-slate-50/80 p-8 text-center dark:border-white/10 dark:bg-white/5">
+        <h2 className="text-2xl font-semibold text-slate-900 dark:text-white sm:text-3xl">
+          Looking for a focused builder?
+        </h2>
+        <p className="mx-auto mt-3 max-w-xl text-base text-slate-500 dark:text-slate-400">
+          I collaborate on product engineering, creative technology, and AI-adjacent software projects.
+        </p>
+        <div className="mt-7 flex flex-col justify-center gap-4 sm:flex-row">
+          <Link
+            href="/contact"
+            className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-7 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-emerald-700 hover:shadow-md dark:hover:bg-emerald-500"
+          >
+            Contact me
+          </Link>
+          <Link
+            href="https://github.com/MarwanSummakieh"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center rounded-full border border-slate-200 px-7 py-3 text-sm font-semibold text-slate-700 transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:bg-slate-50 dark:border-white/20 dark:text-white dark:hover:border-white/40 dark:hover:bg-white/5"
+          >
+            View GitHub
+          </Link>
         </div>
       </section>
     </div>

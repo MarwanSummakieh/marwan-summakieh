@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import SiteHeader from "@/components/layout/SiteHeader";
 import ChatDrawer from "@/components/layout/ChatDrawer";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -15,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Marwan Summakieh | Full-Stack Software Engineer",
-  description: "Portfolio of Marwan Summakieh — Full-Stack Software Engineer & MSc Human-Centered AI student at DTU. React, Next.js, Python, Azure, Docker.",
+  title: "Marwan Summakieh | Full-Stack Engineer & Creative Technologist",
+  description: "Portfolio of Marwan Summakieh — Full-Stack Engineer & Creative Technologist. MSc Human-Centered AI @ DTU. React, Next.js, Unity, Python, VR, Azure, Docker.",
   icons: {
     icon: "/icon.svg",
   },
@@ -28,13 +29,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#070a17] text-white`}>
-        <SiteHeader />
-        <main className="mx-auto min-h-screen max-w-6xl px-4 pb-32 pt-6 sm:px-6">
-          {children}
-        </main>
-        <ChatDrawer />
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[hsl(var(--background))] text-[hsl(var(--foreground))]`}>
+        <ThemeProvider>
+          <SiteHeader />
+          <main className="mx-auto min-h-screen max-w-5xl px-6 pb-32 pt-8 sm:px-8">
+            {children}
+          </main>
+          <ChatDrawer />
+        </ThemeProvider>
       </body>
     </html>
   );

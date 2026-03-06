@@ -1,13 +1,19 @@
-FULL-STACK SOFTWARE ENGINEER | MSc HUMAN-CENTERED AI @ DTU
+FULL-STACK ENGINEER & CREATIVE TECHNOLOGIST | MSc HUMAN-CENTERED AI @ DTU
 Marwan Summakieh
 Phone: +45 27 29 78 28   Email: marwansummakieh97@gmail.com
 Copenhagen, Denmark
 
 SUMMARY
-Full-stack software engineer with hands-on experience building and deploying production-ready web applications across front end, backend, and cloud environments. Currently pursuing an MSc in Human-Centered Artificial Intelligence at DTU, with practical experience in Next.js, React, Python, Docker, Azure, and MongoDB through internship, freelance, and cloud development roles.
+Full-stack software engineer and creative technologist with hands-on experience building production web applications, VR experiences, and game prototypes. Currently pursuing an MSc in Human-Centered Artificial Intelligence at DTU, with practical experience in Next.js, React, Python, Unity, Docker, Azure, and MongoDB through internship, freelance, and cloud development roles. Passionate about creating visual experiences in VR, game development, and learning 3D modeling in Blender.
 
 CURRENT FOCUS
-Pursuing a master's in Human-Centered AI at DTU, combining research on explainable interfaces and accessibility with hands-on engineering practice.
+Pursuing a master's in Human-Centered AI at DTU, combining research on explainable interfaces and accessibility with hands-on engineering. Outside of academics, actively exploring creative computing — building VR games in Unity, developing RTS prototypes with AI behavior trees, and learning Blender for 3D visual storytelling.
+
+INTERESTS & CREATIVE PURSUITS
+• Creating visual experiences in VR — building immersive worlds and interactive environments using Unity and XR Interaction Toolkit
+• Game development — designing real-time strategy mechanics with behavior-tree AI, custom shaders, and unit systems in Unity
+• Learning Blender — exploring 3D modeling, texturing, and visual storytelling as a creative outlet
+• Bridging code and art — interested in the intersection of software engineering and creative expression through interactive media
 
 EXPERIENCE
 
@@ -32,6 +38,47 @@ Managed Azure cloud infrastructure as the sole developer, using PowerShell autom
 • Integrated Copilot AI into development workflows to streamline code generation and troubleshooting.
 Technologies: Azure, PowerShell, React, Microsoft Office Add-in, SharePoint REST API, OAuth.
 
+GITHUB PROJECTS (Personal & Academic)
+
+REAL-TIME STRATEGIE (Unity, C#, ShaderLab)
+An RTS prototype in Unity with behavior-tree driven AI, drag-select unit management, and custom ShaderLab shader effects.
+GitHub: https://github.com/MarwanSummakieh/Real-Time-Strategie
+
+BASKETBALL VR (Unity, C#, XR Interaction Toolkit, Oculus XR, HLSL)
+A VR basketball experience for Oculus headsets with physics-based ball throwing, scoring system, and HLSL shader effects. Built on the XR Interaction Toolkit.
+GitHub: https://github.com/MarwanSummakieh/Basket-Ball-VR
+
+NEURAL NETWORK FROM SCRATCH (Python)
+A ground-up neural network implementation in pure Python — no frameworks. Covers neurons, layers, ReLU and Softmax activations, dot products, and categorical cross-entropy loss.
+GitHub: https://github.com/MarwanSummakieh/Neural-Network
+
+ELDEN RING SOCIAL GRAPHS (Python, Jupyter, NetworkX, NLP)
+Network analysis of the Elden Ring universe — mapping character relationships through community detection, NLP, and TF-IDF text analysis. DTU coursework.
+GitHub: https://github.com/MarwanSummakieh/social_graphs_project
+
+EMERGENCY ALERT APP (React Native, Expo, TypeScript, Firebase)
+A mobile app for sending emergency alerts with real-time GPS location and push notifications. Built collaboratively with 3 contributors.
+GitHub: https://github.com/MarwanSummakieh/Emergency-Button
+
+CUSTOM TERMINAL (Go)
+A custom terminal emulator built from scratch in Go — exploring systems programming, command parsing, and process management.
+GitHub: https://github.com/MarwanSummakieh/Terminal
+
+NOT PIRATE BAY (React, TypeScript, Azure Static Web Apps)
+A React + TypeScript web application with Azure Static Web Apps CI/CD pipeline and GitHub Actions deployment.
+GitHub: https://github.com/MarwanSummakieh/Not-Pirate-bay
+
+COLLABORATIVE PROJECTS
+
+VIBE-OPSY — SKIN CANCER DETECTION AI (React 19, TypeScript, Three.js, React Three Fiber, Framer Motion, Tailwind CSS, Cloudflare Workers)
+A retro-futuristic 3D web interface for AI-powered skin lesion classification. Features a 3D Macintosh Classic model rendered with Three.js that users interact with to upload dermatoscopic images and receive diagnostic results displayed on a vintage thermal receipt. Multi-class classification across 7 skin lesion categories. DTU MLOps Course 02476 (Winter 2026). Team of 5 contributors.
+Live: https://vibe-opsy.aryan-mi.workers.dev/
+GitHub: https://github.com/Aryan-Mi/vibe-opsy
+
+MULTI-AGENT SYSTEM WARMUP (Python, AI Planning, Search Algorithms)
+A multi-agent systems exercise from DTU course 02285 — implementing collaborative agent planning, coordination, and problem-solving in structured environments.
+GitHub: https://github.com/WendyHui805/02285-Multi-Agent-System-Warmup
+
 EDUCATION
 Master's in Human-Centered Artificial Intelligence (In progress) — DTU, Denmark's Technical University
 Bachelor's in Software Engineering, VIA University College, Denmark (2019 - 2022)
@@ -45,13 +92,21 @@ Microsoft Certified: Power Platform App Maker Associate
 Credential ID: F3E768ADDBF1844   Certification Number: ADE462-0AECAQ   Earned: 28 April 2024
 
 SKILLS
-Languages: Python, JavaScript, TypeScript, Java, C#, Kotlin
-Front-End: React, React Native, Next.js, Tailwind CSS
+Languages: Python, JavaScript, TypeScript, Java, C#, Go, Kotlin
+Front-End: React, React Native, Next.js, Three.js, React Three Fiber, Tailwind CSS
 Back-End: Flask, Node.js, ASP.NET, .NET, REST APIs
-Cloud & DevOps: Azure, Docker, PowerShell, Vercel, CI/CD, GitHub Actions
-Databases: MongoDB, SQL
-AI & Data: MLOps, Data Analytics, Human-Centered AI, Copilot Integration
-Design & Collaboration: Figma, UX Research, Microsoft Power Platform
+Cloud & DevOps: Azure, Docker, Cloudflare Workers, PowerShell, Vercel, CI/CD, GitHub Actions
+Game Dev & VR: Unity, C# for Unity, XR Interaction Toolkit, Oculus XR, ShaderLab, HLSL
+Databases: MongoDB, SQL, Firebase
+AI & Data: Neural Networks, NLP / TF-IDF, NetworkX, Jupyter, MLOps, Multi-Agent Systems, Human-Centered AI
+Creative Tools: Blender (learning), Figma, UX Research, 3D Modeling
+Collaboration: Git, GitHub, Microsoft Power Platform, Notion
+
+CURRENTLY LEARNING
+• Blender — 3D modeling & visual storytelling
+• VR experience design with Unity XR
+• Human-Centered AI research at DTU
+• Advanced game AI & behavior systems
 
 LANGUAGES
 English - Bilingual
@@ -59,7 +114,7 @@ Danish - Speaking
 Arabic - Native
 
 HOBBIES
-Football (watching and playing), Table tennis, Learning to play the piano, Writing short stories, Video games
+Football (watching and playing), Table tennis, Learning to play the piano, Writing short stories, Video games, Creating visual experiences in VR, Learning 3D modeling in Blender
 
 ## Contact Information
 * **LinkedIn:** https://www.linkedin.com/in/marwan-summakieh-36aab4290/

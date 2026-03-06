@@ -54,7 +54,7 @@ const CopilotInput: React.FC<CopilotInputProps> = ({
 
   return (
     <div
-      className="w-full bg-[#1a1f36]/70 backdrop-blur-md rounded-full p-2 flex items-center space-x-2 shadow-lg border border-blue-900/50"
+      className="w-full rounded-full border border-slate-200 bg-white/70 p-2 shadow-lg backdrop-blur-md dark:border-emerald-900/50 dark:bg-[#131718]/70 flex items-center space-x-2"
       aria-busy={isLoading}
     >
       {/* Input Field - Added min-w-0 */}
@@ -64,7 +64,7 @@ const CopilotInput: React.FC<CopilotInputProps> = ({
         onChange={onChange}
         onKeyPress={onKeyPress}
         placeholder="Ask me anything... or click the ✨ for a suggestion"
-        className="flex-1 bg-transparent text-neutral-100 placeholder-neutral-400 focus:outline-none text-lg px-2 min-w-0"
+        className="flex-1 bg-transparent text-slate-900 placeholder-slate-400 focus:outline-none text-lg px-2 min-w-0 dark:text-neutral-100 dark:placeholder-neutral-400"
         aria-label="Chat input"
         disabled={isLoading}
       />
@@ -74,7 +74,7 @@ const CopilotInput: React.FC<CopilotInputProps> = ({
         {/* Sparkles Icon Button */}
         <button 
           onClick={handleSparkleClick}
-          className="p-2 text-neutral-300 hover:text-yellow-300 transition-colors rounded-full hover:bg-blue-800/50"
+          className="p-2 text-slate-400 hover:text-yellow-500 transition-colors rounded-full hover:bg-slate-100 dark:text-neutral-300 dark:hover:text-yellow-300 dark:hover:bg-emerald-800/50"
           aria-label="Suggest a prompt"
           disabled={isLoading}
         >
@@ -88,7 +88,7 @@ const CopilotInput: React.FC<CopilotInputProps> = ({
       <button
         onClick={onSubmit}
         disabled={isSendDisabled}
-        className="p-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white disabled:bg-neutral-600 disabled:opacity-50 hover:shadow-lg transition-all flex items-center justify-center flex-shrink-0"
+        className="p-2 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white disabled:bg-neutral-600 disabled:opacity-50 hover:shadow-lg transition-all flex items-center justify-center flex-shrink-0"
         aria-label="Send message"
       >
         {isLoading ? (

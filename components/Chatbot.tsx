@@ -22,7 +22,7 @@ interface HistoryEntry {
 
 const LoadingIndicator: React.FC = () => (
   <motion.div
-    className="inline-flex items-center gap-2 rounded-full border border-purple-400/40 bg-white/10 px-4 py-2"
+    className="inline-flex items-center gap-2 rounded-full border border-emerald-300 bg-emerald-50 px-4 py-2 dark:border-emerald-400/40 dark:bg-white/10"
     initial={{ opacity: 0, y: 6 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.25, ease: "easeOut" }}
@@ -30,7 +30,7 @@ const LoadingIndicator: React.FC = () => (
     {Array.from({ length: 3 }).map((_, index) => (
       <motion.span
         key={index}
-        className="h-2 w-2 rounded-full bg-purple-300"
+        className="h-2 w-2 rounded-full bg-emerald-600 dark:bg-emerald-300"
         animate={{ opacity: [0.4, 1, 0.4], scale: [0.85, 1.05, 0.85] }}
         transition={{
           repeat: Infinity,
@@ -211,12 +211,12 @@ const Chatbot: React.FC<ChatbotProps> = ({ onClose }) => {
   }, [submit]);
 
   return (
-  <div className="relative flex h-full flex-col overflow-hidden bg-[#080d1f]/90 shadow-lg shadow-blue-900/30 backdrop-blur-xl">
+  <div className="relative flex h-full flex-col overflow-hidden bg-white/90 shadow-lg shadow-emerald-900/10 backdrop-blur-xl dark:bg-[#090c0f]/90 dark:shadow-emerald-900/30">
       {onClose && (
         <button
           type="button"
           onClick={onClose}
-          className="absolute right-3 top-3 z-10 rounded-full border border-white/20 bg-black/40 p-2 text-white transition hover:border-white/50 hover:bg-white/10"
+          className="absolute right-3 top-3 z-10 rounded-full border border-slate-200 bg-white/40 p-2 text-slate-500 transition hover:border-slate-400 hover:bg-slate-100 dark:border-white/20 dark:bg-black/40 dark:text-white dark:hover:border-white/50 dark:hover:bg-white/10"
           aria-label="Close chat"
         >
           <XMarkIcon className="h-5 w-5" aria-hidden />
@@ -255,7 +255,7 @@ const Chatbot: React.FC<ChatbotProps> = ({ onClose }) => {
                   <p
                     className={cn(
                       "text-[11px] font-medium uppercase tracking-[0.25em]",
-                      message.role === "model" ? "text-purple-200/80" : "text-sky-300/70"
+                      message.role === "model" ? "text-emerald-700 dark:text-emerald-200/80" : "text-emerald-600 dark:text-emerald-300/70"
                     )}
                   >
                     {message.role === "model" ? "AI Assistant" : "You"}
@@ -264,24 +264,24 @@ const Chatbot: React.FC<ChatbotProps> = ({ onClose }) => {
                     className={cn(
                       "overflow-hidden border px-4 py-3 text-sm leading-relaxed shadow-lg",
                       message.role === "model"
-                        ? "border-white/10 bg-white/10 text-slate-100"
-                        : "border-sky-500/30 bg-gradient-to-r from-sky-500/60 to-purple-500/60 text-white"
+                        ? "border-slate-200 bg-slate-50 text-slate-700 dark:border-white/10 dark:bg-white/10 dark:text-slate-100"
+                        : "border-emerald-300 bg-emerald-50 text-emerald-900 dark:border-emerald-500/30 dark:bg-gradient-to-r dark:from-emerald-500/60 dark:to-emerald-500/60 dark:text-white"
                     )}
                   >
                     {/* --- Render contact card or normal message --- */}
                     {message.role === "model" && contactInfo ? (
                       <div className="space-y-3">
-                        <p className="text-sm font-semibold text-purple-200">
+                        <p className="text-sm font-semibold text-emerald-700 dark:text-emerald-200">
                           Contact information
                         </p>
                         {contactInfo.linkedIn && (
                           <div className="flex items-center gap-3">
-                            <FaLinkedin className="h-5 w-5 text-purple-200" />
+                            <FaLinkedin className="h-5 w-5 text-emerald-700 dark:text-emerald-200" />
                             <a
                               href={contactInfo.linkedIn}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-sm text-blue-200 underline-offset-4 transition hover:text-white hover:underline"
+                              className="text-sm text-emerald-700 underline-offset-4 transition hover:text-emerald-900 hover:underline dark:text-emerald-200 dark:hover:text-white"
                             >
                               LinkedIn profile
                             </a>
@@ -289,10 +289,10 @@ const Chatbot: React.FC<ChatbotProps> = ({ onClose }) => {
                         )}
                         {contactInfo.email && (
                           <div className="flex items-center gap-3">
-                            <EnvelopeIcon className="h-5 w-5 text-purple-200" />
+                            <EnvelopeIcon className="h-5 w-5 text-emerald-700 dark:text-emerald-200" />
                             <a
                               href={`mailto:${contactInfo.email}`}
-                              className="text-sm text-blue-200 underline-offset-4 transition hover:text-white hover:underline"
+                              className="text-sm text-emerald-700 underline-offset-4 transition hover:text-emerald-900 hover:underline dark:text-emerald-200 dark:hover:text-white"
                             >
                               {contactInfo.email}
                             </a>
@@ -300,12 +300,12 @@ const Chatbot: React.FC<ChatbotProps> = ({ onClose }) => {
                         )}
                         {contactInfo.gitHub && (
                           <div className="flex items-center gap-3">
-                            <FaGithub className="h-5 w-5 text-purple-200" />
+                            <FaGithub className="h-5 w-5 text-emerald-700 dark:text-emerald-200" />
                             <a
                               href={contactInfo.gitHub}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-sm text-blue-200 underline-offset-4 transition hover:text-white hover:underline"
+                              className="text-sm text-emerald-700 underline-offset-4 transition hover:text-emerald-900 hover:underline dark:text-emerald-200 dark:hover:text-white"
                             >
                               GitHub profile
                             </a>
@@ -313,10 +313,10 @@ const Chatbot: React.FC<ChatbotProps> = ({ onClose }) => {
                         )}
                         {contactInfo.phone && (
                           <div className="flex items-center gap-3">
-                            <PhoneIcon className="h-5 w-5 text-purple-200" />
+                            <PhoneIcon className="h-5 w-5 text-emerald-700 dark:text-emerald-200" />
                             <a
                               href={`tel:${contactInfo.phone.replace(/\s+/g, "")}`}
-                              className="text-sm text-blue-200 underline-offset-4 transition hover:text-white hover:underline"
+                              className="text-sm text-emerald-700 underline-offset-4 transition hover:text-emerald-900 hover:underline dark:text-emerald-200 dark:hover:text-white"
                             >
                               {contactInfo.phone}
                             </a>
@@ -324,7 +324,7 @@ const Chatbot: React.FC<ChatbotProps> = ({ onClose }) => {
                         )}
                       </div>
                     ) : (
-                      <div className="text-sm text-left text-slate-100 md:text-base">
+                      <div className="text-sm text-left text-slate-700 md:text-base dark:text-slate-100">
                         <ReactMarkdown
                           components={{
                             a: ({ ...props }) => (
@@ -332,7 +332,7 @@ const Chatbot: React.FC<ChatbotProps> = ({ onClose }) => {
                                 {...props}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-blue-200 underline underline-offset-4 transition hover:text-white"
+                                className="text-emerald-700 underline underline-offset-4 transition hover:text-emerald-900 dark:text-emerald-200 dark:hover:text-white"
                               />
                             ),
                           }}
@@ -357,10 +357,10 @@ const Chatbot: React.FC<ChatbotProps> = ({ onClose }) => {
           >
             <div className="flex w-full justify-start">
               <div className="space-y-1">
-                <p className="text-[11px] font-medium uppercase tracking-[0.25em] text-purple-200/80">
+                <p className="text-[11px] font-medium uppercase tracking-[0.25em] text-emerald-700 dark:text-emerald-200/80">
                   AI Assistant
                 </p>
-                <div className="rounded-2xl border border-white/10 bg-white/10 px-4 py-3">
+                <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 dark:border-white/10 dark:bg-white/10">
                   <LoadingIndicator />
                 </div>
               </div>
@@ -370,8 +370,8 @@ const Chatbot: React.FC<ChatbotProps> = ({ onClose }) => {
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="relative border-t border-white/10 bg-[#060916]/80 px-4 py-3 md:px-6">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-10 bg-gradient-to-t from-[#060916] to-transparent" />
+      <div className="relative border-t border-slate-200 bg-white/80 px-4 py-3 dark:border-white/10 dark:bg-[#070a0c]/80 md:px-6">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-10 bg-gradient-to-t from-white to-transparent dark:from-[#070a0c]" />
         <div className="relative z-10 w-full">
           <CopilotInput
             value={input}

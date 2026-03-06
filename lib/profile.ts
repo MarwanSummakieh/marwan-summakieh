@@ -50,14 +50,14 @@ export interface ProfileContent {
 
 export const profileContent: ProfileContent = {
   name: "Marwan Summakieh",
-  role: "Full-Stack Software Engineer | MSc Human-Centered AI @ DTU",
+  role: "Full-Stack Engineer & Creative Technologist | MSc Human-Centered AI @ DTU",
   location: "Copenhagen, Denmark",
-  tagline: "Full-stack developer shipping production-ready web applications across front end, backend, and cloud — with a focus on human-centered design.",
+  tagline: "Full-stack engineer building production web apps, VR experiences, and game prototypes — bridging code, design, and human-centered AI research.",
   greetings: [
-    "Currently pursuing an MSc in Human-Centered Artificial Intelligence at DTU, with practical experience in Next.js, React, Python, Docker, Azure, and MongoDB.",
-    "Experienced shipping real applications through internship, freelance, and cloud development roles — comfortable across the full stack.",
+    "Currently pursuing an MSc in Human-Centered Artificial Intelligence at DTU, with hands-on experience across Next.js, React, Python, Unity, Docker, Azure, and beyond.",
+    "I ship production applications by day and explore creative computing — VR, game development, and 3D with Blender — by night.",
   ],
-  availability: "Open to full-stack, front-end, and AI-adjacent software engineering roles in Copenhagen.",
+  availability: "Open to full-stack, creative technology, and AI-adjacent software engineering roles in Copenhagen.",
   values: [
     {
       title: "Ship Real Products",
@@ -65,14 +65,14 @@ export const profileContent: ProfileContent = {
         "Focus on building and deploying features that reach production, not just prototypes — from Docker containers to live Vercel deployments.",
     },
     {
-      title: "User-Centered Engineering",
+      title: "Creative Engineering",
       description:
-        "Anchor technical decisions in user needs and measurable improvements, informed by Human-Centered AI research at DTU.",
+        "Combine software engineering craft with creative expression — from VR basketball in Unity to real-time strategy AI and custom shader effects.",
     },
     {
       title: "Full-Stack Ownership",
       description:
-        "Take responsibility across the stack — from React and Next.js interfaces to Flask APIs, Azure infrastructure, and database design.",
+        "Take responsibility across the stack — from React interfaces to Flask APIs, Azure infrastructure, Unity VR, and everything in between.",
     },
   ],
   experiences: [
@@ -119,9 +119,9 @@ export const profileContent: ProfileContent = {
   skills: {
     strengths: [
       "Full-stack product delivery",
+      "VR & interactive 3D development",
       "Cloud infrastructure & automation",
       "Human-centered UX engineering",
-      "Production deployment & DevOps",
     ],
     tools: [
       "React",
@@ -133,6 +133,8 @@ export const profileContent: ProfileContent = {
       "Node.js",
       "Java",
       "C#",
+      "Go",
+      "Unity",
       "Docker",
       "Azure",
       "PowerShell",
@@ -145,9 +147,10 @@ export const profileContent: ProfileContent = {
       "Git",
     ],
     learning: [
+      "Blender — 3D modeling & visual storytelling",
+      "VR experience design with Unity XR",
       "Human-Centered AI research at DTU",
-      "MLOps & AI-assisted workflows",
-      "Advanced TypeScript patterns",
+      "Advanced game AI & behavior systems",
     ],
   },
   showcaseProjects: [
@@ -202,6 +205,8 @@ export const profileContent: ProfileContent = {
     "Learning to play the piano",
     "Writing short stories",
     "Video games",
+    "Creating visual experiences in VR",
+    "Learning 3D modeling in Blender",
   ],
   contact: [
     {

@@ -9,142 +9,198 @@ export const metadata = {
 const ProjectsPage = () => {
   const professionalProjects = profileContent.showcaseProjects;
 
+  // Categorize side projects
+  const collabProjects = gameProjects.filter((p) =>
+    ["vibe-opsy", "multi-agent-system"].includes(p.slug)
+  );
+  const gameDevProjects = gameProjects.filter((p) =>
+    ["real-time-strategie", "basket-ball-vr"].includes(p.slug)
+  );
+  const aiResearchProjects = gameProjects.filter((p) =>
+    ["neural-network", "elden-ring-social-graphs"].includes(p.slug)
+  );
+  const appProjects = gameProjects.filter((p) =>
+    ["emergency-button", "terminal-go", "not-pirate-bay"].includes(p.slug)
+  );
+
   return (
-    <div className="space-y-14">
+    <div className="space-y-20">
       <header className="space-y-4">
-        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-purple-300/70">
+        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-600 dark:text-emerald-400">
           Project highlights
         </p>
-        <h1 className="text-3xl font-bold sm:text-4xl">Shipped work &amp; side projects</h1>
-        <p className="max-w-3xl text-base leading-relaxed text-slate-300">
-          A mix of professional engagements with shipped impact and personal experiments. Each entry outlines the problem, the approach, and the outcome.
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-white sm:text-4xl">Shipped work &amp; creative experiments</h1>
+        <p className="max-w-3xl text-base leading-relaxed text-slate-500 dark:text-slate-400">
+          From production web platforms to VR games, neural networks, and social graph analysis — here&apos;s a curated selection of professional and personal work.
         </p>
       </header>
 
       {/* Professional Projects */}
-      <section className="space-y-6">
+      <section className="space-y-8">
         <header className="space-y-2">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-purple-300/70">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-600 dark:text-emerald-400">
             Professional work
           </p>
-          <h2 className="text-2xl font-semibold">Production projects</h2>
+          <h2 className="text-2xl font-semibold text-slate-900 dark:text-white">Production projects</h2>
         </header>
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="space-y-10">
           {professionalProjects.map((project) => (
-            <article
-              key={project.slug}
-              className="group rounded-3xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur transition-all hover:border-purple-400/25 hover:bg-white/[0.06]"
-            >
-              <h3 className="text-xl font-semibold text-white">{project.title}</h3>
-              <div className="mt-4 space-y-3 text-sm leading-relaxed text-slate-300">
+            <article key={project.slug} className="grid gap-4 md:grid-cols-[1fr,2fr]">
+              <div>
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white">{project.title}</h3>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {project.tech.map((item) => (
+                    <span key={item} className="rounded-full bg-slate-100 px-3 py-1 text-[11px] text-slate-500 dark:bg-white/5 dark:text-slate-400">
+                      {item}
+                    </span>
+                  ))}
+                </div>
+                {project.link && (
+                  <div className="mt-3">
+                    <Link
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-medium text-emerald-600 underline decoration-emerald-300/40 underline-offset-4 transition hover:text-emerald-800 dark:text-emerald-400 dark:hover:text-white"
+                    >
+                      View project &rarr;
+                    </Link>
+                  </div>
+                )}
+              </div>
+              <div className="space-y-3 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-purple-200/70">Problem</p>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">Problem</p>
                   <p className="mt-1">{project.problem}</p>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-purple-200/70">Solution</p>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">Solution</p>
                   <p className="mt-1">{project.solution}</p>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-emerald-300/70">Impact</p>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Impact</p>
                   <p className="mt-1">{project.impact}</p>
                 </div>
               </div>
-              <div className="mt-5 flex flex-wrap gap-2">
-                {project.tech.map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] text-slate-400"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-              {project.link && (
-                <div className="mt-4">
-                  <Link
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-sm font-medium text-purple-300 underline decoration-purple-400/40 underline-offset-4 transition hover:text-white"
-                  >
-                    View project &rarr;
-                  </Link>
-                </div>
-              )}
             </article>
           ))}
         </div>
       </section>
 
-      {/* Side Projects */}
-      <section className="space-y-6">
-        <header className="space-y-2">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-purple-300/70">
-            Side projects
-          </p>
-          <h2 className="text-2xl font-semibold">Experiments &amp; explorations</h2>
-        </header>
-        <div className="space-y-6">
-          {gameProjects.map((project) => (
-            <article
-              key={project.slug}
-              className="group rounded-3xl border border-white/10 bg-black/30 p-6 backdrop-blur transition-all hover:border-purple-400/20"
-            >
-              <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-                <div className="space-y-3 flex-1">
-                  <div className="inline-block rounded-full border border-purple-400/30 bg-purple-500/10 px-3 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-purple-300">
-                    {project.status}
-                  </div>
-                  <h3 className="text-xl font-semibold text-white">{project.title}</h3>
-                  <p className="text-sm leading-relaxed text-slate-300">{project.summary}</p>
-                  <p className="text-sm text-slate-400">{project.focus}</p>
-                </div>
-                <div className="flex flex-wrap gap-2 text-xs text-purple-200 md:max-w-[200px] md:justify-end">
-                  {project.tech.map((item) => (
-                    <span
-                      key={item}
-                      className="rounded-full border border-white/10 bg-white/5 px-3 py-1"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
+      <hr className="border-slate-200 dark:border-white/10" />
 
-              <div className="mt-5 grid gap-4 text-sm text-slate-200 md:grid-cols-2">
-                <ul className="space-y-2">
-                  {project.outcomes.map((outcome) => (
-                    <li key={outcome} className="flex gap-2">
-                      <span aria-hidden className="mt-1.5 block h-1.5 w-1.5 rounded-full bg-purple-400" />
-                      <span>{outcome}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex flex-wrap gap-3">
-                  {project.links && project.links.length > 0 ? (
-                    project.links.map((link) => (
-                      <Link
-                        key={link.href}
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-sm font-medium text-purple-300 underline decoration-purple-400/40 underline-offset-4 transition hover:text-white"
-                      >
-                        {link.label} &rarr;
-                      </Link>
-                    ))
-                  ) : (
-                    <p className="text-xs text-slate-500">More details coming soon.</p>
-                  )}
-                </div>
-              </div>
-            </article>
+      {/* Collaborative Projects */}
+      <section className="space-y-8">
+        <header className="space-y-2">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-600 dark:text-emerald-400">
+            Collaborative work
+          </p>
+          <h2 className="text-2xl font-semibold text-slate-900 dark:text-white">Team projects &amp; open-source</h2>
+        </header>
+        <div className="grid gap-10 md:grid-cols-2">
+          {collabProjects.map((project) => (
+            <ProjectCard key={project.slug} project={project} />
+          ))}
+        </div>
+      </section>
+
+      <hr className="border-slate-200 dark:border-white/10" />
+
+      {/* Game Dev & VR */}
+      <section className="space-y-8">
+        <header className="space-y-2">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-teal-600 dark:text-teal-400">
+            Game development &amp; VR
+          </p>
+          <h2 className="text-2xl font-semibold text-slate-900 dark:text-white">Interactive experiences</h2>
+        </header>
+        <div className="grid gap-10 md:grid-cols-2">
+          {gameDevProjects.map((project) => (
+            <ProjectCard key={project.slug} project={project} />
+          ))}
+        </div>
+      </section>
+
+      <hr className="border-slate-200 dark:border-white/10" />
+
+      {/* AI & Research */}
+      <section className="space-y-8">
+        <header className="space-y-2">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-600 dark:text-emerald-400">
+            AI &amp; research
+          </p>
+          <h2 className="text-2xl font-semibold text-slate-900 dark:text-white">Machine learning &amp; data analysis</h2>
+        </header>
+        <div className="grid gap-10 md:grid-cols-2">
+          {aiResearchProjects.map((project) => (
+            <ProjectCard key={project.slug} project={project} />
+          ))}
+        </div>
+      </section>
+
+      <hr className="border-slate-200 dark:border-white/10" />
+
+      {/* Apps & Tools */}
+      <section className="space-y-8">
+        <header className="space-y-2">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-amber-600 dark:text-amber-400">
+            Apps &amp; tools
+          </p>
+          <h2 className="text-2xl font-semibold text-slate-900 dark:text-white">Software projects &amp; experiments</h2>
+        </header>
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+          {appProjects.map((project) => (
+            <ProjectCard key={project.slug} project={project} />
           ))}
         </div>
       </section>
     </div>
   );
 };
+
+function ProjectCard({ project }: { project: typeof gameProjects[number] }) {
+  return (
+    <article className="space-y-3">
+      <p className="text-[10px] font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+        {project.status}
+      </p>
+      <h3 className="text-lg font-semibold text-slate-900 dark:text-white">{project.title}</h3>
+      <p className="text-sm leading-relaxed text-slate-500 dark:text-slate-400">{project.summary}</p>
+
+      <div className="flex flex-wrap gap-2">
+        {project.tech.map((item) => (
+          <span key={item} className="rounded-full bg-slate-100 px-3 py-1 text-[11px] text-slate-500 dark:bg-white/5 dark:text-slate-400">
+            {item}
+          </span>
+        ))}
+      </div>
+
+      <ul className="space-y-1.5 text-sm text-slate-600 dark:text-slate-300">
+        {project.outcomes.slice(0, 3).map((outcome) => (
+          <li key={outcome} className="flex gap-2">
+            <span aria-hidden className="mt-1.5 block h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            <span>{outcome}</span>
+          </li>
+        ))}
+      </ul>
+
+      {project.links && project.links.length > 0 && (
+        <div className="flex flex-wrap gap-3">
+          {project.links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium text-emerald-600 underline decoration-emerald-300/40 underline-offset-4 transition hover:text-emerald-800 dark:text-emerald-400 dark:hover:text-white"
+            >
+              {link.label} &rarr;
+            </Link>
+          ))}
+        </div>
+      )}
+    </article>
+  );
+}
 
 export default ProjectsPage;
