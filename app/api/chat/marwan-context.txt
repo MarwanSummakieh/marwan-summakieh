@@ -1,46 +1,39 @@
-SOFTWARE ENGINEER | HUMAN-CENTERED AI GRADUATE STUDENT
+FULL-STACK SOFTWARE ENGINEER | MSc HUMAN-CENTERED AI @ DTU
 Marwan Summakieh
 Phone: +45 27 29 78 28   Email: marwansummakieh97@gmail.com
 Copenhagen, Denmark
 
 SUMMARY
-Front-end focused software engineer pursuing a master's degree in Human-Centered Artificial Intelligence. I translate user research and systems thinking into trustworthy interfaces, while balancing graduate coursework with client consulting. Experienced across React, Next.js, Python, Azure tooling, and UX prototyping.
+Full-stack software engineer with hands-on experience building and deploying production-ready web applications across front end, backend, and cloud environments. Currently pursuing an MSc in Human-Centered Artificial Intelligence at DTU, with practical experience in Next.js, React, Python, Docker, Azure, and MongoDB through internship, freelance, and cloud development roles.
 
 CURRENT FOCUS
-Pursuing a master's in Human-Centered AI with research centered on explainable interfaces, accessibility, and collaborative tooling for design and engineering teams.
+Pursuing a master's in Human-Centered AI at DTU, combining research on explainable interfaces and accessibility with hands-on engineering practice.
 
 EXPERIENCE
 
-SHADE ANALYSIS PLATFORM UI REFRESH | SECOND SUN (2025)
-Elevated the UI for a golf-course shade analysis product by restructuring journeys and aligning design standards.
-• Designed reusable interface components that improved clarity for course designers.
-• Audited the existing front-end implementation and produced a roadmap of usability improvements.
-• Authored implementation guidelines to keep engineering and design teams aligned.
-Technologies: Python Flask, HTML, CSS, JavaScript.
+TURF MANAGEMENT PLATFORM | SECOND SUN — Full Stack Developer Intern (May 2025 – Sep 2025)
+Built a full-stack web application in Flask for a production-facing turf management platform.
+• Containerized application services with Docker to improve deployment consistency and streamline environment setup.
+• Enhanced sensor-data visualization and core user flows to strengthen platform usability.
+• Improved user interfaces for sensor data monitoring and overall platform experience.
+Technologies: Python, Flask, Docker, JavaScript, HTML, CSS.
 
-OUTLOOK FILE MANAGEMENT EXTENSION | JOKER IT (2024)
-Built an Outlook extension that lets consultants upload attachments to SharePoint without leaving the mail client.
-• Developed the add-in with Microsoft's Office Add-in framework and React.
-• Implemented secure authentication flows and resilient error handling for file transfers.
-• Produced user documentation and training assets to accelerate onboarding.
-Technologies: Microsoft Office Add-in Framework, React, SharePoint REST API, OAuth.
+TRACK & TRACE ORDER SYSTEM | FREELANCE — Software Engineer (Sep 2024 – Apr 2025)
+Developed a full-stack web platform using Next.js and MongoDB for Zaki's Skrædder & Renseri.
+• Designed and implemented a Track & Trace ticketing system that digitized manual order workflows.
+• Deployed the application on Vercel for scalable, production-ready hosting.
+• Created Figma prototypes to align stakeholders before implementation.
+Technologies: Next.js, React Native, MongoDB, Tailwind CSS, Vercel, Figma.
 
-AZURE PROVISIONING TOOL | JOKER IT (2023)
-Delivered an automated provisioning tool that standardised Azure resource allocation and reduced manual setup.
-• Designed the provisioning architecture and dashboards for monitoring resource usage.
-• Automated common workflows with PowerShell, Azure CLI, and Functions.
-• Established logging and error handling for reliable deployments.
-Technologies: Azure Resource Manager, PowerShell, Azure CLI, Azure Functions, REST APIs.
-
-TAILORING ORDER TRACKING SUITE | FREELANCE (2024)
-Launched a marketing site and order tracking app for a tailoring business to improve customer visibility.
-• Built responsive web and mobile experiences with Next.js and React Native.
-• Deployed via Vercel using AWS-backed infrastructure.
-• Created Figma and Relume prototypes to align stakeholders before implementation.
-Technologies: Next.js, React Native, Tailwind CSS, AWS, Vercel, Figma, Relume.
+CLOUD INFRASTRUCTURE & TOOLING | JOKER IT — Cloud Developer (Aug 2023 – Aug 2024)
+Managed Azure cloud infrastructure as the sole developer, using PowerShell automation to support operational workflows.
+• Developed and deployed a custom Outlook extension to improve enterprise email productivity.
+• Maintained legacy systems with 99% uptime to support client operations.
+• Integrated Copilot AI into development workflows to streamline code generation and troubleshooting.
+Technologies: Azure, PowerShell, React, Microsoft Office Add-in, SharePoint REST API, OAuth.
 
 EDUCATION
-Master's in Human-Centered Artificial Intelligence (In progress)
+Master's in Human-Centered Artificial Intelligence (In progress) — DTU, Denmark's Technical University
 Bachelor's in Software Engineering, VIA University College, Denmark (2019 - 2022)
 • Algorithms and Data Structures: C
 • .NET Development: A
@@ -52,10 +45,13 @@ Microsoft Certified: Power Platform App Maker Associate
 Credential ID: F3E768ADDBF1844   Certification Number: ADE462-0AECAQ   Earned: 28 April 2024
 
 SKILLS
-Front-end: React, Next.js, TypeScript, Tailwind CSS, Microsoft Office Add-in Framework
-Back-end & Scripting: Python, C# (learning), PowerShell, Azure CLI, REST APIs
-Cloud & DevOps: Azure Resource Manager, Azure Functions, AWS, Vercel, CI/CD, Git
-Collaboration & Design: Figma, Relume, design system governance, human-centered research synthesis
+Languages: Python, JavaScript, TypeScript, Java, C#, Kotlin
+Front-End: React, React Native, Next.js, Tailwind CSS
+Back-End: Flask, Node.js, ASP.NET, .NET, REST APIs
+Cloud & DevOps: Azure, Docker, PowerShell, Vercel, CI/CD, GitHub Actions
+Databases: MongoDB, SQL
+AI & Data: MLOps, Data Analytics, Human-Centered AI, Copilot Integration
+Design & Collaboration: Figma, UX Research, Microsoft Power Platform
 
 LANGUAGES
 English - Bilingual
@@ -63,7 +59,7 @@ Danish - Speaking
 Arabic - Native
 
 HOBBIES
-Football (watching and playing), Table tennis, Listening to music, Writing short stories, Video game development, D&D campaign design
+Football (watching and playing), Table tennis, Learning to play the piano, Writing short stories, Video games
 
 ## Contact Information
 * **LinkedIn:** https://www.linkedin.com/in/marwan-summakieh-36aab4290/

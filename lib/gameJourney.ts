@@ -27,13 +27,13 @@ export interface ResourceLink {
 }
 
 export const journeyOverview = {
-  role: "Software engineer learning game development basics",
+  role: "Full-Stack Software Engineer & MSc Student",
   mission:
-    "Documenting the shift from product engineering into game development by studying core fundamentals and translating past delivery experience into new engines.",
-  headline: "Following how Marwan Summakieh is learning game development",
+    "Building and deploying production-ready web applications across front end, backend, and cloud — while pursuing a master's in Human-Centered AI at DTU.",
+  headline: "Marwan Summakieh — Full-Stack Software Engineer",
   introduction: [
-    "After shipping enterprise tooling with teams like Second Sun and Joker IT, I am carving out time to become a beginner again and learn the essentials of game creation.",
-    "The current plan is to focus on Unreal Engine while exploring Unity, applying front-end and automation skills to small exercises, prototypes, and repeatable learning routines.",
+    "With experience shipping enterprise tooling at Joker IT, building a turf management platform at Second Sun, and delivering a full-stack order tracking system as a freelancer, I bring hands-on production experience across the modern web stack.",
+    "I'm currently pursuing my MSc in Human-Centered Artificial Intelligence at DTU, applying research-informed thinking to everything I build — from React and Next.js interfaces to Flask APIs and Azure infrastructure.",
   ],
   callToAction: {
     primary: { label: "View Projects", href: "/projects" },
@@ -43,33 +43,33 @@ export const journeyOverview = {
 
 export const focusAreas: FocusArea[] = [
   {
-    title: "Systems & Loop Design",
+    title: "Full-Stack Development",
     description:
-      "Designing player-centric loops that balance clarity, challenge, and progression for small team execution.",
+      "Building complete web applications from front-end interfaces to backend APIs, databases, and deployment pipelines.",
     deliverables: [
-      "Combat sandbox prototypes in Unity",
-      "Economy spreadsheets and tuning docs",
-      "UX flows for onboarding and tutorials",
+      "Next.js and React production applications",
+      "Flask and Node.js backend services",
+      "MongoDB and SQL database design",
     ],
   },
   {
-    title: "Narrative & Worldbuilding",
+    title: "Cloud & DevOps",
     description:
-      "Translating tabletop storytelling skills into interactive narrative structures and branching dialogue.",
+      "Managing cloud infrastructure, containerizing applications, and automating deployment workflows for reliable delivery.",
     deliverables: [
-      "Quest design bibles and pacing outlines",
-      "Dialogue scripting in Ink and Yarn Spinner",
-      "Lore development grounded in player agency",
+      "Azure infrastructure management with PowerShell",
+      "Docker containerization for consistent deployments",
+      "CI/CD pipelines and Vercel deployments",
     ],
   },
   {
-    title: "Technical Tooling",
+    title: "Human-Centered Design",
     description:
-      "Creating pipelines that keep iteration fast, reproducible, and accessible to collaborators.",
+      "Applying AI research and UX principles to create interfaces that are intuitive, accessible, and evidence-driven.",
     deliverables: [
-      "Unity editor utilities for rapid level assembly",
-      "Procedural map generation experiments",
-      "Versioned design documentation in Notion",
+      "User journey analysis and UX prototyping",
+      "Accessible, responsive interface design",
+      "Research-informed product decisions",
     ],
   },
 ];
@@ -129,20 +129,28 @@ export const gameProjects: GameProject[] = [
 
 export const toolkit: ToolkitCategory[] = [
   {
-    name: "Engines & Frameworks",
-    tools: ["Unity", "Godot", "Ink", "Yarn Spinner"],
+    name: "Languages",
+    tools: ["Python", "JavaScript", "TypeScript", "Java", "C#", "Kotlin"],
   },
   {
-    name: "Programming",
-    tools: ["C#", "TypeScript", "Python", "Lua"],
+    name: "Front-End",
+    tools: ["React", "React Native", "Next.js", "Tailwind CSS", "HTML/CSS"],
   },
   {
-    name: "Design & Narrative",
-    tools: ["Notion", "Miro", "Figma", "Twine"],
+    name: "Back-End & Databases",
+    tools: ["Flask", "Node.js", "ASP.NET", "MongoDB", "SQL", "REST APIs"],
   },
   {
-    name: "Collaboration",
-    tools: ["GitHub", "Supabase", "Linear", "PlaytestCloud"],
+    name: "Cloud & DevOps",
+    tools: ["Azure", "Docker", "PowerShell", "Vercel", "CI/CD", "GitHub Actions"],
+  },
+  {
+    name: "AI & Data",
+    tools: ["MLOps", "Data Analytics", "Human-Centered AI", "Copilot Integration"],
+  },
+  {
+    name: "Design & Collaboration",
+    tools: ["Figma", "UX Research", "Git", "Microsoft Power Platform"],
   },
 ];
 

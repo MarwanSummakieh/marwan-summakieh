@@ -5,12 +5,15 @@ import { z } from "zod";
 import fs from 'fs';
 import path from 'path';
 
-const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
 const OPENROUTER_MODEL = process.env.OPENROUTER_MODEL ?? "anthropic/claude-3.5-sonnet";
 const OPENROUTER_REFERRER = process.env.OPENROUTER_APP_URL ?? "https://marwansummakieh.com";
 
-if (!OPENROUTER_API_KEY) {
-  throw new Error("OPENROUTER_API_KEY environment variable is not set");
+function getApiKey(): string {
+  const key = process.env.OPENROUTER_API_KEY;
+  if (!key) {
+    throw new Error("OPENROUTER_API_KEY environment variable is not set");
+  }
+  return key;
 }
 
 // --- Load Context from File ---
@@ -256,9 +259,9 @@ export async function POST(req: NextRequest) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${OPENROUTER_API_KEY}`,
+        Authorization: `Bearer ${getApiKey()}`,
         "HTTP-Referer": OPENROUTER_REFERRER,
-        "X-Title": "Marwan Summakieh Game Journey",
+        "X-Title": "Marwan Summakieh Portfolio",
       },
       body: JSON.stringify(payload),
     });

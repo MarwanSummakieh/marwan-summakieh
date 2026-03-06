@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Marwan Summakieh | Digital Space",
-  description: "Portfolio of Marwan Summakieh, Software Engineer.",
+  title: "Marwan Summakieh | Full-Stack Software Engineer",
+  description: "Portfolio of Marwan Summakieh — Full-Stack Software Engineer & MSc Human-Centered AI student at DTU. React, Next.js, Python, Azure, Docker.",
   icons: {
     icon: "/icon.svg",
   },

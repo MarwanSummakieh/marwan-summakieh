@@ -6,9 +6,9 @@ import { useEffect, useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const navItems = [
-  { label: "Overview", href: "/" },
+  { label: "Home", href: "/" },
   { label: "Projects", href: "/projects" },
-  { label: "Toolkit", href: "/tools" },
+  { label: "Skills", href: "/tools" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -29,7 +29,7 @@ const SiteHeader = () => {
             href="/"
             className="text-sm font-semibold uppercase tracking-[0.3em] text-purple-200"
           >
-            Game Dev Journey
+            Marwan Summakieh
           </Link>
           <button
             type="button"
