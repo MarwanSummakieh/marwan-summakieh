@@ -71,7 +71,7 @@ GitHub: https://github.com/MarwanSummakieh/Not-Pirate-bay
 COLLABORATIVE PROJECTS
 
 VIBE-OPSY — SKIN CANCER DETECTION AI (React 19, TypeScript, Three.js, React Three Fiber, Framer Motion, Tailwind CSS, Cloudflare Workers)
-A retro-futuristic 3D web interface for AI-powered skin lesion classification. Features a 3D Macintosh Classic model rendered with Three.js that users interact with to upload dermatoscopic images and receive diagnostic results displayed on a vintage thermal receipt. Multi-class classification across 7 skin lesion categories. DTU MLOps Course 02476 (Winter 2026). Team of 5 contributors.
+An ML-focused skin lesion classification app that performs multi-class prediction across 7 categories from dermatoscopic images. The project emphasizes model inference workflow and reliable prediction delivery, with a retro-futuristic 3D interface (Macintosh Classic + thermal receipt UI) to present outputs clearly. DTU MLOps Course 02476 (Winter 2026). Team of 5 contributors.
 Live: https://vibe-opsy.aryan-mi.workers.dev/
 GitHub: https://github.com/Aryan-Mi/vibe-opsy
 

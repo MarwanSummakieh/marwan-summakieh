@@ -242,12 +242,14 @@ export const gameProjects: GameProject[] = [
     title: "Vibe-Opsy — Skin Cancer Detection AI",
     status: "Released",
     summary:
-      "A retro-futuristic 3D web interface for AI-powered skin lesion classification. Upload a dermatoscopic image to a 3D Macintosh Classic, and receive diagnostic results on a vintage thermal receipt. DTU MLOps course (02476).",
+      "An ML-first skin lesion classification app delivering 7-class diagnostic predictions from dermatoscopic images, wrapped in a retro 3D interface. Built as part of DTU MLOps course (02476).",
     focus:
-      "Combining creative 3D web design with production ML inference — building the interactive frontend that connects to a deployed skin lesion classification model.",
+      "Prioritizing machine learning reliability and inference workflow: dataset handling, model serving, and prediction delivery, with the frontend designed to make clinical-style outputs understandable.",
     outcomes: [
+      "Implemented end-to-end 7-category skin lesion inference flow",
+      "Connected frontend uploads to production ML prediction service",
+      "Validated prediction output format and confidence reporting for user readability",
       "Built interactive 3D Macintosh Classic using Three.js and React Three Fiber",
-      "Integrated ML inference API for 7-category skin lesion classification",
       "Designed retro CRT effects, scanline animations, and thermal receipt UI",
       "Deployed to Cloudflare Workers with CI/CD on push to master",
       "Collaborated with a team of 5 contributors",
