@@ -52,10 +52,10 @@ export const profileContent: ProfileContent = {
   name: "Marwan Summakieh",
   role: "Full-Stack Engineer & Creative Technologist | MSc Human-Centered AI @ DTU",
   location: "Copenhagen, Denmark",
-  tagline: "Full-stack engineer building production web apps, VR experiences, and game prototypes — bridging code, design, and human-centered AI research.",
+  tagline: "Full-stack engineer building production web apps and finished VR games like Reel Deal — bridging code, design, and human-centered AI research.",
   greetings: [
     "Currently pursuing an MSc in Human-Centered Artificial Intelligence at DTU, with hands-on experience across Next.js, React, Python, Unity, Docker, Azure, and beyond.",
-    "I ship production applications by day and explore creative computing — VR, game development, and 3D with Blender — by night.",
+    "I ship production applications by day and explore creative computing through Unity VR, game systems, and 3D with Blender.",
   ],
   availability: "Open to full-stack, creative technology, and AI-adjacent software engineering roles in Copenhagen.",
   values: [
@@ -67,12 +67,12 @@ export const profileContent: ProfileContent = {
     {
       title: "Creative Engineering",
       description:
-        "Combine software engineering craft with creative expression — from VR basketball in Unity to real-time strategy AI and custom shader effects.",
+        "Combine software engineering craft with creative expression — from Reel Deal/NinjaFishingVR in Unity VR to real-time strategy AI and custom shader effects.",
     },
     {
       title: "Full-Stack Ownership",
       description:
-        "Take responsibility across the stack — from React interfaces to Flask APIs, Azure infrastructure, Unity VR, and everything in between.",
+        "Take responsibility across the stack — from React interfaces to Flask APIs, Azure infrastructure, Unity VR, physics-driven interactions, and everything in between.",
     },
   ],
   experiences: [
@@ -135,6 +135,8 @@ export const profileContent: ProfileContent = {
       "C#",
       "Go",
       "Unity",
+      "OpenXR",
+      "Unity UI Toolkit",
       "Docker",
       "Azure",
       "PowerShell",

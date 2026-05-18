@@ -28,7 +28,7 @@ const AboutPage = () => {
             At Second Sun, I built a full-stack Flask application with Docker containerization for a turf management platform. As a freelancer, I shipped a Track &amp; Trace order system using Next.js and MongoDB. At Joker IT, I managed Azure cloud infrastructure as the sole developer and built a custom Outlook extension — maintaining 99% uptime across legacy systems.
           </p>
           <p className="text-sm leading-relaxed text-slate-500 dark:text-slate-400">
-            I&apos;m currently pursuing my MSc in Human-Centered Artificial Intelligence at DTU, combining research on explainable AI and accessible interfaces with hands-on engineering. Outside of production work, I explore creative computing — building VR basketball games in Unity, RTS prototypes with behavior-tree AI, and learning 3D modeling in Blender.
+            I&apos;m currently pursuing my MSc in Human-Centered Artificial Intelligence at DTU, combining research on explainable AI and accessible interfaces with hands-on engineering. Outside of production work, I explore creative computing — building finished Unity VR games like Reel Deal, RTS prototypes with behavior-tree AI, and learning 3D modeling in Blender.
           </p>
         </div>
         <aside className="space-y-6">

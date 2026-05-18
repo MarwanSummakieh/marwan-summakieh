@@ -4,10 +4,10 @@ Phone: +45 27 29 78 28   Email: marwansummakieh97@gmail.com
 Copenhagen, Denmark
 
 SUMMARY
-Full-stack software engineer and creative technologist with hands-on experience building production web applications, VR experiences, and game prototypes. Currently pursuing an MSc in Human-Centered Artificial Intelligence at DTU, with practical experience in Next.js, React, Python, Unity, Docker, Azure, and MongoDB through internship, freelance, and cloud development roles. Passionate about creating visual experiences in VR, game development, and learning 3D modeling in Blender.
+Full-stack software engineer and creative technologist with hands-on experience building production web applications, finished VR games, and game prototypes. Currently pursuing an MSc in Human-Centered Artificial Intelligence at DTU, with practical experience in Next.js, React, Python, Unity, Docker, Azure, and MongoDB through internship, freelance, and cloud development roles. Passionate about creating visual experiences in VR, game development, and learning 3D modeling in Blender.
 
 CURRENT FOCUS
-Pursuing a master's in Human-Centered AI at DTU, combining research on explainable interfaces and accessibility with hands-on engineering. Outside of academics, actively exploring creative computing — building VR games in Unity, developing RTS prototypes with AI behavior trees, and learning Blender for 3D visual storytelling.
+Pursuing a master's in Human-Centered AI at DTU, combining research on explainable interfaces and accessibility with hands-on engineering. Outside of academics, actively exploring creative computing — building finished Unity VR games like Reel Deal/NinjaFishingVR, developing RTS prototypes with AI behavior trees, and learning Blender for 3D visual storytelling.
 
 INTERESTS & CREATIVE PURSUITS
 • Creating visual experiences in VR — building immersive worlds and interactive environments using Unity and XR Interaction Toolkit
@@ -47,6 +47,11 @@ GitHub: https://github.com/MarwanSummakieh/Real-Time-Strategie
 BASKETBALL VR (Unity, C#, XR Interaction Toolkit, Oculus XR, HLSL)
 A VR basketball experience for Oculus headsets with physics-based ball throwing, scoring system, and HLSL shader effects. Built on the XR Interaction Toolkit.
 GitHub: https://github.com/MarwanSummakieh/Basket-Ball-VR
+
+REEL DEAL / NINJAFISHINGVR (Unity 6, C#, XR Interaction Toolkit, OpenXR, Unity Input System, Unity UI Toolkit, URP, EzySlice)
+A finished DTU 02566 VR fishing game made over 13 weeks. Players fish from a boat, store catches in a cooler, slice fish with a katana, earn money, and upgrade equipment. Marwan was a programmer and main responsible contributor for the hook mechanic and tutorial system, with shared responsibility for progression mechanics. The project includes thumbstick bobber control, moving target circle, success/fail progress, fish difficulty scaling, rod upgrade balancing, holographic tutorial panels, pulsing controller button highlights, blinking world-object guidance, wristwatch collection/equipment UI, sound/haptic feedback, EzySlice-based fish slicing, and user-test-driven iteration across 16 participants.
+GitHub: https://github.com/MarwanSummakieh/ReelDeal
+Project README: https://github.com/MarwanSummakieh/ReelDeal#readme
 
 NEURAL NETWORK FROM SCRATCH (Python)
 A ground-up neural network implementation in pure Python — no frameworks. Covers neurons, layers, ReLU and Softmax activations, dot products, and categorical cross-entropy loss.
@@ -96,7 +101,7 @@ Languages: Python, JavaScript, TypeScript, Java, C#, Go, Kotlin
 Front-End: React, React Native, Next.js, Three.js, React Three Fiber, Tailwind CSS
 Back-End: Flask, Node.js, ASP.NET, .NET, REST APIs
 Cloud & DevOps: Azure, Docker, Cloudflare Workers, PowerShell, Vercel, CI/CD, GitHub Actions
-Game Dev & VR: Unity, C# for Unity, XR Interaction Toolkit, Oculus XR, ShaderLab, HLSL
+Game Dev & VR: Unity, C# for Unity, XR Interaction Toolkit, OpenXR, Oculus XR, Unity Input System, Unity UI Toolkit, URP, ShaderLab, HLSL, EzySlice
 Databases: MongoDB, SQL, Firebase
 AI & Data: Neural Networks, NLP / TF-IDF, NetworkX, Jupyter, MLOps, Multi-Agent Systems, Human-Centered AI
 Creative Tools: Blender (learning), Figma, UX Research, 3D Modeling
@@ -104,7 +109,7 @@ Collaboration: Git, GitHub, Microsoft Power Platform, Notion
 
 CURRENTLY LEARNING
 • Blender — 3D modeling & visual storytelling
-• VR experience design with Unity XR
+• VR experience design with Unity XR, OpenXR, haptics, and physics-driven interactions
 • Human-Centered AI research at DTU
 • Advanced game AI & behavior systems
 

@@ -1,14 +1,34 @@
 import Link from "next/link";
+import Image from "next/image";
 import { gameProjects } from "@/lib/gameJourney";
 import { profileContent } from "@/lib/profile";
 
 export default function Home() {
-  const featuredSlugs = ["vibe-opsy", "real-time-strategie", "basket-ball-vr"];
-  const featuredProjects = gameProjects.filter((p) => featuredSlugs.includes(p.slug));
+  const featuredSlugs = ["vibe-opsy", "ninja-fishing-vr", "real-time-strategie"];
+  const featuredProjects = featuredSlugs
+    .map((slug) => gameProjects.find((project) => project.slug === slug))
+    .filter((project): project is (typeof gameProjects)[number] => Boolean(project));
+  const reelDealProject = gameProjects.find((project) => project.slug === "ninja-fishing-vr");
   const focusAreas = [
     "Full-stack product engineering",
-    "Creative technology and VR",
+    "Released VR game: Reel Deal",
     "Human-centered AI applications",
+  ];
+  const reelDealStats = [
+    { label: "Role", value: "Programmer" },
+    { label: "Build", value: "Playable final" },
+    { label: "Timeline", value: "13 weeks" },
+    { label: "Tests", value: "16 users" },
+  ];
+  const reelDealImages = [
+    {
+      src: "/reel-deal/reel-deal-table-loop.webp",
+      alt: "Reel Deal gameplay table with katana, fishing rod, sliced fish, and lake environment",
+    },
+    {
+      src: "/reel-deal/reel-deal-watch-ui.webp",
+      alt: "Reel Deal wristwatch collection book UI shown in VR",
+    },
   ];
 
   return (
@@ -61,6 +81,115 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <hr className="border-slate-200 dark:border-white/10" />
+
+      {reelDealProject && (
+        <section className="grid gap-10 lg:grid-cols-[1.05fr,0.95fr] lg:items-center">
+          <div className="space-y-6">
+            <header className="space-y-3">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-teal-600 dark:text-teal-400">
+                Featured VR project
+              </p>
+              <div className="space-y-2">
+                <h2 className="text-3xl font-semibold text-slate-900 dark:text-white sm:text-4xl">
+                  Reel Deal
+                </h2>
+                <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">
+                  aka NinjaFishingVR
+                </p>
+              </div>
+              <p className="max-w-2xl text-base leading-relaxed text-slate-600 dark:text-slate-300">
+                {reelDealProject.summary}
+              </p>
+            </header>
+
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+              {reelDealStats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="rounded-lg border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-white/5"
+                >
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">
+                    {stat.label}
+                  </p>
+                  <p className="mt-1 text-sm font-semibold text-slate-900 dark:text-white">
+                    {stat.value}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <ul className="space-y-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+              {reelDealProject.outcomes.slice(0, 3).map((outcome) => (
+                <li key={outcome} className="flex gap-2">
+                  <span aria-hidden className="mt-2 block h-1.5 w-1.5 shrink-0 rounded-full bg-teal-500" />
+                  <span>{outcome}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="flex flex-wrap gap-2">
+              {reelDealProject.tech.slice(0, 6).map((item) => (
+                <span
+                  key={item}
+                  className="rounded-full bg-slate-100 px-3 py-1 text-[11px] text-slate-600 dark:bg-white/5 dark:text-slate-400"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+
+            <div className="flex flex-col gap-3 pt-1 sm:flex-row">
+              <Link
+                href="https://github.com/MarwanSummakieh/ReelDeal"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center rounded-full bg-teal-600 px-6 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-teal-700 hover:shadow-md dark:bg-teal-500 dark:hover:bg-teal-400"
+              >
+                View repository
+              </Link>
+              <Link
+                href="https://github.com/MarwanSummakieh/ReelDeal#readme"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center rounded-full border border-slate-200 px-6 py-3 text-sm font-semibold text-slate-700 transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:bg-slate-50 dark:border-white/20 dark:text-white dark:hover:border-white/40 dark:hover:bg-white/5"
+              >
+                Read breakdown
+              </Link>
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-slate-200 bg-slate-100 dark:border-white/10 dark:bg-white/5">
+              <Image
+                src="/reel-deal/reel-deal-slicing.webp"
+                alt="Reel Deal VR slicing scene with fish, katana, boat, and lake environment"
+                fill
+                priority
+                sizes="(min-width: 1024px) 420px, 100vw"
+                className="object-cover"
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              {reelDealImages.map((image) => (
+                <div
+                  key={image.src}
+                  className="relative aspect-[4/3] overflow-hidden rounded-lg border border-slate-200 bg-slate-100 dark:border-white/10 dark:bg-white/5"
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    sizes="(min-width: 1024px) 205px, 50vw"
+                    className="object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <hr className="border-slate-200 dark:border-white/10" />
 

@@ -14,7 +14,7 @@ const ProjectsPage = () => {
     ["vibe-opsy", "multi-agent-system"].includes(p.slug)
   );
   const gameDevProjects = gameProjects.filter((p) =>
-    ["real-time-strategie", "basket-ball-vr"].includes(p.slug)
+    ["ninja-fishing-vr", "real-time-strategie", "basket-ball-vr"].includes(p.slug)
   );
   const aiResearchProjects = gameProjects.filter((p) =>
     ["neural-network", "elden-ring-social-graphs"].includes(p.slug)

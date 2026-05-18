@@ -14,15 +14,71 @@ type DevlogEntry = {
   href?: string;
 };
 
-const projectRepo = "https://github.com/AlecHero/NinjaFishingVR";
+const projectRepo = "https://github.com/MarwanSummakieh/ReelDeal";
 
 const entries: DevlogEntry[] = [
+  {
+    date: "2026-05-18",
+    title: "Reel Deal final report complete",
+    status: "Shipped",
+    summary:
+      "Reel Deal/NinjaFishingVR is now a finished DTU 02566 VR game: a 13-week Unity build centered on fishing, slicing, collecting, earning money, and upgrading equipment.",
+    details: [
+      "The final report credits Marwan as a programmer and main responsible contributor for the hook mechanic and tutorial system, with shared responsibility for progression mechanics.",
+      "The playable build includes boat-based fishing, cooler storage, katana slicing, a wristwatch collection/equipment UI, money progression, upgrades, sound, haptics, and mostly self-made 3D assets.",
+      "Two user-test rounds with 16 total participants drove improvements to casting clarity, bobber control, hook feedback, cooler logic, tutorial visibility, and audio guidance.",
+    ],
+    tags: ["Released", "Unity VR", "User testing", "Portfolio"],
+    href: projectRepo,
+  },
+  {
+    date: "2026-05-18",
+    title: "Portfolio pass from the active Unity project",
+    status: "Shipped",
+    summary:
+      "Updated the portfolio narrative from the current NinjaFishingVR repository: a DTU 02566 VR fishing game built in Unity 6 with XR Interaction Toolkit, OpenXR, URP, and C# systems.",
+    details: [
+      "Pulled project details from the repository structure, Unity package manifest, and gameplay scripts.",
+      "Highlighted the current core loop: cast, hook, reel, manage fish, slice, and receive feedback through haptics and audio.",
+      "Reframed the project as an in-production technical case study instead of only a future roadmap item.",
+    ],
+    tags: ["Portfolio", "Unity 6", "XR Interaction Toolkit", "DTU 02566"],
+    href: projectRepo,
+  },
+  {
+    date: "2026-05-18",
+    title: "Fishing rod, rope, and bobber systems",
+    status: "Shipped",
+    summary:
+      "The fishing interaction now has a technical backbone: grab-based rod input, reel release, line retraction, bobber steering, spool animation, and rope tension feedback.",
+    details: [
+      "Rod logic reads XR input actions for release, retract, and stick steering while tracking rod-tip velocity for cast feel.",
+      "Rod line simulation uses Verlet particles, max-distance constraints, taut-line detection, and bobber coupling.",
+      "Line tension is surfaced through color feedback, bobber behavior, and haptic/audio hooks.",
+    ],
+    tags: ["Gameplay systems", "Physics", "VR UX", "C#"],
+    href: projectRepo,
+  },
+  {
+    date: "2026-05-18",
+    title: "Fish ecosystem and slicing loop",
+    status: "Shipped",
+    summary:
+      "The project has grown beyond casting into an end-to-end fish loop with weighted underwater spawning, catch attachment physics, inventory updates, and sword-based slicing using EzySlice.",
+    details: [
+      "Fish spawn gradually within lake bounds using depth checks against water and terrain constraints.",
+      "Caught fish attach to the bobber through configurable joints and can be released into inventory flow.",
+      "Slicing uses blade motion, mesh hull generation, physics impulses, haptics, and audio feedback to turn caught fish into sushi ingredients.",
+    ],
+    tags: ["Fish AI", "EzySlice", "Inventory", "Haptics"],
+    href: projectRepo,
+  },
   {
     date: "2026-03-06",
     title: "NinjaFishingVR devlog started",
     status: "In progress",
     summary:
-      "Kickoff log for NinjaFishingVR, a VR fishing game project with a target completion date in May 2026.",
+      "Kickoff log for NinjaFishingVR, a VR fishing game project for DTU course 02566: Creating Digital Visual Experiences.",
     details: [
       "Defined a short production timeline for March to May.",
       "Set a milestone-driven scope to keep delivery realistic.",
@@ -80,7 +136,7 @@ const DevlogPage = () => {
         </p>
         <h1 className="text-3xl font-bold text-slate-900 dark:text-white sm:text-4xl">Build notes and progress updates</h1>
         <p className="max-w-3xl text-base leading-relaxed text-slate-500 dark:text-slate-400">
-          This devlog tracks progress for <span className="font-semibold text-slate-700 dark:text-slate-200">NinjaFishingVR</span>, a VR fishing game targeted for completion in May 2026.
+          This devlog tracks progress for <span className="font-semibold text-slate-700 dark:text-slate-200">Reel Deal/NinjaFishingVR</span>, a finished DTU 02566 VR fishing game focused on tactile casting, reeling, haptics, fish behavior, wristwatch progression, and sushi-slicing interactions.
         </p>
         <div>
           <Link
@@ -149,7 +205,7 @@ const DevlogPage = () => {
       <section className="rounded-2xl border border-slate-200/80 bg-slate-50/80 p-6 dark:border-white/10 dark:bg-white/5">
         <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Want deeper technical breakdowns?</h2>
         <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
-          I can also share architecture notes, implementation tradeoffs, and playtest outcomes from NinjaFishingVR.
+          I can also share architecture notes, implementation tradeoffs, source-level system breakdowns, and playtest outcomes from NinjaFishingVR.
         </p>
         <div className="mt-4 flex flex-wrap gap-3">
           <Link

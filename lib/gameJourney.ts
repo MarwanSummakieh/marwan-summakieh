@@ -33,7 +33,7 @@ export const journeyOverview = {
   headline: "Marwan Summakieh — Full-Stack Engineer & Creative Technologist",
   introduction: [
     "I ship production software — from enterprise cloud tooling at Joker IT, to a real-time turf management platform at Second Sun, to a full-stack order tracking system as a freelancer. I bring hands-on experience across the modern web stack, Unity game development, and VR interaction design.",
-    "Currently pursuing my MSc in Human-Centered AI at DTU, I'm exploring the intersection of software engineering, visual computing, and creative expression — from real-time strategy AI to VR basketball, from neural networks to Elden Ring social graph analysis.",
+    "Currently pursuing my MSc in Human-Centered AI at DTU, I'm exploring the intersection of software engineering, visual computing, and creative expression — from Reel Deal/NinjaFishingVR, to real-time strategy AI, neural networks, and Elden Ring social graph analysis.",
   ],
   callToAction: {
     primary: { label: "View Projects", href: "/projects" },
@@ -55,10 +55,10 @@ export const focusAreas: FocusArea[] = [
   {
     title: "Game Development & VR",
     description:
-      "Creating interactive experiences in Unity — from real-time strategy AI to VR games for Oculus, with custom shaders and behavior trees.",
+      "Creating interactive experiences in Unity — from real-time strategy AI to tactile VR games with physics-driven systems, haptics, and custom shaders.",
     deliverables: [
-      "Unity VR experiences with XR Interaction Toolkit",
-      "AI behavior trees for real-time strategy games",
+      "Unity VR experiences with XR Interaction Toolkit and OpenXR",
+      "Physics-driven VR interactions, haptics, and diegetic UI",
       "Custom ShaderLab & HLSL visual effects",
     ],
   },
@@ -104,6 +104,44 @@ export const gameProjects: GameProject[] = [
       {
         label: "GitHub repository",
         href: "https://github.com/MarwanSummakieh/Real-Time-Strategie",
+      },
+    ],
+  },
+
+  {
+    slug: "ninja-fishing-vr",
+    title: "Reel Deal (NinjaFishingVR)",
+    status: "Released",
+    summary:
+      "A finished DTU 02566 Unity VR game where players fish from a boat, store catches in a cooler, slice them with a katana, earn money, and upgrade equipment.",
+    focus:
+      "Programming tactile VR systems for the hook minigame, guided onboarding, wristwatch progression, and the feedback loops that make fishing and slicing readable in-headset.",
+    outcomes: [
+      "Main programmer for the hook mechanic: thumbstick bobber control, moving target circle, success/fail progress, fish difficulty scaling, and rod upgrade balancing",
+      "Built step-by-step VR tutorial flow with holographic instructions, controller button imagery, pulsing input highlights, and blinking world-object guidance",
+      "Co-implemented progression systems through a Unity UI Toolkit wristwatch with collection book, equipment shop, money display, and render-texture previews",
+      "Contributed to a 13-week playable vertical slice with fishing, cooler storage, slicing, earnings, upgrades, mostly self-made 3D assets, and final demo-day validation",
+      "Used two rounds of user testing with 16 total participants to improve casting, hook clarity, cooler feedback, tutorial visibility, sound, and bobber physics",
+      "Helped connect feedback across sound, haptics, readable UI, physical VR objects, and motion-control interactions",
+    ],
+    tech: [
+      "Unity 6",
+      "C#",
+      "XR Interaction Toolkit",
+      "OpenXR",
+      "Unity Input System",
+      "Unity UI Toolkit",
+      "URP",
+      "EzySlice",
+    ],
+    links: [
+      {
+        label: "GitHub repository",
+        href: "https://github.com/MarwanSummakieh/ReelDeal",
+      },
+      {
+        label: "Project README",
+        href: "https://github.com/MarwanSummakieh/ReelDeal#readme",
       },
     ],
   },
@@ -308,7 +346,7 @@ export const toolkit: ToolkitCategory[] = [
   },
   {
     name: "Game Dev & VR",
-    tools: ["Unity", "C# for Unity", "XR Interaction Toolkit", "Oculus XR", "ShaderLab", "HLSL"],
+    tools: ["Unity", "C# for Unity", "XR Interaction Toolkit", "OpenXR", "Unity Input System", "Unity UI Toolkit", "Oculus XR", "ShaderLab", "HLSL", "EzySlice"],
   },
   {
     name: "AI & Data",
