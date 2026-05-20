@@ -5,15 +5,11 @@ import { z } from "zod";
 import fs from 'fs';
 import path from 'path';
 
-const OPENROUTER_MODEL = process.env.OPENROUTER_MODEL ?? "anthropic/claude-3.5-sonnet";
+const OPENROUTER_MODEL = process.env.OPENROUTER_MODEL ?? "openai/gpt-4.1-mini";
 const OPENROUTER_REFERRER = process.env.OPENROUTER_APP_URL ?? "https://marwansummakieh.com";
 
-function getApiKey(): string {
-  const key = process.env.OPENROUTER_API_KEY;
-  if (!key) {
-    throw new Error("OPENROUTER_API_KEY environment variable is not set");
-  }
-  return key;
+function getApiKey(): string | null {
+  return process.env.OPENROUTER_API_KEY ?? null;
 }
 
 // --- Load Context from File ---
@@ -198,6 +194,33 @@ const chatRequestSchema = z.object({
   ).optional().default([]),
 });
 
+function localPortfolioReply(message: string): string {
+  const normalized = message.toLowerCase();
+
+  if (normalized.includes("contact") || normalized.includes("email") || normalized.includes("phone") || normalized.includes("linkedin") || normalized.includes("github")) {
+    return `CONTACT_INFO_START
+LinkedIn: https://www.linkedin.com/in/marwan-summakieh-36aab4290/
+Email: marwansummakieh97@gmail.com
+GitHub: https://github.com/MarwanSummakieh
+Phone: +45 27 29 78 28
+CONTACT_INFO_END`;
+  }
+
+  if (normalized.includes("game") || normalized.includes("unity") || normalized.includes("vr") || normalized.includes("reel")) {
+    return "Game sector: Marwan works with Unity, C#, XR Interaction Toolkit, OpenXR, gameplay loops, physics interactions, feedback systems, and shaders. Key projects include Reel Deal/NinjaFishingVR, Real-Time Strategie, and Basketball VR. The strongest detailed repo dossier is `/devlog/ninja-fishing-vr`.";
+  }
+
+  if (normalized.includes("software") || normalized.includes("react") || normalized.includes("next") || normalized.includes("azure") || normalized.includes("cloud") || normalized.includes("backend")) {
+    return "Software sector: Marwan has shipped production-facing apps with Next.js, React, Flask, Docker, MongoDB, Azure, PowerShell, SharePoint REST API, and Office Add-ins. Main background includes Second Sun, Joker IT, and freelance Track & Trace delivery.";
+  }
+
+  if (normalized.includes("repo") || normalized.includes("project") || normalized.includes("devlog")) {
+    return "Repo contracts live in `/devlog`. Each contract now opens into a project dossier with source links, tech stack, focus, outcomes, and local media when available. Good starting points: Vibe-Opsy, Reel Deal, Real-Time Strategie, Neural Network from Scratch, Terminal, and Emergency Button.";
+  }
+
+  return "Signal received. I can answer about Marwan's software engineering background, game development work, repo dossiers, tech stack, or contact info. Try asking: `summarize the software sector`, `show game projects`, or `contact info`.";
+}
+
 // API Route Handler
 export async function POST(req: NextRequest) {
   // Rate limiting check
@@ -224,6 +247,7 @@ export async function POST(req: NextRequest) {
       console.log("Rate limiter not configured, skipping check.");
   }
 
+  let requestedMessage = "";
   try {
     const body = await req.json();
 
@@ -235,6 +259,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: `Invalid input: ${errorMessages}` }, { status: 400 });
     }
     const { message, history } = validationResult.data;
+    requestedMessage = message;
 
     console.log("Received validated message:", message);
     console.log("Received validated history:", JSON.stringify(history, null, 2));
@@ -255,21 +280,33 @@ export async function POST(req: NextRequest) {
       max_tokens: 1200,
     };
 
-    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${getApiKey()}`,
-        "HTTP-Referer": OPENROUTER_REFERRER,
-        "X-Title": "Marwan Summakieh Portfolio",
-      },
-      body: JSON.stringify(payload),
-    });
+    const apiKey = getApiKey();
+    if (!apiKey) {
+      console.warn("OPENROUTER_API_KEY is not set. Using local portfolio fallback.");
+      return NextResponse.json({ reply: localPortfolioReply(message), fallback: true });
+    }
+
+    let response: Response;
+    try {
+      response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`,
+          "HTTP-Referer": OPENROUTER_REFERRER,
+          "X-Title": "Marwan Summakieh Portfolio",
+        },
+        body: JSON.stringify(payload),
+      });
+    } catch (error) {
+      console.error("OpenRouter fetch failed:", error);
+      return NextResponse.json({ reply: localPortfolioReply(message), fallback: true });
+    }
 
     if (!response.ok) {
       const errorPayload = await response.text();
       console.error("OpenRouter API error:", errorPayload);
-      return NextResponse.json({ error: "Upstream model request failed." }, { status: 500 });
+      return NextResponse.json({ reply: localPortfolioReply(message), fallback: true });
     }
 
     const data = await response.json();
@@ -286,12 +323,9 @@ export async function POST(req: NextRequest) {
 
   } catch (error: unknown) {
     console.error("API Route Error:", error);
-    let errorMessage = 'An internal error occurred.';
-    if (error instanceof Error) {
-        errorMessage = process.env.NODE_ENV === 'development'
-            ? error.message
-            : 'An internal error occurred.';
+    if (requestedMessage) {
+      return NextResponse.json({ reply: localPortfolioReply(requestedMessage), fallback: true });
     }
-    return NextResponse.json({ error: errorMessage }, { status: 500 });
+    return NextResponse.json({ error: "Invalid chat request." }, { status: 400 });
   }
 } 

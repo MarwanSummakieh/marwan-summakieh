@@ -104,7 +104,10 @@ const Chatbot: React.FC<ChatbotProps> = ({ onClose }) => {
       if (!stored) return;
       const parsed: Message[] = JSON.parse(stored);
       if (Array.isArray(parsed) && parsed.length > 0) {
-        setMessages(parsed);
+        const hasStoredFailure = parsed.some((message) =>
+          message.text.startsWith("Sorry, an error occurred:")
+        );
+        setMessages(hasStoredFailure ? initialMessages : parsed);
       }
     } catch (error) {
       console.error("Failed to restore chat history:", error);
