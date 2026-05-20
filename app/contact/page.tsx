@@ -1,5 +1,5 @@
 import { profileContent } from "@/lib/profile";
-import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 export const metadata = {
   title: "Contact | Marwan Summakieh",
@@ -9,52 +9,36 @@ const ContactPage = () => {
   const { contact, socials } = profileContent;
 
   return (
-    <div className="space-y-16">
-      <header className="space-y-4 text-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-600 dark:text-emerald-400">
-          Contact me
-        </p>
-        <h1 className="text-3xl font-bold text-slate-900 dark:text-white sm:text-4xl">Get in touch</h1>
-        <p className="mx-auto max-w-2xl text-base leading-relaxed text-slate-500 dark:text-slate-400">
-          I&apos;m open to full-stack engineering roles, freelance projects, and conversations about building great software products. Reach out anytime.
-        </p>
-      </header>
+    <div className="min-h-screen bg-[#050505] text-white">
+      <section className="border-b-4 border-[#fcee0a] bg-[#fcee0a] px-5 py-16 text-black sm:px-8">
+        <div className="mx-auto max-w-7xl">
+          <p className="text-sm font-black uppercase tracking-[0.32em]">/// Signal Open</p>
+          <h1 className="mt-5 max-w-5xl text-6xl font-black uppercase leading-[0.86] sm:text-8xl">
+            Contact me
+          </h1>
+          <p className="mt-7 max-w-3xl border-l-4 border-black pl-5 text-xl font-bold leading-8">
+            Open to full-stack roles, product engineering, creative technology, and AI-adjacent software.
+          </p>
+        </div>
+      </section>
 
-      <section className="grid gap-8 sm:grid-cols-3">
+      <section className="mx-auto grid max-w-7xl gap-5 px-5 py-14 sm:px-8 lg:grid-cols-3">
         {contact.map((item) => (
-          <a
-            key={item.label}
-            href={item.href}
-            className="group space-y-2"
-          >
-            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-slate-400 dark:text-slate-500">{item.label}</p>
-            <p className="text-base font-semibold text-slate-900 transition-colors group-hover:text-emerald-600 dark:text-white dark:group-hover:text-emerald-400">{item.value}</p>
+          <a key={item.label} href={item.href} className="border-2 border-[#00f0ff]/50 bg-[#101010] p-6 transition hover:-translate-y-1 hover:border-[#fcee0a] hover:shadow-[10px_10px_0_#fcee0a]">
+            <p className="text-xs font-black uppercase tracking-[0.28em] text-[#00f0ff]">{item.label}</p>
+            <p className="mt-5 break-words text-2xl font-black text-white">{item.value}</p>
           </a>
         ))}
       </section>
 
-      <hr className="border-slate-200 dark:border-white/10" />
-
-      <section className="space-y-5 text-center">
-        <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Find me online</h2>
-        <div className="flex justify-center gap-4">
+      <section className="mx-auto max-w-7xl px-5 pb-20 sm:px-8">
+        <div className="flex flex-wrap gap-4 border-2 border-[#ff003c] bg-[#101010] p-6">
           {socials.map((link) => {
-            const icon = link.label === "LinkedIn" ? (
-              <FaLinkedin className="h-5 w-5" aria-hidden />
-            ) : (
-              <FaGithub className="h-5 w-5" aria-hidden />
-            );
-
+            const icon = link.label === "LinkedIn" ? <FaLinkedin className="h-6 w-6" /> : <FaGithub className="h-6 w-6" />;
             return (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-12 w-12 items-center justify-center rounded-full text-emerald-600 transition-all hover:-translate-y-0.5 hover:text-emerald-800 dark:text-emerald-300 dark:hover:text-white"
-                aria-label={link.label}
-              >
+              <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-[#ff003c] px-5 py-3 text-sm font-black uppercase tracking-[0.16em] text-white transition hover:bg-[#00f0ff] hover:text-black">
                 {icon}
+                {link.label}
               </a>
             );
           })}

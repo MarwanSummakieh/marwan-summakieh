@@ -33,7 +33,7 @@ export const journeyOverview = {
   headline: "Marwan Summakieh — Full-Stack Engineer & Creative Technologist",
   introduction: [
     "I ship production software — from enterprise cloud tooling at Joker IT, to a real-time turf management platform at Second Sun, to a full-stack order tracking system as a freelancer. I bring hands-on experience across the modern web stack, Unity game development, and VR interaction design.",
-    "Currently pursuing my MSc in Human-Centered AI at DTU, I'm exploring the intersection of software engineering, visual computing, and creative expression — from Reel Deal/NinjaFishingVR, to real-time strategy AI, neural networks, and Elden Ring social graph analysis.",
+    "Currently pursuing my MSc in Human-Centered AI while exploring software engineering, visual computing, and creative expression through Reel Deal/NinjaFishingVR, real-time strategy AI, neural networks, and Elden Ring social graph analysis.",
   ],
   callToAction: {
     primary: { label: "View Projects", href: "/projects" },
@@ -113,7 +113,7 @@ export const gameProjects: GameProject[] = [
     title: "Reel Deal (NinjaFishingVR)",
     status: "Released",
     summary:
-      "A finished DTU 02566 Unity VR game where players fish from a boat, store catches in a cooler, slice them with a katana, earn money, and upgrade equipment.",
+      "A finished Unity VR game where players fish from a boat, store catches in a cooler, slice them with a katana, earn money, and upgrade equipment.",
     focus:
       "Programming tactile VR systems for the hook minigame, guided onboarding, wristwatch progression, and the feedback loops that make fishing and slicing readable in-headset.",
     outcomes: [
@@ -280,7 +280,7 @@ export const gameProjects: GameProject[] = [
     title: "Vibe-Opsy — Skin Cancer Detection AI",
     status: "Released",
     summary:
-      "An ML-first skin lesion classification app delivering 7-class diagnostic predictions from dermatoscopic images, wrapped in a retro 3D interface. Built as part of DTU MLOps course (02476).",
+      "An ML-first skin lesion classification app delivering 7-class diagnostic predictions from dermatoscopic images, wrapped in a retro 3D interface.",
     focus:
       "Prioritizing machine learning reliability and inference workflow: dataset handling, model serving, and prediction delivery, with the frontend designed to make clinical-style outputs understandable.",
     outcomes: [

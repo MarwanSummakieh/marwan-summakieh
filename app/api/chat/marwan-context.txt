@@ -7,7 +7,7 @@ SUMMARY
 Full-stack software engineer and creative technologist with hands-on experience building production web applications, finished VR games, and game prototypes. Currently pursuing an MSc in Human-Centered Artificial Intelligence at DTU, with practical experience in Next.js, React, Python, Unity, Docker, Azure, and MongoDB through internship, freelance, and cloud development roles. Passionate about creating visual experiences in VR, game development, and learning 3D modeling in Blender.
 
 CURRENT FOCUS
-Pursuing a master's in Human-Centered AI at DTU, combining research on explainable interfaces and accessibility with hands-on engineering. Outside of academics, actively exploring creative computing — building finished Unity VR games like Reel Deal/NinjaFishingVR, developing RTS prototypes with AI behavior trees, and learning Blender for 3D visual storytelling.
+Pursuing a master's in Human-Centered AI, combining research on explainable interfaces and accessibility with hands-on engineering. Outside of academics, actively exploring creative computing through Unity projects like Reel Deal/NinjaFishingVR, RTS prototypes with AI behavior trees, and learning Blender for 3D visual storytelling.
 
 INTERESTS & CREATIVE PURSUITS
 • Creating visual experiences in VR — building immersive worlds and interactive environments using Unity and XR Interaction Toolkit
@@ -49,7 +49,7 @@ A VR basketball experience for Oculus headsets with physics-based ball throwing,
 GitHub: https://github.com/MarwanSummakieh/Basket-Ball-VR
 
 REEL DEAL / NINJAFISHINGVR (Unity 6, C#, XR Interaction Toolkit, OpenXR, Unity Input System, Unity UI Toolkit, URP, EzySlice)
-A finished DTU 02566 VR fishing game made over 13 weeks. Players fish from a boat, store catches in a cooler, slice fish with a katana, earn money, and upgrade equipment. Marwan was a programmer and main responsible contributor for the hook mechanic and tutorial system, with shared responsibility for progression mechanics. The project includes thumbstick bobber control, moving target circle, success/fail progress, fish difficulty scaling, rod upgrade balancing, holographic tutorial panels, pulsing controller button highlights, blinking world-object guidance, wristwatch collection/equipment UI, sound/haptic feedback, EzySlice-based fish slicing, and user-test-driven iteration across 16 participants.
+A finished VR fishing game made over 13 weeks. Players fish from a boat, store catches in a cooler, slice fish with a katana, earn money, and upgrade equipment. Marwan was a programmer and main responsible contributor for the hook mechanic and tutorial system, with shared responsibility for progression mechanics. The project includes thumbstick bobber control, moving target circle, success/fail progress, fish difficulty scaling, rod upgrade balancing, holographic tutorial panels, pulsing controller button highlights, blinking world-object guidance, wristwatch collection/equipment UI, sound/haptic feedback, EzySlice-based fish slicing, and user-test-driven iteration across 16 participants.
 GitHub: https://github.com/MarwanSummakieh/ReelDeal
 Project README: https://github.com/MarwanSummakieh/ReelDeal#readme
 
@@ -76,7 +76,7 @@ GitHub: https://github.com/MarwanSummakieh/Not-Pirate-bay
 COLLABORATIVE PROJECTS
 
 VIBE-OPSY — SKIN CANCER DETECTION AI (React 19, TypeScript, Three.js, React Three Fiber, Framer Motion, Tailwind CSS, Cloudflare Workers)
-An ML-focused skin lesion classification app that performs multi-class prediction across 7 categories from dermatoscopic images. The project emphasizes model inference workflow and reliable prediction delivery, with a retro-futuristic 3D interface (Macintosh Classic + thermal receipt UI) to present outputs clearly. DTU MLOps Course 02476 (Winter 2026). Team of 5 contributors.
+An ML-focused skin lesion classification app that performs multi-class prediction across 7 categories from dermatoscopic images. The project emphasizes model inference workflow and reliable prediction delivery, with a retro-futuristic 3D interface (Macintosh Classic + thermal receipt UI) to present outputs clearly. Team of 5 contributors.
 Live: https://vibe-opsy.aryan-mi.workers.dev/
 GitHub: https://github.com/Aryan-Mi/vibe-opsy
 

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import SiteHeader from "@/components/layout/SiteHeader";
 import ChatDrawer from "@/components/layout/ChatDrawer";
-import { ThemeProvider } from "@/components/ThemeProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -29,15 +28,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[hsl(var(--background))] text-[hsl(var(--foreground))]`}>
-        <ThemeProvider>
-          <SiteHeader />
-          <main className="mx-auto min-h-screen max-w-5xl px-6 pb-32 pt-8 sm:px-8">
-            {children}
-          </main>
-          <ChatDrawer />
-        </ThemeProvider>
+    <html lang="en">
+      <body className={`${geistSans.variable} ${geistMono.variable} bg-[#050505] font-sans text-white antialiased`}>
+        <SiteHeader />
+        <main className="min-h-screen">
+          {children}
+        </main>
+        <ChatDrawer />
       </body>
     </html>
   );

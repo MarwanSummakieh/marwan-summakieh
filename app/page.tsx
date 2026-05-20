@@ -1,303 +1,102 @@
 import Link from "next/link";
-import Image from "next/image";
-import { gameProjects } from "@/lib/gameJourney";
-import { profileContent } from "@/lib/profile";
+
+const zones = [
+  {
+    label: "01 / Software Engineering",
+    title: "Production systems, interfaces, cloud tooling.",
+    body: "Full-stack work across Next.js, Flask, Docker, Azure, MongoDB, and product workflows.",
+    href: "/software",
+    cta: "Enter software sector",
+  },
+  {
+    label: "02 / Game Development",
+    title: "Interactive systems, Unity loops, player feedback.",
+    body: "Unity prototypes, VR interaction systems, gameplay mechanics, shaders, and readable feedback loops.",
+    href: "/games",
+    cta: "Enter game sector",
+  },
+  {
+    label: "03 / Devlog",
+    title: "Repo transmissions from shipped builds.",
+    body: "A cyberpunk contract board for unique repositories and implementation notes.",
+    href: "/devlog",
+    cta: "Open devlog",
+  },
+  {
+    label: "04 / Contact",
+    title: "Patch into Copenhagen.",
+    body: "Open for full-stack engineering, creative technology, and AI-adjacent software work.",
+    href: "/contact",
+    cta: "Contact me",
+  },
+];
 
 export default function Home() {
-  const featuredSlugs = ["vibe-opsy", "ninja-fishing-vr", "real-time-strategie"];
-  const featuredProjects = featuredSlugs
-    .map((slug) => gameProjects.find((project) => project.slug === slug))
-    .filter((project): project is (typeof gameProjects)[number] => Boolean(project));
-  const reelDealProject = gameProjects.find((project) => project.slug === "ninja-fishing-vr");
-  const focusAreas = [
-    "Full-stack product engineering",
-    "Released VR game: Reel Deal",
-    "Human-centered AI applications",
-  ];
-  const reelDealStats = [
-    { label: "Role", value: "Programmer" },
-    { label: "Build", value: "Playable final" },
-    { label: "Timeline", value: "13 weeks" },
-    { label: "Tests", value: "16 users" },
-  ];
-  const reelDealImages = [
-    {
-      src: "/reel-deal/reel-deal-table-loop.webp",
-      alt: "Reel Deal gameplay table with katana, fishing rod, sliced fish, and lake environment",
-    },
-    {
-      src: "/reel-deal/reel-deal-watch-ui.webp",
-      alt: "Reel Deal wristwatch collection book UI shown in VR",
-    },
-  ];
-
   return (
-    <div className="space-y-20">
-      <section className="relative space-y-8 pt-8">
-        <div className="space-y-5">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-600 dark:text-emerald-400">
-            {profileContent.role}
-          </p>
-          <h1 className="text-4xl font-bold text-slate-900 dark:text-white sm:text-5xl lg:text-6xl">
-            {profileContent.name}
-          </h1>
-          <p className="max-w-3xl text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-            {profileContent.tagline}
-          </p>
-          <div className="flex flex-wrap gap-2 pt-2">
-            {focusAreas.map((area) => (
-              <span
-                key={area}
-                className="rounded-full bg-slate-100 px-3 py-1 text-xs text-slate-600 dark:bg-white/5 dark:text-slate-300"
-              >
-                {area}
-              </span>
-            ))}
+    <div className="min-h-screen bg-[#050505] text-white">
+      <section className="relative overflow-hidden border-b-4 border-[#fcee0a] bg-[#fcee0a] text-black">
+        <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(135deg,#000_12.5%,transparent_12.5%,transparent_50%,#000_50%,#000_62.5%,transparent_62.5%,transparent_100%)] [background-size:28px_28px]" />
+        <div className="relative mx-auto grid min-h-[calc(100vh-4rem)] max-w-7xl gap-10 px-5 py-16 sm:px-8 lg:grid-cols-[1fr,0.75fr] lg:items-center">
+          <div className="space-y-7">
+            <p className="text-sm font-black uppercase tracking-[0.32em]">/// Portfolio Mainframe</p>
+            <h1 className="max-w-5xl text-6xl font-black uppercase leading-[0.82] tracking-tight sm:text-8xl lg:text-9xl">
+              Marwan Summakieh
+            </h1>
+            <p className="max-w-2xl border-l-4 border-black pl-5 text-xl font-bold leading-8">
+              Full-stack software engineer building production apps, cloud tooling, applied AI workflows, and interactive systems.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Link href="/software" className="bg-black px-7 py-4 text-sm font-black uppercase tracking-[0.18em] text-[#fcee0a] transition hover:bg-[#00f0ff] hover:text-black">
+                Start
+              </Link>
+              <Link href="/contact" className="border-2 border-black px-7 py-4 text-sm font-black uppercase tracking-[0.18em] transition hover:bg-black hover:text-[#fcee0a]">
+                Contact
+              </Link>
+            </div>
           </div>
-          <div className="flex flex-col gap-4 pt-3 sm:flex-row">
-            <Link
-              href="/projects"
-              className="group inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 px-7 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-emerald-700 hover:shadow-md dark:bg-emerald-600 dark:hover:bg-emerald-500"
-            >
-              Explore projects
-              <span className="transition-transform group-hover:translate-x-0.5">&rarr;</span>
-            </Link>
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center rounded-full border border-slate-200 px-7 py-3 text-sm font-semibold text-slate-700 transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:bg-slate-50 dark:border-white/20 dark:text-white dark:hover:border-white/40 dark:hover:bg-white/5"
-            >
-              Get in touch
-            </Link>
-          </div>
-        </div>
-        <div className="grid gap-4 rounded-2xl border border-slate-200/80 bg-white/70 p-5 text-sm backdrop-blur-sm dark:border-white/10 dark:bg-white/5 sm:grid-cols-2">
-          <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-slate-400 dark:text-slate-500">Location</p>
-            <p className="mt-1 font-medium text-slate-900 dark:text-white">{profileContent.location}</p>
-          </div>
-          <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-slate-400 dark:text-slate-500">Availability</p>
-            <p className="mt-1 text-slate-700 dark:text-slate-200">{profileContent.availability}</p>
-          </div>
-        </div>
-      </section>
 
-      <hr className="border-slate-200 dark:border-white/10" />
+          <div className="relative min-h-[420px] border-4 border-black bg-[#050505] font-mono text-[#00ff9f] shadow-[16px_16px_0_#ff003c]">
+            <div className="absolute inset-0 opacity-20 [background:repeating-linear-gradient(0deg,transparent_0px,transparent_3px,#00ff9f_4px)]" />
+            <div className="absolute inset-0 opacity-25 [background-image:radial-gradient(circle_at_50%_50%,transparent_0,rgba(0,255,159,.18)_100%)]" />
+            <div className="relative flex h-full flex-col p-6">
+              <div className="mb-5 flex items-center justify-between border-b border-[#00ff9f]/35 pb-3 text-xs font-black uppercase tracking-[0.22em]">
+                <span>MS-DOS / Portfolio Shell</span>
+                <span className="text-[#fcee0a]">v2.07</span>
+              </div>
 
-      {reelDealProject && (
-        <section className="grid gap-10 lg:grid-cols-[1.05fr,0.95fr] lg:items-center">
-          <div className="space-y-6">
-            <header className="space-y-3">
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-teal-600 dark:text-teal-400">
-                Featured VR project
-              </p>
-              <div className="space-y-2">
-                <h2 className="text-3xl font-semibold text-slate-900 dark:text-white sm:text-4xl">
-                  Reel Deal
-                </h2>
-                <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">
-                  aka NinjaFishingVR
+              <div className="flex-1 space-y-3 text-sm font-bold leading-6">
+                <p><span className="text-[#fcee0a]">C:\PORTFOLIO&gt;</span> boot marwan.exe</p>
+                <p>Loading software sector ............ <span className="text-[#fcee0a]">OK</span></p>
+                <p>Loading game-dev sector ............ <span className="text-[#fcee0a]">OK</span></p>
+                <p>Loading repo contracts ............. <span className="text-[#fcee0a]">OK</span></p>
+                <p>Base node: Copenhagen</p>
+                <p>Primary stack: React / Python / Azure</p>
+                <p>Mode: product software + interactive systems</p>
+                <p className="pt-5 text-[#00f0ff]">
+                  &gt; choose route<span className="ml-1 inline-block h-4 w-2 animate-pulse bg-[#00f0ff] align-middle" />
                 </p>
               </div>
-              <p className="max-w-2xl text-base leading-relaxed text-slate-600 dark:text-slate-300">
-                {reelDealProject.summary}
-              </p>
-            </header>
 
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-              {reelDealStats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="rounded-lg border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-white/5"
-                >
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">
-                    {stat.label}
-                  </p>
-                  <p className="mt-1 text-sm font-semibold text-slate-900 dark:text-white">
-                    {stat.value}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            <ul className="space-y-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-              {reelDealProject.outcomes.slice(0, 3).map((outcome) => (
-                <li key={outcome} className="flex gap-2">
-                  <span aria-hidden className="mt-2 block h-1.5 w-1.5 shrink-0 rounded-full bg-teal-500" />
-                  <span>{outcome}</span>
-                </li>
-              ))}
-            </ul>
-
-            <div className="flex flex-wrap gap-2">
-              {reelDealProject.tech.slice(0, 6).map((item) => (
-                <span
-                  key={item}
-                  className="rounded-full bg-slate-100 px-3 py-1 text-[11px] text-slate-600 dark:bg-white/5 dark:text-slate-400"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-
-            <div className="flex flex-col gap-3 pt-1 sm:flex-row">
-              <Link
-                href="https://github.com/MarwanSummakieh/ReelDeal"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-full bg-teal-600 px-6 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-teal-700 hover:shadow-md dark:bg-teal-500 dark:hover:bg-teal-400"
-              >
-                View repository
-              </Link>
-              <Link
-                href="https://github.com/MarwanSummakieh/ReelDeal#readme"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-full border border-slate-200 px-6 py-3 text-sm font-semibold text-slate-700 transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:bg-slate-50 dark:border-white/20 dark:text-white dark:hover:border-white/40 dark:hover:bg-white/5"
-              >
-                Read breakdown
-              </Link>
-            </div>
-          </div>
-
-          <div className="space-y-3">
-            <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-slate-200 bg-slate-100 dark:border-white/10 dark:bg-white/5">
-              <Image
-                src="/reel-deal/reel-deal-slicing.webp"
-                alt="Reel Deal VR slicing scene with fish, katana, boat, and lake environment"
-                fill
-                priority
-                sizes="(min-width: 1024px) 420px, 100vw"
-                className="object-cover"
-              />
-            </div>
-            <div className="grid grid-cols-2 gap-3">
-              {reelDealImages.map((image) => (
-                <div
-                  key={image.src}
-                  className="relative aspect-[4/3] overflow-hidden rounded-lg border border-slate-200 bg-slate-100 dark:border-white/10 dark:bg-white/5"
-                >
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    fill
-                    sizes="(min-width: 1024px) 205px, 50vw"
-                    className="object-cover"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      <hr className="border-slate-200 dark:border-white/10" />
-
-      <section className="space-y-8">
-        <header className="space-y-2">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-600 dark:text-emerald-400">
-            Featured work
-          </p>
-          <h2 className="text-2xl font-semibold text-slate-900 dark:text-white">Selected projects</h2>
-          <p className="max-w-2xl text-sm text-slate-500 dark:text-slate-400">
-            A quick look at recent builds. The full project archive lives on the projects page.
-          </p>
-        </header>
-
-        <div className="grid gap-8 md:grid-cols-3">
-          {featuredProjects.map((project) => (
-            <article key={project.slug} className="space-y-3 rounded-2xl border border-slate-200/80 bg-white/70 p-5 backdrop-blur-sm dark:border-white/10 dark:bg-white/5">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400">
-                {project.status}
-              </p>
-              <h3 className="text-base font-semibold text-slate-900 dark:text-white">{project.title}</h3>
-              <p className="text-sm leading-relaxed text-slate-500 dark:text-slate-400">{project.summary}</p>
-              <div className="flex flex-wrap gap-2">
-                {project.tech.slice(0, 3).map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-full bg-slate-100 px-3 py-1 text-[11px] text-slate-600 dark:bg-white/5 dark:text-slate-400"
-                  >
-                    {item}
-                  </span>
-                ))}
+              <div className="mt-5 border-t border-[#00ff9f]/35 pt-3 text-xs uppercase tracking-[0.18em] text-[#00ff9f]/70">
+                Type START, CONTACT, SOFTWARE, GAMES
               </div>
-              {project.links && project.links.length > 0 && (
-                <div className="flex flex-wrap gap-3">
-                  {project.links.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm font-medium text-emerald-600 underline decoration-emerald-300/40 underline-offset-4 transition hover:text-emerald-800 dark:text-emerald-400 dark:decoration-emerald-400/30 dark:hover:text-white"
-                    >
-                      {link.label} &rarr;
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
+        <div className="grid gap-5 lg:grid-cols-4">
+          {zones.map((zone) => (
+            <Link key={zone.href} href={zone.href} className="group min-h-[330px] border-2 border-[#fcee0a]/60 bg-[#111] p-5 transition hover:-translate-y-1 hover:border-[#00f0ff] hover:shadow-[10px_10px_0_#00f0ff]">
+              <p className="text-xs font-black uppercase tracking-[0.25em] text-[#fcee0a]">{zone.label}</p>
+              <h2 className="mt-8 text-3xl font-black uppercase leading-none text-white">{zone.title}</h2>
+              <p className="mt-5 text-sm font-medium leading-7 text-white/65">{zone.body}</p>
+              <p className="mt-8 text-sm font-black uppercase tracking-[0.18em] text-[#00f0ff] group-hover:text-[#fcee0a]">
+                {zone.cta} →
+              </p>
+            </Link>
           ))}
-        </div>
-        <div>
-          <Link
-            href="/projects"
-            className="inline-flex items-center gap-2 text-sm font-medium text-emerald-600 underline decoration-emerald-300/40 underline-offset-4 transition hover:text-emerald-800 dark:text-emerald-400 dark:decoration-emerald-400/30 dark:hover:text-white"
-          >
-            See all projects &rarr;
-          </Link>
-        </div>
-      </section>
-
-      <hr className="border-slate-200 dark:border-white/10" />
-
-      <section className="grid gap-6 sm:grid-cols-3">
-        <Link
-          href="/about"
-          className="rounded-2xl border border-slate-200/80 bg-white/70 p-5 transition hover:-translate-y-0.5 hover:border-slate-300 dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20"
-        >
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400">About</p>
-          <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Background, values, and the way I like to work.</p>
-        </Link>
-        <Link
-          href="/tools"
-          className="rounded-2xl border border-slate-200/80 bg-white/70 p-5 transition hover:-translate-y-0.5 hover:border-slate-300 dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20"
-        >
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400">Toolkit</p>
-          <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Tech stack, workflows, and platforms I use to ship.</p>
-        </Link>
-        <Link
-          href="/devlog"
-          className="rounded-2xl border border-slate-200/80 bg-white/70 p-5 transition hover:-translate-y-0.5 hover:border-slate-300 dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20"
-        >
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400">Devlog</p>
-          <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Notes from experiments, ideas, and ongoing builds.</p>
-        </Link>
-      </section>
-
-      <section className="rounded-2xl border border-slate-200/80 bg-slate-50/80 p-8 text-center dark:border-white/10 dark:bg-white/5">
-        <h2 className="text-2xl font-semibold text-slate-900 dark:text-white sm:text-3xl">
-          Looking for a focused builder?
-        </h2>
-        <p className="mx-auto mt-3 max-w-xl text-base text-slate-500 dark:text-slate-400">
-          I collaborate on product engineering, creative technology, and AI-adjacent software projects.
-        </p>
-        <div className="mt-7 flex flex-col justify-center gap-4 sm:flex-row">
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-7 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-emerald-700 hover:shadow-md dark:hover:bg-emerald-500"
-          >
-            Contact me
-          </Link>
-          <Link
-            href="https://github.com/MarwanSummakieh"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-full border border-slate-200 px-7 py-3 text-sm font-semibold text-slate-700 transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:bg-slate-50 dark:border-white/20 dark:text-white dark:hover:border-white/40 dark:hover:bg-white/5"
-          >
-            View GitHub
-          </Link>
         </div>
       </section>
     </div>
