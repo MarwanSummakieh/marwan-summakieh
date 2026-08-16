@@ -137,7 +137,7 @@ export const gameProjects: GameProject[] = [
     summary:
       "An automated intraday momentum trading bot for US equities executing through Alpaca paper trading with server-side bracket orders, a FastAPI dashboard, and a backtest / parameter-sweep engine over 5-minute bars. A second, independent instance trades crypto 24/7 on an internal fill simulator with its own ledger.",
     focus:
-      "Treating a trading rule as a hypothesis: every entry/exit gate (EMA stack, ADX, RSI band, EMA50 regime, no-late-entries, earnings blackout) was validated on a train/holdout split with walk-forward checks and honest cost modelling — spread, slippage, and SEC/FINRA fees — before it was allowed to trade.",
+      "Every entry/exit gate (EMA stack, ADX, RSI band, EMA50 regime, no-late-entries, earnings blackout) was validated on a train/holdout split with walk-forward checks and honest cost modelling — spread, slippage, and SEC/FINRA fees — before it was allowed to trade.",
     outcomes: [
       "Scanner → entry → exit loop over a ~60-symbol universe every 5 minutes during market hours",
       "ATR-anchored stops, 3R take-profit and R-based trailing stops resting server-side at the broker so exits fire even if the process dies",
@@ -187,7 +187,7 @@ export const gameProjects: GameProject[] = [
     summary:
       "Master's thesis playground: a PC-based Python pipeline that takes an RGB-D source, detects walkable space, encodes the scene, and renders it as a simulated phosphene percept with latency metrics — the platform for a human study comparing a raw depth encoder against a simplified, hazard-aware one.",
     focus:
-      "Human-centered AI in the most literal sense: designing what a person with a retinal implant would perceive, then measuring whether a smarter encoding (suppress the floor, light up obstacles by proximity, pulse drop-offs, mark the deepest walkable direction) beats raw depth under an identical simulated implant.",
+      "Designing what a person with a retinal implant would actually perceive, then measuring whether a smarter encoding (suppress the floor, light up obstacles by proximity, pulse drop-offs, mark the deepest walkable direction) beats raw depth under an identical simulated implant.",
     outcomes: [
       "RGB-D → RANSAC floor + height rules → encoder → phosphene renderer (jitter, dropout, brightness levels, afterglow)",
       "Two experimental encoders sharing one simulated implant so percept differences come from encoding alone",

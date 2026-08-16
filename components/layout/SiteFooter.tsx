@@ -12,12 +12,12 @@ const SiteFooter = () => {
     <footer className="relative mt-24 border-t-2 border-halo bg-wall-2 shadow-[0_-4px_0_#000]">
       <div className="mx-auto grid max-w-7xl gap-8 px-5 py-12 sm:px-8 md:grid-cols-[1fr,auto] md:items-end">
         <div>
-          <Image src="/brand/marwanos-tag.webp" alt="MarwanOS" width={1404} height={489} className="h-14 w-auto opacity-90" />
+          <Image src="/brand/marwanos-tag.webp" alt="Marwan" width={1404} height={489} className="h-14 w-auto opacity-90" />
           <p className="mt-4 max-w-md text-sm leading-6 text-chalk/60">
             {profileContent.availability}
           </p>
           <p className="mt-2 font-marker text-xs text-chalk/40">
-            painted in Copenhagen · Next.js · deployed on Vercel · © {new Date().getFullYear()} Marwan Summakieh
+            Copenhagen · built with Next.js · deployed on Vercel · © {new Date().getFullYear()} Marwan Summakieh
           </p>
         </div>
         <div className="flex flex-wrap gap-3">

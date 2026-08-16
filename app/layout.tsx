@@ -29,13 +29,13 @@ const marker = Permanent_Marker({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://marwansummakieh.com"),
-  title: "MarwanOS — Marwan Summakieh, Full-Stack & Systems Engineer",
+  title: "Marwan Summakieh — Full-Stack & Systems Engineer",
   description:
     "Marwan Summakieh ships whole systems: a Linux distro that boots into a controller shell, realtime multiplayer editors, live trading bots, media servers, and finished VR games. MSc Human-Centered AI @ DTU, Copenhagen.",
   icons: { icon: "/icon.svg" },
   openGraph: {
-    title: "MarwanOS — Marwan Summakieh",
-    description: "Full-stack & systems engineer in Copenhagen. Fresh paint: MarwanOS, Trader, Storyroom, Mediawan, Marusic, and an MSc thesis on prosthetic vision.",
+    title: "Marwan Summakieh",
+    description: "Full-stack & systems engineer in Copenhagen. Recent work: MarwanOS, Trader, Storyroom, Mediawan, Marusic, and an MSc thesis on prosthetic vision.",
     images: ["/brand/marwanos-tag.webp"],
   },
 };

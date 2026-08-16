@@ -22,10 +22,10 @@ const ContactPage = () => {
       <section className="drips bricks border-b-2 border-halo shadow-[0_4px_0_#000]">
         <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
           <SectionHead
-            eyebrow="signal open"
+            eyebrow="contact"
             title={
               <>
-                Let&apos;s put something <span className="marble-text">on the wall</span>
+                Let&apos;s <span className="marble-text">talk</span>
               </>
             }
             lede={profileContent.availability}
@@ -54,7 +54,7 @@ const ContactPage = () => {
 
         <div className="piece piece-static mt-12 grid gap-6 p-6 sm:p-8 md:grid-cols-[1fr,auto] md:items-center">
           <div>
-            <p className="sticker sticker-violet">elsewhere</p>
+            <p className="sticker sticker-violet">links</p>
             <p className="mt-4 max-w-xl text-sm leading-6 text-chalk/70">
               All source lives on GitHub. Career history and recommendations are on LinkedIn. If you&apos;re hiring in Copenhagen or remote, email is fastest.
             </p>

@@ -5,27 +5,27 @@ import SectionHead from "@/components/brand/SectionHead";
 import StatusSticker from "@/components/brand/StatusSticker";
 
 export const metadata = {
-  title: "Blackbook | MarwanOS",
-  description: "Marwan Summakieh's blackbook — every repository with a dossier: focus, milestones, stack, source.",
+  title: "Devlog | Marwan Summakieh",
+  description: "Every repository Marwan Summakieh has published, with a detail page for each: focus, milestones, stack, source.",
 };
 
 const entries = [...gameProjects]
   .filter((p) => p.links?.some((l) => l.href.includes("github.com")))
   .sort((a, b) => (b.year ?? 0) - (a.year ?? 0));
 
-const BlackbookPage = () => (
+const DevlogPage = () => (
   <div className="text-chalk">
     <section className="drips drips-pink bricks border-b-2 border-halo shadow-[0_4px_0_#000]">
       <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
         <SectionHead
-          eyebrow="blackbook"
+          eyebrow="devlog"
           splat="pink"
           title={
             <>
-              Sketches, sources, <span className="marble-text">receipts</span>
+              Every repo, <span className="marble-text">newest first</span>
             </>
           }
-          lede="A graffiti writer keeps a blackbook — every outline before it hits the wall. This is mine: one entry per unique repository, newest first, each pointing at source."
+          lede="One entry per repository. Each one opens a detail page and links straight to the source."
         />
       </div>
     </section>
@@ -62,7 +62,7 @@ const BlackbookPage = () => (
                 </div>
                 <div className="flex flex-row flex-wrap gap-2 md:w-44 md:flex-col md:justify-end">
                   <Link href={`/devlog/${project.slug}`} className="btn-tag text-xs">
-                    Open piece
+                    Details
                   </Link>
                   {live && (
                     <a href={live.href} target="_blank" rel="noopener noreferrer" className="btn-ghost text-xs">
@@ -84,4 +84,4 @@ const BlackbookPage = () => (
   </div>
 );
 
-export default BlackbookPage;
+export default DevlogPage;

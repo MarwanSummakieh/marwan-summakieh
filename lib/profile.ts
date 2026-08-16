@@ -52,7 +52,7 @@ export const profileContent: ProfileContent = {
   name: "Marwan Summakieh",
   role: "Full-Stack Engineer & Creative Technologist | MSc Human-Centered AI @ DTU",
   location: "Copenhagen, Denmark",
-  tagline: "Full-stack engineer who ships whole systems — from a Linux distro that boots into a controller shell, to realtime multiplayer editors, live trading bots, and finished VR games.",
+  tagline: "I'm a full-stack engineer. Recently I've built a Linux distro that boots into a controller shell, a realtime multiplayer writing app, a live trading bot, and a finished VR game — and I like owning the whole thing, from the OS image to the UI.",
   greetings: [
     "Currently writing an MSc thesis in Human-Centered AI at DTU on simulated prosthetic vision, with hands-on experience across Next.js, React, Python, Node, Godot, Unity, Docker, and Azure.",
     "I ship production applications by day and build operating systems, media servers, and games by night.",

@@ -9,7 +9,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 const navItems = [
   { label: "Home", href: "/" },
   { label: "Work", href: "/work" },
-  { label: "Blackbook", href: "/devlog" },
+  { label: "Devlog", href: "/devlog" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -27,10 +27,10 @@ const SiteHeader = () => {
     <header className="sticky top-0 z-50 border-b-2 border-halo bg-wall/90 text-chalk shadow-[0_4px_0_#000] backdrop-blur-xl">
       <div className="mx-auto max-w-7xl px-5 py-2.5 sm:px-8">
         <div className="flex items-center justify-between gap-4">
-          <Link href="/" className="group inline-flex items-center gap-3" aria-label="MarwanOS home">
+          <Link href="/" className="group inline-flex items-center gap-3" aria-label="Home">
             <Image
               src="/brand/marwanos-tag.webp"
-              alt="MarwanOS"
+              alt="Marwan"
               width={1404}
               height={489}
               priority

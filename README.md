@@ -1,25 +1,25 @@
-# MarwanOS — marwansummakieh.com
+# marwansummakieh.com
 
-Portfolio of Marwan Summakieh, branded around the wildstyle **MARWAN OS** graffiti piece (source: `public/brand/marwanos-tag.webp`, exported from `MarwanOS.psd`).
+Portfolio of Marwan Summakieh, branded around his wildstyle **MARWAN** graffiti piece (source: `public/brand/marwanos-tag.webp`, exported from `MarwanOS.psd`).
 
 ## Site map
 
-- `/` — the wall: hero with the piece, **Fresh Paint** (2026 work), back catalog, paid work, contact band.
-- `/work` — every project grouped by shelf (Systems/OS · Software · Games & VR · Research) plus client case files and work history.
-- `/devlog` — the **Blackbook**: one entry per unique repository, newest first. `/devlog/[slug]` opens a dossier (focus, milestones, stack, source, media).
+- `/` — hero with the piece, current (2026) work, older projects, experience, contact.
+- `/work` — every project grouped by type (Systems/OS · Software · Games & VR · Research) plus client case files and work history.
+- `/devlog` — one entry per repository, newest first. `/devlog/[slug]` opens a detail page (focus, milestones, stack, source, media).
 - `/contact`
 - `/software`, `/games`, `/about`, `/projects`, `/tools` redirect to `/work`.
-- Optional AI assistant drawer ("Ask the wall") backed by `app/api/chat`.
+- Optional AI assistant drawer ("Ask me anything") backed by `app/api/chat`.
 
 ## Content
 
 All copy is structured data:
 
-- `lib/gameJourney.ts` — `gameProjects`: every piece. Fields: `category`, `year`, `fresh` (surfaces on the home wall), `hook`, `image`, `note`, `links`.
+- `lib/gameJourney.ts` — `gameProjects`: every project. Fields: `category`, `year`, `fresh` (surfaces on the home page), `hook`, `image`, `note`, `links`.
 - `lib/profile.ts` — name, tagline, availability, experience, client case files, contact/socials.
 - `app/api/chat/marwan-context.txt` — the assistant's knowledge; keep in sync when adding pieces.
 
-To add a project: append to `gameProjects`, set `category`/`year`, add a GitHub link (that's what puts it in the Blackbook), optionally `fresh: true` and an image under `public/work/`.
+Copy tone: plain and conversational — no themed jargon. To add a project: append to `gameProjects`, set `category`/`year`, add a GitHub link (that's what lists it in the devlog), optionally `fresh: true` and an image under `public/work/`.
 
 ## Brand system
 

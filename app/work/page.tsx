@@ -5,36 +5,36 @@ import PieceCard from "@/components/brand/PieceCard";
 import SectionHead from "@/components/brand/SectionHead";
 
 export const metadata = {
-  title: "Work — the full wall | MarwanOS",
-  description: "Every piece Marwan Summakieh has shipped: operating systems, software, games & VR, and research.",
+  title: "Work | Marwan Summakieh",
+  description: "Everything Marwan Summakieh has built: operating systems, software, games & VR, and research.",
 };
 
 const shelves: { key: ProjectCategory; eyebrow: string; title: string; lede: string; splat: "tag" | "violet" | "pink" | "peach" | "sky" }[] = [
   {
     key: "systems",
-    eyebrow: "systems / os",
-    title: "Below the web stack",
-    lede: "Image-mode Linux, systemd fleets, boot pipelines, and a Godot shell drawn straight to a TV.",
+    eyebrow: "operating systems",
+    title: "Operating systems",
+    lede: "Image-mode Linux, systemd services, boot pipelines, and a Godot shell built for a TV.",
     splat: "tag",
   },
   {
     key: "software",
     eyebrow: "software",
-    title: "Products, services, tooling",
-    lede: "Realtime editors, trading bots, media servers, mobile apps, cloud automation. Things people actually run.",
+    title: "Software",
+    lede: "Realtime editors, trading bots, media servers, mobile apps, cloud automation — things people actually run.",
     splat: "sky",
   },
   {
     key: "games",
     eyebrow: "games & vr",
-    title: "Interaction loops in Unity",
+    title: "Games & VR",
     lede: "A finished VR fishing game, an RTS with behaviour-tree AI, physics-driven VR basketball.",
     splat: "pink",
   },
   {
     key: "research",
     eyebrow: "research",
-    title: "Human-centered AI at DTU",
+    title: "Research",
     lede: "Master's thesis on simulated prosthetic vision, neural nets from scratch, social-graph NLP, multi-agent planning.",
     splat: "violet",
   },
@@ -51,13 +51,13 @@ const WorkPage = () => {
       <section className="drips bricks border-b-2 border-halo shadow-[0_4px_0_#000]">
         <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
           <SectionHead
-            eyebrow="the full wall"
+            eyebrow="all work"
             title={
               <>
-                Every piece, <span className="marble-text">one wall</span>
+                Everything I've <span className="marble-text">built</span>
               </>
             }
-            lede="Grouped by shelf, newest first. Every card opens a dossier with the focus, milestones and source."
+            lede="Grouped by type, newest first. Every card opens a detail page with what I focused on, what got done, the stack, and the source."
           />
           <nav className="mt-8 flex flex-wrap gap-3" aria-label="Shelves">
             {shelves.map((s) => (
@@ -94,19 +94,19 @@ const WorkPage = () => {
           );
         })}
 
-        {/* client / employer case files */}
+        {/* client / employer work */}
         <section>
           <SectionHead
             id="client-work"
             eyebrow="client work"
-            title="Case files from paid engagements"
-            lede="Problem → solution → impact for the systems I built at Second Sun, for Zaki's, and at Joker IT."
+            title="Work I've done for companies"
+            lede="Problem, solution and impact for what I built at Second Sun, for Zaki's, and at Joker IT."
             splat="peach"
           />
           <div className="mt-12 grid gap-8 md:grid-cols-2">
             {showcase.map((project, i) => (
               <article key={project.slug} className={`piece p-6 ${i % 2 ? "rotate-[0.4deg]" : "-rotate-[0.4deg]"}`}>
-                <p className="eyebrow">case file</p>
+                <p className="eyebrow">client project</p>
                 <h3 className="font-display mt-2 text-3xl leading-none">{project.title}</h3>
                 <dl className="mt-5 space-y-3 text-sm leading-6 text-chalk/75">
                   <div>
@@ -150,7 +150,7 @@ const WorkPage = () => {
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link href="/contact" className="btn-tag text-xs">
-                Hire me
+                Contact me
               </Link>
               <a href={profileContent.socials[0].href} target="_blank" rel="noopener noreferrer" className="btn-ghost text-xs">
                 LinkedIn

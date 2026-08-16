@@ -15,7 +15,7 @@ const imageMap: Record<string, { src: string; alt: string }[]> = {
 };
 
 const categoryLabel = {
-  systems: "Systems / OS",
+  systems: "Operating system",
   software: "Software",
   games: "Games & VR",
   research: "Research",
@@ -31,12 +31,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const project = gameProjects.find((item) => item.slug === slug);
   return {
-    title: project ? `${project.title} | Blackbook · MarwanOS` : "Piece",
+    title: project ? `${project.title} | Marwan Summakieh` : "Project",
     description: project?.hook ?? project?.summary,
   };
 }
 
-const PiecePage = async ({ params }: { params: Promise<{ slug: string }> }) => {
+const ProjectPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params;
   const project = gameProjects.find((item) => item.slug === slug);
   if (!project) notFound();
@@ -54,7 +54,7 @@ const PiecePage = async ({ params }: { params: Promise<{ slug: string }> }) => {
         <span aria-hidden className="splat right-[5%] top-0 h-48 w-64 opacity-35" style={{ background: "var(--tag)" }} />
         <div className="relative mx-auto max-w-7xl px-5 py-12 sm:px-8">
           <Link href="/devlog" className="inline-flex items-center gap-2 font-marker text-sm text-chalk/60 hover:text-tag">
-            <ArrowLeftIcon className="h-4 w-4" /> back to the blackbook
+            <ArrowLeftIcon className="h-4 w-4" /> back to the devlog
           </Link>
           <div className="mt-6 flex flex-wrap items-center gap-3">
             <StatusSticker status={project.status} />
@@ -100,7 +100,7 @@ const PiecePage = async ({ params }: { params: Promise<{ slug: string }> }) => {
                 <dd className="font-black uppercase tracking-wider">{githubLinks.length ? "GitHub" : "private"}</dd>
               </div>
               <div className="flex justify-between gap-4">
-                <dt className="font-marker text-chalk/50">piece no.</dt>
+                <dt className="font-marker text-chalk/50">no.</dt>
                 <dd className="font-black uppercase tracking-wider">{String(idx + 1).padStart(2, "0")}</dd>
               </div>
             </dl>
@@ -108,7 +108,7 @@ const PiecePage = async ({ params }: { params: Promise<{ slug: string }> }) => {
 
           {siblings.length > 0 && (
             <div>
-              <p className="eyebrow">same shelf</p>
+              <p className="eyebrow">related</p>
               <ul className="mt-3 space-y-2">
                 {siblings.map((s) => (
                   <li key={s.slug}>
@@ -155,4 +155,4 @@ const PiecePage = async ({ params }: { params: Promise<{ slug: string }> }) => {
   );
 };
 
-export default PiecePage;
+export default ProjectPage;

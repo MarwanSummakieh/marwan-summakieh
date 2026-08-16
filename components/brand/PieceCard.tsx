@@ -5,7 +5,7 @@ import type { GameProject } from "@/lib/gameJourney";
 import StatusSticker from "./StatusSticker";
 
 const categoryLabel: Record<NonNullable<GameProject["category"]>, string> = {
-  systems: "Systems / OS",
+  systems: "Operating system",
   software: "Software",
   games: "Games & VR",
   research: "Research",
@@ -54,7 +54,7 @@ const PieceCard = ({ project, index = 0, variant = "tile", showTech = 5 }: Piece
         </div>
 
         <div className="flex flex-col p-6 sm:p-8">
-          <p className="eyebrow">{project.category ? categoryLabel[project.category] : "Piece"}</p>
+          <p className="eyebrow">{project.category ? categoryLabel[project.category] : "Project"}</p>
           <h3 className="font-display mt-2 text-4xl leading-none text-chalk sm:text-5xl">
             <Link href={dossierHref} className="marker-underline hover:text-tag">
               {project.title}
@@ -78,7 +78,7 @@ const PieceCard = ({ project, index = 0, variant = "tile", showTech = 5 }: Piece
           {project.note && <p className="mt-4 font-marker text-xs text-peach/80">* {project.note}</p>}
           <div className="mt-auto flex flex-wrap gap-3 pt-6">
             <Link href={dossierHref} className="btn-tag text-xs">
-              Open piece
+              Details
             </Link>
             {primary && (
               <a href={primary.href} target="_blank" rel="noopener noreferrer" className="btn-ghost text-xs">
@@ -112,7 +112,7 @@ const PieceCard = ({ project, index = 0, variant = "tile", showTech = 5 }: Piece
       </div>
       <div className="mt-auto flex flex-wrap items-center gap-3 pt-5 text-xs font-black uppercase tracking-[0.14em]">
         <Link href={dossierHref} className="text-tag hover:text-peach">
-          Open piece →
+          Details →
         </Link>
         {primary && (
           <a href={primary.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-chalk/60 hover:text-halo">

@@ -20,7 +20,7 @@ const github = profileContent.socials.find((s) => s.label === "GitHub")!;
 export default function Home() {
   return (
     <div className="text-chalk">
-      {/* ── Hero: the piece on the wall ─────────────────────────────── */}
+      {/* ── Hero ─────────────────────────────── */}
       <section className="relative overflow-hidden">
         <div aria-hidden className="pointer-events-none absolute inset-0">
           <span className="splat left-[8%] top-[18%] h-72 w-96 opacity-40" style={{ background: "var(--violet)" }} />
@@ -45,10 +45,10 @@ export default function Home() {
                 priority
                 className="w-full max-w-3xl animate-float drop-shadow-[0_18px_30px_rgba(0,0,0,.6)]"
               />
-              <p className="font-marker mt-2 text-lg text-chalk/60 sm:text-xl">— marwan summakieh, full-stack &amp; systems engineer</p>
+              <p className="font-marker mt-2 text-lg text-chalk/60 sm:text-xl">— marwan summakieh, full-stack &amp; systems engineer, copenhagen</p>
 
               <h1 className="font-display mt-8 text-6xl leading-[0.9] sm:text-7xl lg:text-8xl">
-                <span className="outline-text">I ship</span> <span className="marble-text">whole systems.</span>
+                <span className="outline-text">I build</span> <span className="marble-text">whole systems.</span>
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-chalk/80">
                 {profileContent.tagline}
@@ -56,7 +56,7 @@ export default function Home() {
 
               <div className="mt-8 flex flex-wrap gap-4">
                 <a href="#fresh" className="btn-tag">
-                  Fresh paint <ArrowDownIcon className="h-4 w-4" />
+                  What I'm building <ArrowDownIcon className="h-4 w-4" />
                 </a>
                 <a href={github.href} target="_blank" rel="noopener noreferrer" className="btn-ghost">
                   <FaGithub className="h-4 w-4" /> GitHub
@@ -67,13 +67,13 @@ export default function Home() {
               </div>
             </div>
 
-            {/* the tag wall: quick stats as slapped stickers */}
+            {/* quick stats */}
             <div className="relative mx-auto w-full max-w-md lg:max-w-none">
               <div className="piece piece-static rotate-[1deg] p-6">
-                <p className="eyebrow">what&apos;s on the wall</p>
+                <p className="eyebrow">at a glance</p>
                 <ul className="mt-4 space-y-3 font-display text-2xl leading-none">
                   <li className="flex items-baseline justify-between gap-4 border-b border-halo/15 pb-3">
-                    <span>Fresh pieces, 2026</span>
+                    <span>Projects this year</span>
                     <span className="outline-text-tag text-4xl">{fresh.length}</span>
                   </li>
                   <li className="flex items-baseline justify-between gap-4 border-b border-halo/15 pb-3">
@@ -97,27 +97,25 @@ export default function Home() {
                   stack: TypeScript · Python · Node · Godot · Unity · Docker · Azure
                 </p>
               </div>
-              <span className="sticker sticker-peach absolute -right-3 -top-4 rotate-[6deg]">est. 1997</span>
-              <span className="sticker sticker-violet absolute -bottom-4 -left-3 -rotate-[5deg]">
-                marwanos.
-              </span>
+              
+              
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── Fresh paint ─────────────────────────────────────────────── */}
+      {/* ── Current work ─────────────────────────────────────────────── */}
       <section id="fresh" className="relative scroll-mt-20">
         <div className="drips bricks border-y-2 border-halo shadow-[0_4px_0_#000]">
           <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
             <SectionHead
-              eyebrow="fresh paint · 2026"
+              eyebrow="2026"
               title={
                 <>
                   What I&apos;m building <span className="marble-text">right now</span>
                 </>
               }
-              lede="Six pieces pushed to GitHub this year. An operating system, a live trading bot, a realtime multiplayer editor, two self-hosted media systems, and a master's thesis on prosthetic vision. All source is open."
+              lede="Six projects I've pushed to GitHub this year: an operating system, a live trading bot, a realtime multiplayer editor, two self-hosted media systems, and my master's thesis on prosthetic vision. All of it is open source."
             />
           </div>
         </div>
@@ -134,17 +132,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Back catalog ────────────────────────────────────────────── */}
+      {/* ── Older projects ────────────────────────────────────────────── */}
       <section className="mx-auto max-w-7xl px-5 pt-20 sm:px-8">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHead
-            eyebrow="back catalog"
+            eyebrow="earlier"
             splat="pink"
-            title="Older pieces that still hold up"
-            lede="A finished Unity VR game, an ML skin-lesion classifier with a 3D retro UI, an RTS with behaviour-tree AI — plus cloud tooling, mobile apps and a Go terminal on the full wall."
+            title="Older projects I'm still proud of"
+            lede="A finished Unity VR game, an ML skin-lesion classifier with a 3D retro UI, and an RTS with behaviour-tree AI. The rest — cloud tooling, mobile apps, a Go terminal — is on the work page."
           />
           <Link href="/work" className="btn-ghost">
-            Full wall <ArrowUpRightIcon className="h-4 w-4" />
+            All work <ArrowUpRightIcon className="h-4 w-4" />
           </Link>
         </div>
         <div className="mt-12 grid gap-8 md:grid-cols-3">
@@ -157,9 +155,9 @@ export default function Home() {
       {/* ── Crew / experience ───────────────────────────────────────── */}
       <section className="mx-auto max-w-7xl px-5 pt-24 sm:px-8">
         <SectionHead
-          eyebrow="paid work"
+          eyebrow="experience"
           splat="violet"
-          title="Where I've shipped for other people"
+          title="Where I've worked"
         />
         <div className="mt-12 grid gap-8 lg:grid-cols-3">
           {profileContent.experiences.map((exp, i) => (
@@ -193,12 +191,12 @@ export default function Home() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(0,0,0,.15)_0,rgba(0,0,0,.7)_70%)]" aria-hidden />
           <div className="relative grid items-center gap-8 lg:grid-cols-[1fr,auto]">
             <div>
-              <p className="sticker sticker-tag">signal open</p>
+              <p className="sticker sticker-tag">get in touch</p>
               <h2 className="font-display outline-text mt-4 text-5xl leading-[0.9] sm:text-7xl">
-                Want this on your wall?
+                Want to work together?
               </h2>
               <p className="mt-4 max-w-xl text-base leading-7 text-halo/85">
-                {profileContent.availability} I answer email fast, and the whole back catalog is on GitHub.
+                {profileContent.availability} Email is the fastest way to reach me, and all my code is on GitHub.
               </p>
             </div>
             <div className="flex flex-wrap gap-4">

@@ -211,7 +211,7 @@ CONTACT_INFO_END`;
   }
 
   if (normalized.includes("new") || normalized.includes("recent") || normalized.includes("latest") || normalized.includes("2026") || normalized.includes("fresh")) {
-    return "Fresh paint (2026): MarwanOS (bootc Linux + Godot shell), Trader (live Alpaca paper-trading bot, https://trader.marwansummakieh.me), Storyroom (realtime Yjs/TipTap novel-writing workspace), an MSc thesis on simulated prosthetic vision, Mediawan (media-server architecture study + Tizen app), and Marusic (Spotify-style player with jam sessions and Android Auto). All on the home page under Fresh Paint and in `/devlog`.";
+    return "New in 2026: MarwanOS (bootc Linux + Godot shell), Trader (live Alpaca paper-trading bot, https://trader.marwansummakieh.me), Storyroom (realtime Yjs/TipTap novel-writing workspace), an MSc thesis on simulated prosthetic vision, Mediawan (media-server architecture study + Tizen app), and Marusic (Spotify-style player with jam sessions and Android Auto). All on the home page and in `/devlog`.";
   }
 
   if (normalized.includes("trader") || normalized.includes("trading") || normalized.includes("alpaca")) {
@@ -231,10 +231,10 @@ CONTACT_INFO_END`;
   }
 
   if (normalized.includes("repo") || normalized.includes("project") || normalized.includes("devlog")) {
-    return "The blackbook lives at `/devlog` — one entry per unique repository, each opening a dossier with focus, milestones, stack and source. Start with MarwanOS, Storyroom, Trader, Reel Deal, or Vibe-Opsy. The full wall grouped by shelf is at `/work`.";
+    return "Every repository is listed at `/devlog`, newest first, each with a detail page (focus, milestones, stack, source). Good starting points: MarwanOS, Storyroom, Trader, Reel Deal, Vibe-Opsy. Everything grouped by type is at `/work`.";
   }
 
-  return "I can answer about Marwan's fresh work (MarwanOS, Trader, Storyroom, thesis), software background, games & VR, the blackbook, tech stack, or contact info. Try: `what's new`, `tell me about MarwanOS`, `show game projects`, or `contact info`.";
+  return "I can answer about Marwan's recent work (MarwanOS, Trader, Storyroom, thesis), software background, games & VR, the devlog, tech stack, or contact info. Try: `what's new`, `tell me about MarwanOS`, `show game projects`, or `contact info`.";
 }
 
 // API Route Handler

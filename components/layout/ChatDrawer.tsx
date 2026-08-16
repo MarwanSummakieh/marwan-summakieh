@@ -38,7 +38,7 @@ const ChatDrawer = () => {
             aria-controls="chat-drawer"
           >
             <ChatBubbleLeftRightIcon className="h-5 w-5" aria-hidden />
-            {hasOpened ? "Ask the wall" : "Ask the wall"}
+            Ask me anything
           </motion.button>
         )}
       </AnimatePresence>
@@ -64,8 +64,8 @@ const ChatDrawer = () => {
             >
               <div className="flex items-center justify-between border-b-2 border-halo bg-concrete px-5 py-4 text-chalk">
                 <div>
-                  <p className="font-display text-2xl tracking-wide text-tag">Ask the wall</p>
-                  <p className="font-marker text-xs text-chalk/60">ask about pieces, stack, or availability</p>
+                  <p className="font-display text-2xl tracking-wide text-tag">Ask me anything</p>
+                  <p className="font-marker text-xs text-chalk/60">ask about projects, stack, or availability</p>
                 </div>
                 <button
                   type="button"
