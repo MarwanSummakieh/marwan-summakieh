@@ -1,102 +1,215 @@
+import Image from "next/image";
 import Link from "next/link";
+import { ArrowDownIcon, ArrowUpRightIcon } from "@heroicons/react/24/outline";
+import { FaGithub } from "react-icons/fa";
+import { gameProjects } from "@/lib/gameJourney";
+import { profileContent } from "@/lib/profile";
+import PieceCard from "@/components/brand/PieceCard";
+import SectionHead from "@/components/brand/SectionHead";
 
-const zones = [
-  {
-    label: "01 / Software Engineering",
-    title: "Production systems, interfaces, cloud tooling.",
-    body: "Full-stack work across Next.js, Flask, Docker, Azure, MongoDB, and product workflows.",
-    href: "/software",
-    cta: "Enter software sector",
-  },
-  {
-    label: "02 / Game Development",
-    title: "Interactive systems, Unity loops, player feedback.",
-    body: "Unity prototypes, VR interaction systems, gameplay mechanics, shaders, and readable feedback loops.",
-    href: "/games",
-    cta: "Enter game sector",
-  },
-  {
-    label: "03 / Devlog",
-    title: "Repo transmissions from shipped builds.",
-    body: "A cyberpunk contract board for unique repositories and implementation notes.",
-    href: "/devlog",
-    cta: "Open devlog",
-  },
-  {
-    label: "04 / Contact",
-    title: "Patch into Copenhagen.",
-    body: "Open for full-stack engineering, creative technology, and AI-adjacent software work.",
-    href: "/contact",
-    cta: "Contact me",
-  },
-];
+const fresh = gameProjects.filter((p) => p.fresh);
+const featuredSlugs = ["marwanos", "storyroom"];
+const featured = featuredSlugs.map((s) => fresh.find((p) => p.slug === s)).filter(Boolean) as typeof fresh;
+const freshRest = fresh.filter((p) => !featuredSlugs.includes(p.slug));
+const backCatalog = ["ninja-fishing-vr", "vibe-opsy", "real-time-strategie"]
+  .map((s) => gameProjects.find((p) => p.slug === s))
+  .filter(Boolean) as typeof gameProjects;
+
+const github = profileContent.socials.find((s) => s.label === "GitHub")!;
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#050505] text-white">
-      <section className="relative overflow-hidden border-b-4 border-[#fcee0a] bg-[#fcee0a] text-black">
-        <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(135deg,#000_12.5%,transparent_12.5%,transparent_50%,#000_50%,#000_62.5%,transparent_62.5%,transparent_100%)] [background-size:28px_28px]" />
-        <div className="relative mx-auto grid min-h-[calc(100vh-4rem)] max-w-7xl gap-10 px-5 py-16 sm:px-8 lg:grid-cols-[1fr,0.75fr] lg:items-center">
-          <div className="space-y-7">
-            <p className="text-sm font-black uppercase tracking-[0.32em]">/// Portfolio Mainframe</p>
-            <h1 className="max-w-5xl text-6xl font-black uppercase leading-[0.82] tracking-tight sm:text-8xl lg:text-9xl">
-              Marwan Summakieh
-            </h1>
-            <p className="max-w-2xl border-l-4 border-black pl-5 text-xl font-bold leading-8">
-              Full-stack software engineer building production apps, cloud tooling, applied AI workflows, and interactive systems.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Link href="/software" className="bg-black px-7 py-4 text-sm font-black uppercase tracking-[0.18em] text-[#fcee0a] transition hover:bg-[#00f0ff] hover:text-black">
-                Start
-              </Link>
-              <Link href="/contact" className="border-2 border-black px-7 py-4 text-sm font-black uppercase tracking-[0.18em] transition hover:bg-black hover:text-[#fcee0a]">
-                Contact
-              </Link>
-            </div>
+    <div className="text-chalk">
+      {/* ── Hero: the piece on the wall ─────────────────────────────── */}
+      <section className="relative overflow-hidden">
+        <div aria-hidden className="pointer-events-none absolute inset-0">
+          <span className="splat left-[8%] top-[18%] h-72 w-96 opacity-40" style={{ background: "var(--violet)" }} />
+          <span className="splat right-[6%] top-[10%] h-64 w-72 opacity-35" style={{ background: "var(--tag)" }} />
+          <span className="splat bottom-[5%] left-[40%] h-56 w-80 opacity-30" style={{ background: "var(--pink)" }} />
+        </div>
+
+        <div className="relative mx-auto max-w-7xl px-5 pb-20 pt-12 sm:px-8 sm:pt-16 lg:pb-28">
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="sticker sticker-tag">Copenhagen · DK</span>
+            <span className="sticker rotate-[1.5deg]">MSc Human-Centered AI @ DTU</span>
+            <span className="sticker sticker-pink -rotate-[1deg]">open to work</span>
           </div>
 
-          <div className="relative min-h-[420px] border-4 border-black bg-[#050505] font-mono text-[#00ff9f] shadow-[16px_16px_0_#ff003c]">
-            <div className="absolute inset-0 opacity-20 [background:repeating-linear-gradient(0deg,transparent_0px,transparent_3px,#00ff9f_4px)]" />
-            <div className="absolute inset-0 opacity-25 [background-image:radial-gradient(circle_at_50%_50%,transparent_0,rgba(0,255,159,.18)_100%)]" />
-            <div className="relative flex h-full flex-col p-6">
-              <div className="mb-5 flex items-center justify-between border-b border-[#00ff9f]/35 pb-3 text-xs font-black uppercase tracking-[0.22em]">
-                <span>MS-DOS / Portfolio Shell</span>
-                <span className="text-[#fcee0a]">v2.07</span>
-              </div>
+          <div className="mt-8 grid items-center gap-10 lg:grid-cols-[1.15fr,0.85fr]">
+            <div>
+              <Image
+                src="/brand/marwanos-tag.webp"
+                alt="MARWAN — wildstyle graffiti piece"
+                width={1404}
+                height={489}
+                priority
+                className="w-full max-w-3xl animate-float drop-shadow-[0_18px_30px_rgba(0,0,0,.6)]"
+              />
+              <p className="font-marker mt-2 text-lg text-chalk/60 sm:text-xl">— marwan summakieh, full-stack &amp; systems engineer</p>
 
-              <div className="flex-1 space-y-3 text-sm font-bold leading-6">
-                <p><span className="text-[#fcee0a]">C:\PORTFOLIO&gt;</span> boot marwan.exe</p>
-                <p>Loading software sector ............ <span className="text-[#fcee0a]">OK</span></p>
-                <p>Loading game-dev sector ............ <span className="text-[#fcee0a]">OK</span></p>
-                <p>Loading repo contracts ............. <span className="text-[#fcee0a]">OK</span></p>
-                <p>Base node: Copenhagen</p>
-                <p>Primary stack: React / Python / Azure</p>
-                <p>Mode: product software + interactive systems</p>
-                <p className="pt-5 text-[#00f0ff]">
-                  &gt; choose route<span className="ml-1 inline-block h-4 w-2 animate-pulse bg-[#00f0ff] align-middle" />
+              <h1 className="font-display mt-8 text-6xl leading-[0.9] sm:text-7xl lg:text-8xl">
+                <span className="outline-text">I ship</span> <span className="marble-text">whole systems.</span>
+              </h1>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-chalk/80">
+                {profileContent.tagline}
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-4">
+                <a href="#fresh" className="btn-tag">
+                  Fresh paint <ArrowDownIcon className="h-4 w-4" />
+                </a>
+                <a href={github.href} target="_blank" rel="noopener noreferrer" className="btn-ghost">
+                  <FaGithub className="h-4 w-4" /> GitHub
+                </a>
+                <Link href="/contact" className="btn-ghost">
+                  Contact
+                </Link>
+              </div>
+            </div>
+
+            {/* the tag wall: quick stats as slapped stickers */}
+            <div className="relative mx-auto w-full max-w-md lg:max-w-none">
+              <div className="piece piece-static rotate-[1deg] p-6">
+                <p className="eyebrow">what&apos;s on the wall</p>
+                <ul className="mt-4 space-y-3 font-display text-2xl leading-none">
+                  <li className="flex items-baseline justify-between gap-4 border-b border-halo/15 pb-3">
+                    <span>Fresh pieces, 2026</span>
+                    <span className="outline-text-tag text-4xl">{fresh.length}</span>
+                  </li>
+                  <li className="flex items-baseline justify-between gap-4 border-b border-halo/15 pb-3">
+                    <span>Operating systems</span>
+                    <span className="outline-text-tag text-4xl">1</span>
+                  </li>
+                  <li className="flex items-baseline justify-between gap-4 border-b border-halo/15 pb-3">
+                    <span>Live services</span>
+                    <span className="outline-text-tag text-4xl">1</span>
+                  </li>
+                  <li className="flex items-baseline justify-between gap-4 border-b border-halo/15 pb-3">
+                    <span>Finished VR games</span>
+                    <span className="outline-text-tag text-4xl">1</span>
+                  </li>
+                  <li className="flex items-baseline justify-between gap-4">
+                    <span>Thesis in progress</span>
+                    <span className="outline-text-tag text-4xl">1</span>
+                  </li>
+                </ul>
+                <p className="font-marker mt-5 text-sm text-chalk/50">
+                  stack: TypeScript · Python · Node · Godot · Unity · Docker · Azure
                 </p>
               </div>
-
-              <div className="mt-5 border-t border-[#00ff9f]/35 pt-3 text-xs uppercase tracking-[0.18em] text-[#00ff9f]/70">
-                Type START, CONTACT, SOFTWARE, GAMES
-              </div>
+              <span className="sticker sticker-peach absolute -right-3 -top-4 rotate-[6deg]">est. 1997</span>
+              <span className="sticker sticker-violet absolute -bottom-4 -left-3 -rotate-[5deg]">
+                marwanos.
+              </span>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
-        <div className="grid gap-5 lg:grid-cols-4">
-          {zones.map((zone) => (
-            <Link key={zone.href} href={zone.href} className="group min-h-[330px] border-2 border-[#fcee0a]/60 bg-[#111] p-5 transition hover:-translate-y-1 hover:border-[#00f0ff] hover:shadow-[10px_10px_0_#00f0ff]">
-              <p className="text-xs font-black uppercase tracking-[0.25em] text-[#fcee0a]">{zone.label}</p>
-              <h2 className="mt-8 text-3xl font-black uppercase leading-none text-white">{zone.title}</h2>
-              <p className="mt-5 text-sm font-medium leading-7 text-white/65">{zone.body}</p>
-              <p className="mt-8 text-sm font-black uppercase tracking-[0.18em] text-[#00f0ff] group-hover:text-[#fcee0a]">
-                {zone.cta} →
-              </p>
-            </Link>
+      {/* ── Fresh paint ─────────────────────────────────────────────── */}
+      <section id="fresh" className="relative scroll-mt-20">
+        <div className="drips bricks border-y-2 border-halo shadow-[0_4px_0_#000]">
+          <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
+            <SectionHead
+              eyebrow="fresh paint · 2026"
+              title={
+                <>
+                  What I&apos;m building <span className="marble-text">right now</span>
+                </>
+              }
+              lede="Six pieces pushed to GitHub this year. An operating system, a live trading bot, a realtime multiplayer editor, two self-hosted media systems, and a master's thesis on prosthetic vision. All source is open."
+            />
+          </div>
+        </div>
+
+        <div className="mx-auto max-w-7xl space-y-10 px-5 pb-8 pt-20 sm:px-8">
+          {featured.map((project, i) => (
+            <PieceCard key={project.slug} project={project} index={i} variant="wide" />
           ))}
+          <div className="grid gap-8 md:grid-cols-2">
+            {freshRest.map((project, i) => (
+              <PieceCard key={project.slug} project={project} index={i + 2} variant="tile" showTech={6} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Back catalog ────────────────────────────────────────────── */}
+      <section className="mx-auto max-w-7xl px-5 pt-20 sm:px-8">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <SectionHead
+            eyebrow="back catalog"
+            splat="pink"
+            title="Older pieces that still hold up"
+            lede="A finished Unity VR game, an ML skin-lesion classifier with a 3D retro UI, an RTS with behaviour-tree AI — plus cloud tooling, mobile apps and a Go terminal on the full wall."
+          />
+          <Link href="/work" className="btn-ghost">
+            Full wall <ArrowUpRightIcon className="h-4 w-4" />
+          </Link>
+        </div>
+        <div className="mt-12 grid gap-8 md:grid-cols-3">
+          {backCatalog.map((project, i) => (
+            <PieceCard key={project.slug} project={project} index={i} variant="tile" />
+          ))}
+        </div>
+      </section>
+
+      {/* ── Crew / experience ───────────────────────────────────────── */}
+      <section className="mx-auto max-w-7xl px-5 pt-24 sm:px-8">
+        <SectionHead
+          eyebrow="paid work"
+          splat="violet"
+          title="Where I've shipped for other people"
+        />
+        <div className="mt-12 grid gap-8 lg:grid-cols-3">
+          {profileContent.experiences.map((exp, i) => (
+            <article key={exp.company} className={`piece p-6 ${i % 2 ? "rotate-[0.4deg]" : "-rotate-[0.4deg]"}`}>
+              <p className="font-marker text-xs text-chalk/50">{exp.period}</p>
+              <h3 className="font-display mt-2 text-3xl leading-none">{exp.company}</h3>
+              <p className="eyebrow mt-1">{exp.role}</p>
+              <p className="mt-4 text-sm leading-6 text-chalk/75">{exp.summary}</p>
+              <ul className="mt-4 space-y-2">
+                {exp.contributions.slice(0, 2).map((c) => (
+                  <li key={c} className="border-l-2 border-violet pl-3 text-xs leading-5 text-chalk/60">
+                    {c}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-4 flex flex-wrap gap-1.5">
+                {exp.tech.slice(0, 5).map((t) => (
+                  <span key={t} className="chip">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Contact band ────────────────────────────────────────────── */}
+      <section className="mx-auto max-w-7xl px-5 pt-24 sm:px-8">
+        <div className="piece piece-static marble relative overflow-hidden p-8 sm:p-12">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(0,0,0,.15)_0,rgba(0,0,0,.7)_70%)]" aria-hidden />
+          <div className="relative grid items-center gap-8 lg:grid-cols-[1fr,auto]">
+            <div>
+              <p className="sticker sticker-tag">signal open</p>
+              <h2 className="font-display outline-text mt-4 text-5xl leading-[0.9] sm:text-7xl">
+                Want this on your wall?
+              </h2>
+              <p className="mt-4 max-w-xl text-base leading-7 text-halo/85">
+                {profileContent.availability} I answer email fast, and the whole back catalog is on GitHub.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-4">
+              <Link href="/contact" className="btn-tag">
+                Contact
+              </Link>
+              <a href={github.href} target="_blank" rel="noopener noreferrer" className="btn-ghost">
+                <FaGithub className="h-4 w-4" /> GitHub
+              </a>
+            </div>
+          </div>
         </div>
       </section>
     </div>

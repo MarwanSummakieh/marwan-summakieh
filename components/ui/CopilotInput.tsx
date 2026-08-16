@@ -50,7 +50,7 @@ const CopilotInput: React.FC<CopilotInputProps> = ({
 
   return (
     <div
-      className="flex w-full items-center space-x-2 border-2 border-[#fcee0a]/70 bg-black p-2 shadow-[6px_6px_0_rgba(255,0,60,.35)]"
+      className="flex w-full items-center space-x-2 border-2 border-halo bg-wall p-2 shadow-[4px_4px_0_#000]"
       aria-busy={isLoading}
     >
       {/* Input Field - Added min-w-0 */}
@@ -60,7 +60,7 @@ const CopilotInput: React.FC<CopilotInputProps> = ({
         onChange={onChange}
         onKeyPress={onKeyPress}
         placeholder="Transmit query..."
-        className="min-w-0 flex-1 bg-transparent px-2 text-base font-bold text-white placeholder-white/35 focus:outline-none"
+        className="min-w-0 flex-1 bg-transparent px-2 text-base font-bold text-chalk placeholder-white/35 focus:outline-none"
         aria-label="Chat input"
         disabled={isLoading}
       />
@@ -70,7 +70,7 @@ const CopilotInput: React.FC<CopilotInputProps> = ({
         {/* Sparkles Icon Button */}
         <button 
           onClick={handleSparkleClick}
-          className="p-2 text-[#fcee0a] transition-colors hover:bg-[#fcee0a] hover:text-black"
+          className="p-2 text-chalk/70 transition-colors hover:bg-halo hover:text-ink"
           aria-label="Suggest a prompt"
           disabled={isLoading}
         >
@@ -84,7 +84,7 @@ const CopilotInput: React.FC<CopilotInputProps> = ({
       <button
         onClick={onSubmit}
         disabled={isSendDisabled}
-        className="flex shrink-0 items-center justify-center bg-[#00f0ff] p-2 text-black transition-all hover:bg-[#fcee0a] disabled:bg-neutral-600 disabled:opacity-50"
+        className="flex shrink-0 items-center justify-center bg-tag p-2 text-ink border-2 border-ink transition-all hover:bg-peach disabled:bg-neutral-600 disabled:opacity-50"
         aria-label="Send message"
       >
         {isLoading ? (

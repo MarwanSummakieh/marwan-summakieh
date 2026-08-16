@@ -52,12 +52,12 @@ export const profileContent: ProfileContent = {
   name: "Marwan Summakieh",
   role: "Full-Stack Engineer & Creative Technologist | MSc Human-Centered AI @ DTU",
   location: "Copenhagen, Denmark",
-  tagline: "Full-stack engineer building production web apps and finished VR games like Reel Deal — bridging code, design, and human-centered AI research.",
+  tagline: "Full-stack engineer who ships whole systems — from a Linux distro that boots into a controller shell, to realtime multiplayer editors, live trading bots, and finished VR games.",
   greetings: [
-    "Currently pursuing an MSc in Human-Centered Artificial Intelligence at DTU, with hands-on experience across Next.js, React, Python, Unity, Docker, Azure, and beyond.",
-    "I ship production applications by day and explore creative computing through Unity VR, game systems, and 3D with Blender.",
+    "Currently writing an MSc thesis in Human-Centered AI at DTU on simulated prosthetic vision, with hands-on experience across Next.js, React, Python, Node, Godot, Unity, Docker, and Azure.",
+    "I ship production applications by day and build operating systems, media servers, and games by night.",
   ],
-  availability: "Open to full-stack, creative technology, and AI-adjacent software engineering roles in Copenhagen.",
+  availability: "Open to full-stack, systems, and AI-adjacent software engineering roles in Copenhagen (or remote).",
   values: [
     {
       title: "Ship Real Products",

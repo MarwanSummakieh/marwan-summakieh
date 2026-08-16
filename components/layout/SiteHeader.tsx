@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -7,9 +8,8 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const navItems = [
   { label: "Home", href: "/" },
-  { label: "Software", href: "/software" },
-  { label: "Game Dev", href: "/games" },
-  { label: "Devlog", href: "/devlog" },
+  { label: "Work", href: "/work" },
+  { label: "Blackbook", href: "/devlog" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -21,47 +21,49 @@ const SiteHeader = () => {
     setIsMobileMenuOpen(false);
   }, [pathname]);
 
+  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
+
   return (
-    <header className="sticky top-0 z-50 border-b-2 border-[#fcee0a] bg-[#050505]/95 text-white backdrop-blur-xl">
-      <div className="mx-auto max-w-7xl px-5 py-3 sm:px-8">
-        <div className="flex items-center justify-between">
-          <Link
-            href="/"
-            className="group inline-flex items-center gap-3 text-sm font-black uppercase tracking-[0.18em] text-[#fcee0a] transition"
-          >
-            <span className="grid h-9 w-9 place-items-center border-2 border-[#00f0ff] bg-[#00f0ff] text-xs font-black text-black transition group-hover:bg-[#fcee0a]">
-              MS
-            </span>
-            <span className="hidden sm:inline">Marwan Summakieh</span>
+    <header className="sticky top-0 z-50 border-b-2 border-halo bg-wall/90 text-chalk shadow-[0_4px_0_#000] backdrop-blur-xl">
+      <div className="mx-auto max-w-7xl px-5 py-2.5 sm:px-8">
+        <div className="flex items-center justify-between gap-4">
+          <Link href="/" className="group inline-flex items-center gap-3" aria-label="MarwanOS home">
+            <Image
+              src="/brand/marwanos-tag.webp"
+              alt="MarwanOS"
+              width={1404}
+              height={489}
+              priority
+              className="h-10 w-auto transition group-hover:-rotate-2 group-hover:scale-105 sm:h-11"
+            />
+            <span className="hidden font-marker text-sm text-chalk/70 lg:inline">marwan summakieh</span>
           </Link>
+
           <div className="flex items-center gap-2">
             <button
               type="button"
-              className="border border-[#fcee0a]/60 p-2 text-[#fcee0a] transition hover:bg-[#fcee0a] hover:text-black md:hidden"
+              className="border-2 border-halo bg-concrete p-2 text-chalk shadow-[3px_3px_0_#000] transition hover:bg-tag hover:text-ink md:hidden"
               onClick={() => setIsMobileMenuOpen((prev) => !prev)}
               aria-label={isMobileMenuOpen ? "Close navigation" : "Open navigation"}
               aria-expanded={isMobileMenuOpen}
             >
-              {isMobileMenuOpen ? (
-                <XMarkIcon className="h-6 w-6" />
-              ) : (
-                <Bars3Icon className="h-6 w-6" />
-              )}
+              {isMobileMenuOpen ? <XMarkIcon className="h-6 w-6" /> : <Bars3Icon className="h-6 w-6" />}
             </button>
-            <nav className="hidden items-center gap-1 text-sm md:flex">
+
+            <nav className="hidden items-center gap-1 md:flex">
               {navItems.map((item) => {
-                const isActive = pathname === item.href;
+                const active = isActive(item.href);
                 const isContact = item.href === "/contact";
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`px-3 py-1.5 font-bold uppercase tracking-[0.12em] transition ${
-                      isActive
-                        ? "bg-[#fcee0a] text-black"
+                    className={`font-display px-3.5 py-1.5 text-lg tracking-wide transition ${
+                      active
+                        ? "bg-tag text-ink shadow-[3px_3px_0_#000] outline outline-2 outline-ink"
                         : isContact
-                          ? "border border-[#ff003c] text-[#ff5a7d] hover:bg-[#ff003c] hover:text-white"
-                        : "text-white/70 hover:bg-[#00f0ff] hover:text-black"
+                          ? "text-pink hover:bg-pink hover:text-halo hover:shadow-[3px_3px_0_#000]"
+                          : "text-chalk/80 hover:bg-halo hover:text-ink hover:shadow-[3px_3px_0_#000]"
                     }`}
                   >
                     {item.label}
@@ -71,18 +73,17 @@ const SiteHeader = () => {
             </nav>
           </div>
         </div>
+
         {isMobileMenuOpen && (
-          <nav className="mt-4 flex flex-col gap-1 border border-[#fcee0a]/40 bg-black p-3 text-sm md:hidden">
+          <nav className="mt-3 flex flex-col gap-1 border-2 border-halo bg-concrete p-2 shadow-[4px_4px_0_#000] md:hidden">
             {navItems.map((item) => {
-              const isActive = pathname === item.href;
+              const active = isActive(item.href);
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                    className={`px-3 py-2 font-bold uppercase tracking-[0.12em] transition ${
-                    isActive
-                      ? "bg-[#fcee0a] text-black"
-                      : "text-white/70 hover:bg-[#00f0ff] hover:text-black"
+                  className={`font-display px-3 py-2 text-xl tracking-wide transition ${
+                    active ? "bg-tag text-ink" : "text-chalk/80 hover:bg-halo hover:text-ink"
                   }`}
                 >
                   {item.label}

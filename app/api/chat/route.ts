@@ -206,19 +206,35 @@ Phone: +45 27 29 78 28
 CONTACT_INFO_END`;
   }
 
+  if (normalized.includes("marwanos") || normalized.includes("linux") || normalized.includes("godot") || normalized.includes("bootc") || normalized.includes("os ")) {
+    return "MarwanOS is Marwan's Fedora-based, image-mode Linux distro (bootc / Universal Blue) that boots straight into a controller-driven Godot 4 shell — no desktop, no login, no visible text. Upgrades ship as `bootc upgrade`, undo is `bootc rollback`. Dossier: `/devlog/marwanos`. Source: https://github.com/MarwanSummakieh/MarwanOS";
+  }
+
+  if (normalized.includes("new") || normalized.includes("recent") || normalized.includes("latest") || normalized.includes("2026") || normalized.includes("fresh")) {
+    return "Fresh paint (2026): MarwanOS (bootc Linux + Godot shell), Trader (live Alpaca paper-trading bot, https://trader.marwansummakieh.me), Storyroom (realtime Yjs/TipTap novel-writing workspace), an MSc thesis on simulated prosthetic vision, Mediawan (media-server architecture study + Tizen app), and Marusic (Spotify-style player with jam sessions and Android Auto). All on the home page under Fresh Paint and in `/devlog`.";
+  }
+
+  if (normalized.includes("trader") || normalized.includes("trading") || normalized.includes("alpaca")) {
+    return "Trader is an intraday momentum bot for US equities on Alpaca paper trading with server-side bracket orders, a FastAPI dashboard and a backtest engine every rule was validated against. Live: https://trader.marwansummakieh.me — dossier: `/devlog/trader`. Paper only, not financial advice.";
+  }
+
+  if (normalized.includes("thesis") || normalized.includes("prosthetic") || normalized.includes("research")) {
+    return "Marwan's MSc thesis at DTU: real-time depth-based walkable-space encoding for simulated prosthetic vision in indoor navigation — an RGB-D → walkable-space → encoder → phosphene-renderer pipeline with a ~70K-parameter TinySegNet. Dossier: `/devlog/prosthetic-vision`.";
+  }
+
   if (normalized.includes("game") || normalized.includes("unity") || normalized.includes("vr") || normalized.includes("reel")) {
-    return "Game sector: Marwan works with Unity, C#, XR Interaction Toolkit, OpenXR, gameplay loops, physics interactions, feedback systems, and shaders. Key projects include Reel Deal/NinjaFishingVR, Real-Time Strategie, and Basketball VR. The strongest detailed repo dossier is `/devlog/ninja-fishing-vr`.";
+    return "Games & VR: Marwan works with Unity, C#, XR Interaction Toolkit, OpenXR, gameplay loops, physics interactions, feedback systems, and shaders. Key projects include Reel Deal/NinjaFishingVR, Real-Time Strategie, and Basketball VR. The most detailed piece is `/devlog/ninja-fishing-vr`.";
   }
 
   if (normalized.includes("software") || normalized.includes("react") || normalized.includes("next") || normalized.includes("azure") || normalized.includes("cloud") || normalized.includes("backend")) {
-    return "Software sector: Marwan has shipped production-facing apps with Next.js, React, Flask, Docker, MongoDB, Azure, PowerShell, SharePoint REST API, and Office Add-ins. Main background includes Second Sun, Joker IT, and freelance Track & Trace delivery.";
+    return "Software: Marwan has shipped production-facing apps with Next.js, React, Node, Flask, Docker, MongoDB, Azure, PowerShell, SharePoint REST API, and Office Add-ins. Paid work: Second Sun, Joker IT, and freelance Track & Trace delivery. Recent personal software: Storyroom, Trader, Mediawan, Marusic — see `/work`.";
   }
 
   if (normalized.includes("repo") || normalized.includes("project") || normalized.includes("devlog")) {
-    return "Repo contracts live in `/devlog`. Each contract now opens into a project dossier with source links, tech stack, focus, outcomes, and local media when available. Good starting points: Vibe-Opsy, Reel Deal, Real-Time Strategie, Neural Network from Scratch, Terminal, and Emergency Button.";
+    return "The blackbook lives at `/devlog` — one entry per unique repository, each opening a dossier with focus, milestones, stack and source. Start with MarwanOS, Storyroom, Trader, Reel Deal, or Vibe-Opsy. The full wall grouped by shelf is at `/work`.";
   }
 
-  return "Signal received. I can answer about Marwan's software engineering background, game development work, repo dossiers, tech stack, or contact info. Try asking: `summarize the software sector`, `show game projects`, or `contact info`.";
+  return "I can answer about Marwan's fresh work (MarwanOS, Trader, Storyroom, thesis), software background, games & VR, the blackbook, tech stack, or contact info. Try: `what's new`, `tell me about MarwanOS`, `show game projects`, or `contact info`.";
 }
 
 // API Route Handler

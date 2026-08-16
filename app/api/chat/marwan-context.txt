@@ -4,10 +4,10 @@ Phone: +45 27 29 78 28   Email: marwansummakieh97@gmail.com
 Copenhagen, Denmark
 
 SUMMARY
-Full-stack software engineer and creative technologist with hands-on experience building production web applications, finished VR games, and game prototypes. Currently pursuing an MSc in Human-Centered Artificial Intelligence at DTU, with practical experience in Next.js, React, Python, Unity, Docker, Azure, and MongoDB through internship, freelance, and cloud development roles. Passionate about creating visual experiences in VR, game development, and learning 3D modeling in Blender.
+Full-stack and systems engineer who ships whole systems: a Linux distro that boots into a controller shell (MarwanOS), a realtime multiplayer editor (Storyroom), a live trading bot (Trader), self-hosted media systems (Mediawan, Marusic), and a finished VR game (Reel Deal). Currently writing an MSc thesis in Human-Centered AI at DTU on simulated prosthetic vision. Practical experience with Next.js, React, TypeScript, Python, Node, Godot, Unity, Docker, Azure and MongoDB through internship, freelance, and cloud development roles. Open to full-stack, systems, and AI-adjacent roles in Copenhagen or remote.
 
 CURRENT FOCUS
-Pursuing a master's in Human-Centered AI, combining research on explainable interfaces and accessibility with hands-on engineering. Outside of academics, actively exploring creative computing through Unity projects like Reel Deal/NinjaFishingVR, RTS prototypes with AI behavior trees, and learning Blender for 3D visual storytelling.
+Writing the master's thesis on simulated prosthetic vision (real-time depth-based walkable-space encoding) and building MarwanOS, a bootc-based Linux gaming appliance with a Godot 4 shell. The site is organised as: / (home, Fresh Paint), /work (all pieces by shelf), /devlog (the Blackbook, one dossier per repo), /contact. The site's brand — the wildstyle "MARWAN OS" graffiti piece — is Marwan's own artwork.
 
 INTERESTS & CREATIVE PURSUITS
 • Creating visual experiences in VR — building immersive worlds and interactive environments using Unity and XR Interaction Toolkit
@@ -39,6 +39,35 @@ Managed Azure cloud infrastructure as the sole developer, using PowerShell autom
 Technologies: Azure, PowerShell, React, Microsoft Office Add-in, SharePoint REST API, OAuth.
 
 GITHUB PROJECTS (Personal & Academic)
+
+FRESH PAINT — 2026 (newest work, highlighted on the site's home page)
+
+MARWANOS (Godot 4, GDScript, bootc, Fedora / Universal Blue, systemd, gamescope, Plymouth, Bash, GitHub Actions) — In production
+A Fedora-based, image-mode Linux distribution built on bootc that cold-boots straight into a controller-navigable gaming shell written in Godot 4. No desktop, no login screen, no visible text. The OS is a container image; upgrades ship via `bootc upgrade` with `bootc rollback` as undo. Includes a silent boot pipeline (custom Plymouth theme, hidden GRUB), a fleet of systemd units (app scan/launch, flatpak installs, flight recorder, boot-success watchdog, USB automount, display profiles), a dev-mode flag that enables sshd/terminal, and 12 architecture decision records. Phase 1 adds a Rust library daemon talking to the shell over JSON-RPC/WebSocket. The MarwanOS name is also Marwan's personal brand (the graffiti logo on the site). Dossier: /devlog/marwanos
+GitHub: https://github.com/MarwanSummakieh/MarwanOS
+
+TRADER (Python 3.11, FastAPI, Alpaca API, pandas, SQLite, Docker) — Live (paper trading)
+An automated intraday momentum trading bot for US equities executing through Alpaca paper trading with server-side bracket orders (ATR stops, 3R take-profit, R-based trailing), a live FastAPI dashboard, and a backtest/parameter-sweep engine over 5-minute bars that every rule was validated against on a train/holdout split with walk-forward checks and honest cost modelling. A second instance trades crypto 24/7 on an internal simulator. Paper trading only, not financial advice. Dossier: /devlog/trader
+Live: https://trader.marwansummakieh.me
+GitHub: https://github.com/MarwanSummakieh/trader
+
+STORYROOM (Next.js, TypeScript, TipTap, Yjs, Hocuspocus, Prisma, Postgres, Tailwind, Playwright, Vitest, Inno Setup) — Released
+A realtime collaborative novel-writing workspace: co-authors edit the same scene simultaneously with Yjs CRDTs, live cursors/presence, scene chat over WebSocket, chapter/scene navigation, a story bible, Markdown export, a one-command Docker deploy and a native Windows installer. Automated two-tab Playwright realtime test. Dossier: /devlog/storyroom
+GitHub: https://github.com/MarwanSummakieh/storyroom
+
+SIMULATED PROSTHETIC VISION — MSc THESIS (Python, NumPy, OpenCV, PyTorch, RGB-D, RANSAC) — Research
+Master's thesis "Real-Time Depth-Based Walkable-Space Encoding for Simulated Prosthetic Vision in Indoor Navigation". A Python pipeline: RGB-D source → RANSAC floor + height-rule walkable-space detection → encoder (raw vs. simplified hazard-aware) → phosphene renderer with jitter/dropout/afterglow → latency metrics. Includes TinySegNet, a ~70K-parameter depthwise-separable U-Net trained on procedurally generated corridors, an evaluation CLI (IoU + latency), NYU Depth V2 support and a pytest suite. This is the platform for a human study. Dossier: /devlog/prosthetic-vision
+GitHub: https://github.com/MarwanSummakieh/real-time-video-feed-subsampling
+
+MEDIAWAN (Node.js 22, node:sqlite, ffmpeg, Samsung Tizen, Docker Compose) — In production, educational/research only
+A study of media-server architecture: one Node process serving an SPA, session auth, admin panel, cached AniList metadata, source resolution with tiered quality ranking, per-device delivery decisions (direct play vs. remux vs. transcode via capability probing), a thin media proxy with SSRF guards and signed tokens, plus a Samsung Tizen TV app. Ships no content; every source is opt-in. Dossier: /devlog/mediawan
+GitHub: https://github.com/MarwanSummakieh/mediawan
+
+MARUSIC (Node.js, Express, youtubei.js, yt-dlp, SQLite, SSE, UPnP/DLNA, PWA, Kotlin, Android Auto) — In production, educational reference only
+A Spotify-style web music player: invite-only auth (scrypt, cookie sessions), per-user libraries, artist pages, lyrics, radio, daily mixes, jam sessions (shared queue + live control over server-sent events with host handoff), casting to smart TVs/Sonos over UPnP, PWA, and a Kotlin Android Auto companion app. Not affiliated with YouTube/Spotify/Sonos. Dossier: /devlog/marusic
+GitHub: https://github.com/MarwanSummakieh/marusic
+
+OLDER PROJECTS
 
 REAL-TIME STRATEGIE (Unity, C#, ShaderLab)
 An RTS prototype in Unity with behavior-tree driven AI, drag-select unit management, and custom ShaderLab shader effects.

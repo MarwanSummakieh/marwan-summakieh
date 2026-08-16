@@ -2,77 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─────────────────────────────────────────────────────────────────────────
+   MARWAN OS — brand tokens
+   Pulled from the wildstyle piece: black wall, white halo + black outline,
+   neon-green "OS" tag, and a marbled fill of violet / teal / pink / peach.
+   ───────────────────────────────────────────────────────────────────────── */
 @layer base {
   :root {
-    --background: 0 0% 98%;
-    --foreground: 210 11% 15%;
-    --card: 0 0% 100%;
-    --card-foreground: 210 11% 15%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 210 11% 15%;
-    --primary: 160 84% 39%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 160 10% 94%;
-    --secondary-foreground: 210 11% 15%;
-    --muted: 210 10% 94%;
-    --muted-foreground: 210 5% 45%;
-    --accent: 160 10% 94%;
-    --accent-foreground: 210 11% 15%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 210 10% 88%;
-    --input: 210 10% 88%;
-    --ring: 160 84% 39%;
-    --chart-1: 160 60% 45%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
-    --surface: 0 0% 100%;
-    --surface-hover: 210 10% 96%;
-    --text-primary: 210 11% 15%;
-    --text-secondary: 210 5% 40%;
-    --text-muted: 210 5% 55%;
-    --divider: 210 10% 90%;
+    /* wall */
+    --wall: #070707;
+    --wall-2: #0f0f10;
+    --concrete: #17181a;
+    --concrete-2: #202124;
+    --chalk: #efe9d6;
+    --chalk-dim: rgba(239, 233, 214, 0.66);
+    --chalk-mute: rgba(239, 233, 214, 0.42);
+
+    /* paint */
+    --tag: #50e380; /* the OS tag green */
+    --tag-deep: #1fb85a;
+    --violet: #6d5cff;
+    --indigo: #242c64;
+    --teal: #4ca28c;
+    --sky: #58c8ff;
+    --pink: #ff4d8d;
+    --peach: #ffb27a;
+    --cream: #c9e5bb;
+    --ink: #000000;
+    --halo: #ffffff;
+
+    /* legacy shadcn tokens kept for the chat components */
+    --background: 0 0% 3%;
+    --foreground: 45 40% 89%;
+    --border: 0 0% 16%;
+    --muted-foreground: 45 10% 60%;
+    --primary: 141 72% 60%;
+    --ring: 141 72% 60%;
+    --radius: 0.25rem;
   }
-  .dark {
-    --background: 210 10% 5%;
-    --foreground: 210 5% 92%;
-    --card: 210 10% 7%;
-    --card-foreground: 210 5% 92%;
-    --popover: 210 10% 7%;
-    --popover-foreground: 210 5% 92%;
-    --primary: 160 84% 39%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 210 8% 12%;
-    --secondary-foreground: 210 5% 92%;
-    --muted: 210 8% 14%;
-    --muted-foreground: 210 5% 55%;
-    --accent: 210 8% 14%;
-    --accent-foreground: 210 5% 92%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 210 8% 16%;
-    --input: 210 8% 16%;
-    --ring: 160 84% 39%;
-    --chart-1: 160 60% 45%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-    --surface: 210 10% 8%;
-    --surface-hover: 210 10% 11%;
-    --text-primary: 210 5% 92%;
-    --text-secondary: 210 5% 65%;
-    --text-muted: 210 5% 45%;
-    --divider: 210 8% 16%;
-  }
-  body {
-    @apply bg-background font-sans text-foreground;
-  }
+
   html {
     scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+
+  body {
+    background: var(--wall);
+    color: var(--chalk);
+    font-family: var(--font-geist-sans), system-ui, sans-serif;
+  }
+
+  ::selection {
+    background: var(--tag);
+    color: var(--ink);
   }
 }
 
@@ -82,52 +64,262 @@
   }
 }
 
-@media (forced-colors: active) {
-  /* Disabling forced color adjustment for specific elements if you want
-     them to keep their original color (not overridden by forced-colors) */
-  * {
-    forced-color-adjust: none;
+/* ─── Textures ─────────────────────────────────────────────────────────── */
+@layer components {
+  /* concrete wall: layered gradients + a noise SVG */
+  .wall {
+    background-color: var(--wall);
+    background-image:
+      radial-gradient(1200px 600px at 10% -10%, rgba(109, 92, 255, 0.10), transparent 60%),
+      radial-gradient(900px 500px at 100% 20%, rgba(80, 227, 128, 0.07), transparent 60%),
+      radial-gradient(700px 500px at 60% 110%, rgba(255, 77, 141, 0.07), transparent 60%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-attachment: fixed, fixed, fixed, local;
   }
 
-  /* Or providing custom colors in forced color mode: */
-  a {
-    color: LinkText; /* system color keyword */
-    background: Canvas; /* system background color */
+  /* brick-ish grid you can barely see, for section bands */
+  .bricks {
+    background-color: var(--concrete);
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 100% 28px, 84px 100%;
+  }
+
+  /* the marbled psychedelic fill from the piece */
+  .marble {
+    background-image:
+      radial-gradient(60% 80% at 20% 30%, var(--pink) 0%, transparent 60%),
+      radial-gradient(70% 70% at 80% 20%, var(--peach) 0%, transparent 60%),
+      radial-gradient(60% 60% at 60% 90%, var(--tag) 0%, transparent 60%),
+      radial-gradient(70% 90% at 15% 90%, var(--sky) 0%, transparent 60%),
+      linear-gradient(120deg, var(--violet) 0%, var(--teal) 45%, var(--indigo) 100%);
+    background-size: 200% 200%;
+    animation: marble-drift 14s ease-in-out infinite alternate;
+  }
+
+  .marble-text {
+    @apply marble;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-stroke: 0;
+    text-shadow: none;
+    filter: drop-shadow(3px 3px 0 var(--ink)) drop-shadow(0 0 1px var(--halo));
+  }
+
+  /* graffiti letter treatment: white halo + black outline + hard shadow */
+  .outline-text {
+    color: var(--chalk);
+    text-shadow:
+      -2px -2px 0 var(--ink), 2px -2px 0 var(--ink), -2px 2px 0 var(--ink), 2px 2px 0 var(--ink),
+      5px 6px 0 var(--ink);
+  }
+  .outline-text-tag {
+    color: var(--tag);
+    text-shadow:
+      -2px -2px 0 var(--ink), 2px -2px 0 var(--ink), -2px 2px 0 var(--ink), 2px 2px 0 var(--ink),
+      4px 5px 0 var(--ink);
+  }
+
+  /* a card that reads like a pasted-up piece: white halo, black stroke, hard drop */
+  .piece {
+    position: relative;
+    background: var(--concrete);
+    border: 2px solid var(--halo);
+    box-shadow:
+      0 0 0 4px var(--ink),
+      8px 8px 0 4px var(--ink),
+      8px 8px 0 6px var(--halo);
+    transition: transform 180ms ease, box-shadow 180ms ease;
+  }
+  .piece:hover,
+  .piece:focus-within {
+    transform: translate(-2px, -2px) rotate(-0.4deg);
+    box-shadow:
+      0 0 0 4px var(--ink),
+      12px 12px 0 4px var(--ink),
+      12px 12px 0 6px var(--tag);
+  }
+  .piece-static:hover,
+  .piece-static:focus-within {
+    transform: none;
+    box-shadow:
+      0 0 0 4px var(--ink),
+      8px 8px 0 4px var(--ink),
+      8px 8px 0 6px var(--halo);
+  }
+
+  /* slap-tag sticker */
+  .sticker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--halo);
+    color: var(--ink);
+    border: 2px solid var(--ink);
+    box-shadow: 3px 3px 0 var(--ink);
+    padding: 0.2rem 0.6rem;
+    font-family: var(--font-marker), cursive;
+    font-size: 0.8rem;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    transform: rotate(-2deg);
+  }
+  .sticker-tag {
+    background: var(--tag);
+  }
+  .sticker-pink {
+    background: var(--pink);
+    color: var(--halo);
+  }
+  .sticker-peach {
+    background: var(--peach);
+  }
+  .sticker-sky {
+    background: var(--sky);
+  }
+  .sticker-violet {
+    background: var(--violet);
+    color: var(--halo);
+  }
+
+  /* spray-paint blob you put behind a heading */
+  .splat {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(28px);
+    opacity: 0.55;
+    pointer-events: none;
+    mix-blend-mode: screen;
+  }
+
+  /* drips under a band */
+  .drips {
+    position: relative;
+  }
+  .drips::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -22px;
+    height: 24px;
+    background-repeat: repeat-x;
+    background-size: 160px 24px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='24' viewBox='0 0 160 24'><path fill='%2350e380' d='M0 0h160v3H0zM12 3c0 0-3 6-3 10a3 3 0 0 0 6 0c0-4-3-10-3-10zM48 3c0 0-2 12-2 15a2 2 0 0 0 4 0c0-3-2-15-2-15zM95 3c0 0-4 8-4 13a4 4 0 0 0 8 0c0-5-4-13-4-13zM133 3c0 0-2 5-2 8a2 2 0 0 0 4 0c0-3-2-8-2-8z'/></svg>");
+    pointer-events: none;
+  }
+  .drips-pink::after {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='24' viewBox='0 0 160 24'><path fill='%23ff4d8d' d='M0 0h160v3H0zM12 3c0 0-3 6-3 10a3 3 0 0 0 6 0c0-4-3-10-3-10zM48 3c0 0-2 12-2 15a2 2 0 0 0 4 0c0-3-2-15-2-15zM95 3c0 0-4 8-4 13a4 4 0 0 0 8 0c0-5-4-13-4-13zM133 3c0 0-2 5-2 8a2 2 0 0 0 4 0c0-3-2-8-2-8z'/></svg>");
+  }
+  .drips-violet::after {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='24' viewBox='0 0 160 24'><path fill='%236d5cff' d='M0 0h160v3H0zM12 3c0 0-3 6-3 10a3 3 0 0 0 6 0c0-4-3-10-3-10zM48 3c0 0-2 12-2 15a2 2 0 0 0 4 0c0-3-2-15-2-15zM95 3c0 0-4 8-4 13a4 4 0 0 0 8 0c0-5-4-13-4-13zM133 3c0 0-2 5-2 8a2 2 0 0 0 4 0c0-3-2-8-2-8z'/></svg>");
+  }
+
+  /* marker underline */
+  .marker-underline {
+    background-image: linear-gradient(transparent 62%, var(--tag) 62%, var(--tag) 88%, transparent 88%);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  /* buttons */
+  .btn-tag {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-black uppercase tracking-[0.16em];
+    background: var(--tag);
+    color: var(--ink);
+    border: 2px solid var(--ink);
+    box-shadow: 0 0 0 2px var(--halo), 5px 5px 0 2px var(--ink);
+    transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease;
+  }
+  .btn-tag:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 0 0 0 2px var(--halo), 7px 7px 0 2px var(--ink);
+    background: var(--peach);
+  }
+  .btn-tag:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0 0 0 2px var(--halo), 2px 2px 0 2px var(--ink);
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-black uppercase tracking-[0.16em];
+    color: var(--chalk);
+    border: 2px solid var(--halo);
+    box-shadow: 0 0 0 2px var(--ink), 5px 5px 0 2px var(--ink);
+    background: var(--concrete);
+    transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease, color 150ms ease;
+  }
+  .btn-ghost:hover {
+    transform: translate(-1px, -1px);
+    background: var(--halo);
+    color: var(--ink);
+    box-shadow: 0 0 0 2px var(--ink), 7px 7px 0 2px var(--ink);
+  }
+
+  .chip {
+    @apply inline-block px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.14em];
+    color: var(--chalk-dim);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(0, 0, 0, 0.35);
+  }
+
+  .font-display {
+    font-family: var(--font-bangers), Impact, "Arial Black", sans-serif;
+    letter-spacing: 0.02em;
+  }
+  .font-marker {
+    font-family: var(--font-marker), "Comic Sans MS", cursive;
+  }
+
+  .eyebrow {
+    @apply font-marker text-sm;
+    color: var(--tag);
   }
 }
 
-/* Custom scrollbar styles */
-.scrollbar-thin {
-  scrollbar-width: thin; /* For Firefox */
+@keyframes marble-drift {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
 }
 
-.scrollbar-thumb-blue-800::-webkit-scrollbar-thumb {
-  background-color: hsl(var(--muted-foreground) / 0.3);
-  border-radius: 4px;
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
 }
 
-.scrollbar-track-transparent::-webkit-scrollbar-track {
-  background-color: transparent;
+@media (prefers-reduced-motion: reduce) {
+  .marble,
+  .marble-text {
+    animation: none;
+  }
 }
 
-/* Ensure Webkit browsers also get the thin scrollbar */
+/* scrollbars */
 ::-webkit-scrollbar {
-  width: 8px; /* Adjust width as needed */
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
-
 ::-webkit-scrollbar-track {
-  background: transparent; /* Optional: if you want the track transparent */
+  background: var(--wall);
 }
-
 ::-webkit-scrollbar-thumb {
-  background-color: hsl(var(--muted-foreground) / 0.3);
-  border-radius: 4px;
-  border: 2px solid transparent; /* Optional: Creates padding around thumb */
-  background-clip: content-box;
+  background: var(--concrete-2);
+  border: 2px solid var(--wall);
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background-color: hsl(var(--muted-foreground) / 0.5);
+  background: var(--tag);
 }
-
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--concrete-2) var(--wall);
+}

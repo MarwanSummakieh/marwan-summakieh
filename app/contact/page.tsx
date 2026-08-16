@@ -1,47 +1,72 @@
-import { profileContent } from "@/lib/profile";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { EnvelopeIcon, MapPinIcon, PhoneIcon } from "@heroicons/react/24/outline";
+import { profileContent } from "@/lib/profile";
+import SectionHead from "@/components/brand/SectionHead";
 
 export const metadata = {
-  title: "Contact | Marwan Summakieh",
+  title: "Contact | MarwanOS",
+  description: "Get in touch with Marwan Summakieh — full-stack & systems engineer in Copenhagen.",
+};
+
+const icons: Record<string, React.ReactNode> = {
+  Email: <EnvelopeIcon className="h-6 w-6" />,
+  Phone: <PhoneIcon className="h-6 w-6" />,
+  Location: <MapPinIcon className="h-6 w-6" />,
 };
 
 const ContactPage = () => {
   const { contact, socials } = profileContent;
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white">
-      <section className="border-b-4 border-[#fcee0a] bg-[#fcee0a] px-5 py-16 text-black sm:px-8">
-        <div className="mx-auto max-w-7xl">
-          <p className="text-sm font-black uppercase tracking-[0.32em]">/// Signal Open</p>
-          <h1 className="mt-5 max-w-5xl text-6xl font-black uppercase leading-[0.86] sm:text-8xl">
-            Contact me
-          </h1>
-          <p className="mt-7 max-w-3xl border-l-4 border-black pl-5 text-xl font-bold leading-8">
-            Open to full-stack roles, product engineering, creative technology, and AI-adjacent software.
-          </p>
+    <div className="text-chalk">
+      <section className="drips bricks border-b-2 border-halo shadow-[0_4px_0_#000]">
+        <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
+          <SectionHead
+            eyebrow="signal open"
+            title={
+              <>
+                Let&apos;s put something <span className="marble-text">on the wall</span>
+              </>
+            }
+            lede={profileContent.availability}
+          />
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-5 px-5 py-14 sm:px-8 lg:grid-cols-3">
-        {contact.map((item) => (
-          <a key={item.label} href={item.href} className="border-2 border-[#00f0ff]/50 bg-[#101010] p-6 transition hover:-translate-y-1 hover:border-[#fcee0a] hover:shadow-[10px_10px_0_#fcee0a]">
-            <p className="text-xs font-black uppercase tracking-[0.28em] text-[#00f0ff]">{item.label}</p>
-            <p className="mt-5 break-words text-2xl font-black text-white">{item.value}</p>
-          </a>
-        ))}
-      </section>
+      <section className="mx-auto max-w-7xl px-5 pb-8 pt-20 sm:px-8">
+        <div className="grid gap-8 lg:grid-cols-3">
+          {contact.map((item, i) => (
+            <a
+              key={item.label}
+              href={item.href}
+              target={item.label === "Location" ? "_blank" : undefined}
+              rel={item.label === "Location" ? "noopener noreferrer" : undefined}
+              className={`piece flex flex-col p-6 ${["-rotate-[0.6deg]", "rotate-[0.5deg]", "-rotate-[0.3deg]"][i]}`}
+            >
+              <span className="inline-flex h-11 w-11 items-center justify-center border-2 border-ink bg-tag text-ink shadow-[3px_3px_0_#000]">
+                {icons[item.label]}
+              </span>
+              <p className="eyebrow mt-5">{item.label}</p>
+              <p className="font-display mt-1 break-words text-2xl leading-tight sm:text-3xl">{item.value}</p>
+            </a>
+          ))}
+        </div>
 
-      <section className="mx-auto max-w-7xl px-5 pb-20 sm:px-8">
-        <div className="flex flex-wrap gap-4 border-2 border-[#ff003c] bg-[#101010] p-6">
-          {socials.map((link) => {
-            const icon = link.label === "LinkedIn" ? <FaLinkedin className="h-6 w-6" /> : <FaGithub className="h-6 w-6" />;
-            return (
-              <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-[#ff003c] px-5 py-3 text-sm font-black uppercase tracking-[0.16em] text-white transition hover:bg-[#00f0ff] hover:text-black">
-                {icon}
+        <div className="piece piece-static mt-12 grid gap-6 p-6 sm:p-8 md:grid-cols-[1fr,auto] md:items-center">
+          <div>
+            <p className="sticker sticker-violet">elsewhere</p>
+            <p className="mt-4 max-w-xl text-sm leading-6 text-chalk/70">
+              All source lives on GitHub. Career history and recommendations are on LinkedIn. If you&apos;re hiring in Copenhagen or remote, email is fastest.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            {socials.map((link) => (
+              <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" className="btn-ghost">
+                {link.label === "LinkedIn" ? <FaLinkedin className="h-5 w-5" /> : <FaGithub className="h-5 w-5" />}
                 {link.label}
               </a>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </section>
     </div>

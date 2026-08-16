@@ -1,71 +1,87 @@
 import Link from "next/link";
+import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
 import { gameProjects } from "@/lib/gameJourney";
+import SectionHead from "@/components/brand/SectionHead";
+import StatusSticker from "@/components/brand/StatusSticker";
 
 export const metadata = {
-  title: "Devlog | Marwan Summakieh",
+  title: "Blackbook | MarwanOS",
+  description: "Marwan Summakieh's blackbook — every repository with a dossier: focus, milestones, stack, source.",
 };
 
-const contractSlugs = [
-  "vibe-opsy",
-  "ninja-fishing-vr",
-  "real-time-strategie",
-  "neural-network",
-  "terminal-go",
-  "emergency-button",
-];
+const entries = [...gameProjects]
+  .filter((p) => p.links?.some((l) => l.href.includes("github.com")))
+  .sort((a, b) => (b.year ?? 0) - (a.year ?? 0));
 
-const DevlogPage = () => {
-  const contracts = contractSlugs
-    .map((slug) => gameProjects.find((project) => project.slug === slug))
-    .filter((project): project is (typeof gameProjects)[number] => Boolean(project));
+const BlackbookPage = () => (
+  <div className="text-chalk">
+    <section className="drips drips-pink bricks border-b-2 border-halo shadow-[0_4px_0_#000]">
+      <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
+        <SectionHead
+          eyebrow="blackbook"
+          splat="pink"
+          title={
+            <>
+              Sketches, sources, <span className="marble-text">receipts</span>
+            </>
+          }
+          lede="A graffiti writer keeps a blackbook — every outline before it hits the wall. This is mine: one entry per unique repository, newest first, each pointing at source."
+        />
+      </div>
+    </section>
 
-  return (
-    <div className="min-h-screen bg-[#050505] text-white">
-      <section className="border-b-4 border-[#fcee0a] bg-[#ff003c] px-5 py-16 text-white sm:px-8">
-        <div className="mx-auto max-w-7xl">
-          <p className="text-sm font-black uppercase tracking-[0.32em] text-[#fcee0a]">/// Repo Contracts</p>
-          <h1 className="mt-5 max-w-5xl text-6xl font-black uppercase leading-[0.86] sm:text-8xl">
-            Devlog board
-          </h1>
-          <p className="mt-7 max-w-3xl border-l-4 border-[#fcee0a] pl-5 text-xl font-bold leading-8">
-            Only unique repositories. No duplicate mission spam. Each contract points to source.
-          </p>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
-        <div className="grid gap-5">
-          {contracts.map((project, index) => (
-            <article key={project.slug} className="group grid gap-5 border-2 border-[#fcee0a]/50 bg-[#101010] p-5 transition hover:border-[#00f0ff] hover:shadow-[10px_10px_0_#00f0ff] md:grid-cols-[140px,1fr,220px]">
-              <div>
-                <p className="text-5xl font-black text-[#fcee0a]">{String(index + 1).padStart(2, "0")}</p>
-                <p className="mt-3 text-xs font-black uppercase tracking-[0.22em] text-[#00f0ff]">{project.status}</p>
-              </div>
-              <div>
-                <h2 className="text-3xl font-black uppercase leading-none">{project.title}</h2>
-                <p className="mt-4 max-w-3xl text-sm font-medium leading-7 text-white/70">{project.summary}</p>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {project.tech.slice(0, 5).map((tech) => (
-                    <span key={tech} className="border border-white/15 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-white/60">{tech}</span>
-                  ))}
+    <section className="mx-auto max-w-7xl px-5 pb-8 pt-20 sm:px-8">
+      <ol className="space-y-6">
+        {entries.map((project, index) => {
+          const github = project.links?.find((l) => l.href.includes("github.com"));
+          const live = project.links?.find((l) => !l.href.includes("github.com"));
+          return (
+            <li key={project.slug}>
+              <article className={`piece grid gap-5 p-5 sm:p-6 md:grid-cols-[110px,1fr,auto] ${index % 2 ? "rotate-[0.3deg]" : "-rotate-[0.3deg]"}`}>
+                <div>
+                  <p className="font-display outline-text-tag text-5xl leading-none">{String(index + 1).padStart(2, "0")}</p>
+                  <p className="font-marker mt-2 text-xs text-chalk/50">{project.year ?? "—"}</p>
                 </div>
-              </div>
-              <div className="flex flex-col justify-end gap-2">
-                <Link href={`/devlog/${project.slug}`} className="bg-[#ff003c] px-4 py-3 text-center text-xs font-black uppercase tracking-[0.16em] text-white transition hover:bg-[#00f0ff] hover:text-black">
-                  Open dossier →
-                </Link>
-                {project.links?.map((link) => (
-                  <Link key={link.href} href={link.href} target="_blank" rel="noopener noreferrer" className="bg-[#fcee0a] px-4 py-3 text-center text-xs font-black uppercase tracking-[0.16em] text-black transition hover:bg-[#00f0ff]">
-                    {link.label} →
+                <div>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <h2 className="font-display text-3xl leading-none sm:text-4xl">
+                      <Link href={`/devlog/${project.slug}`} className="hover:text-tag">
+                        {project.title}
+                      </Link>
+                    </h2>
+                    <StatusSticker status={project.status} />
+                  </div>
+                  <p className="mt-3 max-w-3xl text-sm leading-6 text-chalk/70">{project.hook ?? project.summary}</p>
+                  <div className="mt-4 flex flex-wrap gap-1.5">
+                    {project.tech.slice(0, 6).map((tech) => (
+                      <span key={tech} className="chip">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex flex-row flex-wrap gap-2 md:w-44 md:flex-col md:justify-end">
+                  <Link href={`/devlog/${project.slug}`} className="btn-tag text-xs">
+                    Open piece
                   </Link>
-                ))}
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-    </div>
-  );
-};
+                  {live && (
+                    <a href={live.href} target="_blank" rel="noopener noreferrer" className="btn-ghost text-xs">
+                      {live.label} <ArrowUpRightIcon className="h-3.5 w-3.5" />
+                    </a>
+                  )}
+                  {github && (
+                    <a href={github.href} target="_blank" rel="noopener noreferrer" className="btn-ghost text-xs">
+                      Source <ArrowUpRightIcon className="h-3.5 w-3.5" />
+                    </a>
+                  )}
+                </div>
+              </article>
+            </li>
+          );
+        })}
+      </ol>
+    </section>
+  </div>
+);
 
-export default DevlogPage;
+export default BlackbookPage;

@@ -4,15 +4,29 @@ export interface FocusArea {
   deliverables: string[];
 }
 
+export type ProjectCategory = "systems" | "software" | "games" | "research";
+
 export interface GameProject {
   slug: string;
   title: string;
-  status: "Prototype" | "In Production" | "Released" | "Research";
+  status: "Prototype" | "In Production" | "Released" | "Research" | "Live";
   summary: string;
   focus: string;
   outcomes: string[];
   tech: string[];
   links?: { label: string; href: string }[];
+  /** Broad shelf the piece sits on. Defaults to "games" for legacy entries. */
+  category?: ProjectCategory;
+  /** Year the piece was (last) painted. */
+  year?: number;
+  /** Fresh paint — surfaces on the home wall. */
+  fresh?: boolean;
+  /** One-line hook, shorter than summary. */
+  hook?: string;
+  /** Local hero image (public path). */
+  image?: { src: string; alt: string };
+  /** Note shown alongside the piece (e.g. educational disclaimer). */
+  note?: string;
 }
 
 export interface ToolkitCategory {
@@ -85,8 +99,157 @@ export const focusAreas: FocusArea[] = [
 ];
 
 export const gameProjects: GameProject[] = [
+  // ─── Fresh paint (2026) ────────────────────────────────────────────────
+  {
+    slug: "marwanos",
+    title: "MarwanOS",
+    status: "In Production",
+    category: "systems",
+    year: 2026,
+    fresh: true,
+    hook: "A Linux distro that boots straight into a controller-driven Godot shell. No desktop, no login, no text.",
+    summary:
+      "A Fedora-based, image-mode Linux distribution built on bootc and Universal Blue that cold-boots into a gamepad-navigable gaming shell written in Godot 4. The OS is a container image; every change ships as `bootc upgrade` and every mistake is one `bootc rollback` away.",
+    focus:
+      "Owning the whole stack of an appliance OS — kernel args, Plymouth splash, greetd/gamescope session, systemd supervision, udev rules — and drawing the only UI the machine ever shows in a Godot shell built TV-first with controller focus, held-direction repeat, and hotplug player-one detection. Architecture decisions are recorded as ADRs and never relitigated.",
+    outcomes: [
+      "Fedora bootc image with atomic upgrade/rollback, built and pushed to GHCR from GitHub Actions",
+      "Godot 4 shell: controller-navigable tile grid, launch seam, settings/info screens, Wi-Fi seam, dev-mode terminal behind a flag",
+      "Silent boot pipeline: custom Plymouth theme, hidden GRUB, no getty on the appliance — text only reachable via journalctl or devmode ssh",
+      "systemd fleet: app scan/launch control, flatpak install units, flight recorder, boot-success watchdog, USB automount, display/window profiles",
+      "Phase 1 contract: Godot shell ↔ Rust library daemon over JSON-RPC/WebSocket so installs survive shell restarts",
+      "12 architecture decision records covering NVIDIA baseline, compositor choice, single-display appliance model, and an in-house Steam client",
+    ],
+    tech: ["Godot 4", "GDScript", "bootc", "Fedora / Universal Blue", "systemd", "gamescope", "Plymouth", "Bash", "Containerfile", "GitHub Actions"],
+    links: [
+      { label: "GitHub repository", href: "https://github.com/MarwanSummakieh/MarwanOS" },
+      { label: "Phase 1 plan", href: "https://github.com/MarwanSummakieh/MarwanOS/blob/main/docs/phase-1-plan.md" },
+    ],
+  },
+  {
+    slug: "trader",
+    title: "Trader",
+    status: "Live",
+    category: "software",
+    year: 2026,
+    fresh: true,
+    hook: "An intraday momentum bot on Alpaca paper trading with server-side bracket orders, a live dashboard, and a backtest engine every rule was validated against.",
+    summary:
+      "An automated intraday momentum trading bot for US equities executing through Alpaca paper trading with server-side bracket orders, a FastAPI dashboard, and a backtest / parameter-sweep engine over 5-minute bars. A second, independent instance trades crypto 24/7 on an internal fill simulator with its own ledger.",
+    focus:
+      "Treating a trading rule as a hypothesis: every entry/exit gate (EMA stack, ADX, RSI band, EMA50 regime, no-late-entries, earnings blackout) was validated on a train/holdout split with walk-forward checks and honest cost modelling — spread, slippage, and SEC/FINRA fees — before it was allowed to trade.",
+    outcomes: [
+      "Scanner → entry → exit loop over a ~60-symbol universe every 5 minutes during market hours",
+      "ATR-anchored stops, 3R take-profit and R-based trailing stops resting server-side at the broker so exits fire even if the process dies",
+      "SQLite trade ledger as the single source of truth; one instance per asset class with separate capital",
+      "Backtest CLI with parameter sweeps; documented net edge (~+0.14R/trade after all costs) and a crypto rule adopted for drawdown control, edge explicitly marked unproven",
+      "Live FastAPI dashboard for stocks and crypto, deployed with Docker",
+    ],
+    tech: ["Python 3.11", "FastAPI", "Alpaca API", "pandas", "SQLite", "Docker"],
+    note: "Paper trading only. Nothing here is financial advice.",
+    links: [
+      { label: "Live dashboard", href: "https://trader.marwansummakieh.me" },
+      { label: "GitHub repository", href: "https://github.com/MarwanSummakieh/trader" },
+    ],
+  },
+  {
+    slug: "storyroom",
+    title: "Storyroom",
+    status: "Released",
+    category: "software",
+    year: 2026,
+    fresh: true,
+    hook: "A realtime multiplayer novel-writing workspace: shared cursors, scene chat, a story bible, and CRDT-safe co-editing.",
+    summary:
+      "A realtime collaborative novel-writing workspace built with Next.js, TipTap, Yjs, Hocuspocus, and Prisma. Co-authors write in the same scene simultaneously with live presence, shared cursors, scene chat, chapter/scene navigation, a story bible, Markdown export, and a one-click Windows installer.",
+    focus:
+      "Realtime state synchronisation done properly — Yjs CRDTs for conflict-free edits, awareness for presence, stateless WebSocket events for chat that are persisted after broadcast — with a production data model and an automated two-tab Playwright test proving the multiplayer path.",
+    outcomes: [
+      "TipTap/ProseMirror editor bound to Yjs documents served by a Hocuspocus WebSocket server",
+      "Live cursors and presence via Yjs awareness; scene chat over stateless events, persisted after broadcast",
+      "Story bible panel for characters, places, canon facts and lore beside the draft",
+      "Zero-setup JSON dev store plus Prisma/Postgres schema for hosted deployments; Docker one-command deploy",
+      "Native Windows installer (Inno Setup + portable Node) that runs the servers in the background and opens the app",
+      "Vitest unit tests and an automated two-browser Playwright realtime test",
+    ],
+    tech: ["Next.js", "TypeScript", "TipTap", "Yjs", "Hocuspocus", "Prisma", "Postgres", "Tailwind CSS", "Playwright", "Vitest", "Inno Setup"],
+    image: { src: "/work/storyroom.webp", alt: "Storyroom workspace with the manuscript editor, story bible and scene chat" },
+    links: [{ label: "GitHub repository", href: "https://github.com/MarwanSummakieh/storyroom" }],
+  },
+  {
+    slug: "prosthetic-vision",
+    title: "Simulated Prosthetic Vision",
+    status: "Research",
+    category: "research",
+    year: 2026,
+    fresh: true,
+    hook: "MSc thesis: real-time depth-based walkable-space encoding for simulated prosthetic vision in indoor navigation.",
+    summary:
+      "Master's thesis playground: a PC-based Python pipeline that takes an RGB-D source, detects walkable space, encodes the scene, and renders it as a simulated phosphene percept with latency metrics — the platform for a human study comparing a raw depth encoder against a simplified, hazard-aware one.",
+    focus:
+      "Human-centered AI in the most literal sense: designing what a person with a retinal implant would perceive, then measuring whether a smarter encoding (suppress the floor, light up obstacles by proximity, pulse drop-offs, mark the deepest walkable direction) beats raw depth under an identical simulated implant.",
+    outcomes: [
+      "RGB-D → RANSAC floor + height rules → encoder → phosphene renderer (jitter, dropout, brightness levels, afterglow)",
+      "Two experimental encoders sharing one simulated implant so percept differences come from encoding alone",
+      "TinySegNet: ~70K-parameter depthwise-separable U-Net predicting walkability from inverse depth + validity, trained on procedurally generated corridors",
+      "Synthetic data generator, training/evaluation CLI (IoU + latency vs. rule baseline), NYU Depth V2 support",
+      "Live viewer with debug/percept toggles, headless capture mode, and a pytest suite",
+    ],
+    tech: ["Python", "NumPy", "OpenCV", "PyTorch", "RGB-D", "RANSAC", "Computer Vision", "Human-Centered AI"],
+    links: [{ label: "GitHub repository", href: "https://github.com/MarwanSummakieh/real-time-video-feed-subsampling" }],
+  },
+  {
+    slug: "mediawan",
+    title: "Mediawan",
+    status: "In Production",
+    category: "software",
+    year: 2026,
+    fresh: true,
+    hook: "A self-hosted, invite-only streaming front-end study: one Node process for auth, admin, cached metadata, delivery decisions and transcoding — plus a Samsung Tizen TV app.",
+    summary:
+      "A study of media-server architecture: a single Node process serving an SPA, session auth, an admin panel, cached AniList metadata, source resolution, per-device delivery decisions (direct play vs. remux vs. transcode), and a thin media proxy — with a companion Samsung Tizen TV app. Published for educational purposes; ships no content, indexes or credentials.",
+    focus:
+      "Delivery engineering: probing what the requesting device can actually decode, copying streams whenever possible, and treating an unnecessary lossy transcode as a regression. Independent backends fail over instead of failing the request.",
+    outcomes: [
+      "Capability probing + per-track remux/transcode sessions with ffmpeg; direct play preferred",
+      "Tiered source ranking with a quality floor; provider chain that moves on when one is down or rate-limited",
+      "Security layer: headers, rate limiting, SSRF guards, signed media tokens; SQLite via node:sqlite",
+      "Browser UI and a separate TV-optimised UI packaged as a Tizen app",
+      "node:test suites, Docker Compose deployment path, diagnostic scripts",
+    ],
+    tech: ["Node.js 22", "JavaScript", "node:sqlite", "ffmpeg", "Samsung Tizen", "Docker Compose"],
+    note: "Educational / research project. No content is hosted or distributed; every source is opt-in.",
+    links: [{ label: "GitHub repository", href: "https://github.com/MarwanSummakieh/mediawan" }],
+  },
+  {
+    slug: "marusic",
+    title: "Marusic",
+    status: "In Production",
+    category: "software",
+    year: 2026,
+    fresh: true,
+    hook: "A Spotify-style web player with jam sessions over SSE, UPnP/Sonos casting, a PWA, and a Kotlin Android Auto app.",
+    summary:
+      "An educational reference for how a streaming-player UI, media proxy, invite-only auth, UPnP/Cast output and a PWA fit together. Search and metadata go through the YouTube Music Innertube API; audio is resolved with yt-dlp and proxied with Range support. Includes a Kotlin Android Auto companion.",
+    focus:
+      "Product-level polish on a solo project: full-screen mobile now-playing, gapless-ish prefetch, playback surviving reloads, drag-to-reorder playlists, and synchronized multi-device jam sessions where any member can be a remote control.",
+    outcomes: [
+      "Invite-only accounts with scrypt-hashed passwords, cookie sessions in SQLite, login rate limiting and an admin panel",
+      "Jam sessions: shared queue, one speaker, live progress and control over server-sent events; host handoff if the host leaves",
+      "Cast to smart TVs and Sonos over UPnP/DLNA from any browser; PWA install; Kotlin Android Auto app",
+      "Per-user libraries, radio stations, daily mixes, lyrics, quality selector, FLAC/MP3 export via bundled ffmpeg",
+      "Content-type visual language so playlists, singles, albums and stations read at a glance",
+    ],
+    tech: ["Node.js", "Express", "youtubei.js", "yt-dlp", "SQLite", "SSE", "UPnP / DLNA", "PWA", "Kotlin", "Android Auto"],
+    note: "Educational reference only — not affiliated with YouTube, Spotify or Sonos.",
+    links: [{ label: "GitHub repository", href: "https://github.com/MarwanSummakieh/marusic" }],
+  },
+
+  // ─── Older pieces ──────────────────────────────────────────────────────
   {
     slug: "real-time-strategie",
+    category: "games",
+    year: 2025,
     title: "Real-Time Strategie",
     status: "Prototype",
     summary:
@@ -110,6 +273,10 @@ export const gameProjects: GameProject[] = [
 
   {
     slug: "ninja-fishing-vr",
+    category: "games",
+    year: 2025,
+    image: { src: "/reel-deal/reel-deal-slicing.webp", alt: "Reel Deal VR gameplay — slicing a fish with a katana" },
+    hook: "A finished Unity VR fishing game — hook minigame, katana slicing, wristwatch progression, 16-participant user testing.",
     title: "Reel Deal (NinjaFishingVR)",
     status: "Released",
     summary:
@@ -147,6 +314,8 @@ export const gameProjects: GameProject[] = [
   },
   {
     slug: "basket-ball-vr",
+    category: "games",
+    year: 2024,
     title: "Basketball VR",
     status: "Prototype",
     summary:
@@ -169,6 +338,8 @@ export const gameProjects: GameProject[] = [
   },
   {
     slug: "neural-network",
+    category: "research",
+    year: 2025,
     title: "Neural Network from Scratch",
     status: "Research",
     summary:
@@ -191,6 +362,8 @@ export const gameProjects: GameProject[] = [
   },
   {
     slug: "elden-ring-social-graphs",
+    category: "research",
+    year: 2025,
     title: "Elden Ring Social Graphs",
     status: "Research",
     summary:
@@ -213,6 +386,8 @@ export const gameProjects: GameProject[] = [
   },
   {
     slug: "emergency-button",
+    category: "software",
+    year: 2025,
     title: "Emergency Alert App",
     status: "Released",
     summary:
@@ -235,6 +410,8 @@ export const gameProjects: GameProject[] = [
   },
   {
     slug: "terminal-go",
+    category: "software",
+    year: 2025,
     title: "Custom Terminal",
     status: "Prototype",
     summary:
@@ -256,6 +433,8 @@ export const gameProjects: GameProject[] = [
   },
   {
     slug: "not-pirate-bay",
+    category: "software",
+    year: 2024,
     title: "Not Pirate Bay",
     status: "Prototype",
     summary:
@@ -277,6 +456,9 @@ export const gameProjects: GameProject[] = [
   },
   {
     slug: "vibe-opsy",
+    category: "software",
+    year: 2025,
+    hook: "7-class skin-lesion classifier wrapped in a 3D retro Macintosh UI, deployed on Cloudflare Workers.",
     title: "Vibe-Opsy — Skin Cancer Detection AI",
     status: "Released",
     summary:
@@ -306,6 +488,8 @@ export const gameProjects: GameProject[] = [
   },
   {
     slug: "multi-agent-system",
+    category: "research",
+    year: 2025,
     title: "Multi-Agent System Warmup",
     status: "Research",
     summary:
