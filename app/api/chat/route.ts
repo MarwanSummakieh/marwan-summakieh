@@ -5,12 +5,11 @@ import { z } from "zod";
 import fs from 'fs';
 import path from 'path';
 
-const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
-const OPENROUTER_MODEL = process.env.OPENROUTER_MODEL ?? "anthropic/claude-3.5-sonnet";
+const OPENROUTER_MODEL = process.env.OPENROUTER_MODEL ?? "openai/gpt-4.1-mini";
 const OPENROUTER_REFERRER = process.env.OPENROUTER_APP_URL ?? "https://marwansummakieh.com";
 
-if (!OPENROUTER_API_KEY) {
-  throw new Error("OPENROUTER_API_KEY environment variable is not set");
+function getApiKey(): string | null {
+  return process.env.OPENROUTER_API_KEY ?? null;
 }
 
 // --- Load Context from File ---
@@ -195,6 +194,49 @@ const chatRequestSchema = z.object({
   ).optional().default([]),
 });
 
+function localPortfolioReply(message: string): string {
+  const normalized = message.toLowerCase();
+
+  if (normalized.includes("contact") || normalized.includes("email") || normalized.includes("phone") || normalized.includes("linkedin") || normalized.includes("github")) {
+    return `CONTACT_INFO_START
+LinkedIn: https://www.linkedin.com/in/marwan-summakieh-36aab4290/
+Email: marwansummakieh97@gmail.com
+GitHub: https://github.com/MarwanSummakieh
+Phone: +45 27 29 78 28
+CONTACT_INFO_END`;
+  }
+
+  if (normalized.includes("marwanos") || normalized.includes("linux") || normalized.includes("godot") || normalized.includes("bootc") || normalized.includes("os ")) {
+    return "MarwanOS is Marwan's Fedora-based, image-mode Linux distro (bootc / Universal Blue) that boots straight into a controller-driven Godot 4 shell — no desktop, no login, no visible text. Upgrades ship as `bootc upgrade`, undo is `bootc rollback`. Dossier: `/devlog/marwanos`. Source: https://github.com/MarwanSummakieh/MarwanOS";
+  }
+
+  if (normalized.includes("new") || normalized.includes("recent") || normalized.includes("latest") || normalized.includes("2026") || normalized.includes("fresh")) {
+    return "New in 2026: MarwanOS (bootc Linux + Godot shell), Trader (live Alpaca paper-trading bot, https://trader.marwansummakieh.me), Storyroom (realtime Yjs/TipTap novel-writing workspace), an MSc thesis on simulated prosthetic vision, Mediawan (media-server architecture study + Tizen app), and Marusic (Spotify-style player with jam sessions and Android Auto). All on the home page and in `/devlog`.";
+  }
+
+  if (normalized.includes("trader") || normalized.includes("trading") || normalized.includes("alpaca")) {
+    return "Trader is an intraday momentum bot for US equities on Alpaca paper trading with server-side bracket orders, a FastAPI dashboard and a backtest engine every rule was validated against. Live: https://trader.marwansummakieh.me — dossier: `/devlog/trader`. Paper only, not financial advice.";
+  }
+
+  if (normalized.includes("thesis") || normalized.includes("prosthetic") || normalized.includes("research")) {
+    return "Marwan's MSc thesis at DTU: real-time depth-based walkable-space encoding for simulated prosthetic vision in indoor navigation — an RGB-D → walkable-space → encoder → phosphene-renderer pipeline with a ~70K-parameter TinySegNet. Dossier: `/devlog/prosthetic-vision`.";
+  }
+
+  if (normalized.includes("game") || normalized.includes("unity") || normalized.includes("vr") || normalized.includes("reel")) {
+    return "Games & VR: Marwan works with Unity, C#, XR Interaction Toolkit, OpenXR, gameplay loops, physics interactions, feedback systems, and shaders. Key projects include Reel Deal/NinjaFishingVR, Real-Time Strategie, and Basketball VR. The most detailed piece is `/devlog/ninja-fishing-vr`.";
+  }
+
+  if (normalized.includes("software") || normalized.includes("react") || normalized.includes("next") || normalized.includes("azure") || normalized.includes("cloud") || normalized.includes("backend")) {
+    return "Software: Marwan has shipped production-facing apps with Next.js, React, Node, Flask, Docker, MongoDB, Azure, PowerShell, SharePoint REST API, and Office Add-ins. Paid work: Second Sun, Joker IT, and freelance Track & Trace delivery. Recent personal software: Storyroom, Trader, Mediawan, Marusic — see `/work`.";
+  }
+
+  if (normalized.includes("repo") || normalized.includes("project") || normalized.includes("devlog")) {
+    return "Every repository is listed at `/devlog`, newest first, each with a detail page (focus, milestones, stack, source). Good starting points: MarwanOS, Storyroom, Trader, Reel Deal, Vibe-Opsy. Everything grouped by type is at `/work`.";
+  }
+
+  return "I can answer about Marwan's recent work (MarwanOS, Trader, Storyroom, thesis), software background, games & VR, the devlog, tech stack, or contact info. Try: `what's new`, `tell me about MarwanOS`, `show game projects`, or `contact info`.";
+}
+
 // API Route Handler
 export async function POST(req: NextRequest) {
   // Rate limiting check
@@ -221,6 +263,7 @@ export async function POST(req: NextRequest) {
       console.log("Rate limiter not configured, skipping check.");
   }
 
+  let requestedMessage = "";
   try {
     const body = await req.json();
 
@@ -232,6 +275,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: `Invalid input: ${errorMessages}` }, { status: 400 });
     }
     const { message, history } = validationResult.data;
+    requestedMessage = message;
 
     console.log("Received validated message:", message);
     console.log("Received validated history:", JSON.stringify(history, null, 2));
@@ -252,21 +296,33 @@ export async function POST(req: NextRequest) {
       max_tokens: 1200,
     };
 
-    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${OPENROUTER_API_KEY}`,
-        "HTTP-Referer": OPENROUTER_REFERRER,
-        "X-Title": "Marwan Summakieh Game Journey",
-      },
-      body: JSON.stringify(payload),
-    });
+    const apiKey = getApiKey();
+    if (!apiKey) {
+      console.warn("OPENROUTER_API_KEY is not set. Using local portfolio fallback.");
+      return NextResponse.json({ reply: localPortfolioReply(message), fallback: true });
+    }
+
+    let response: Response;
+    try {
+      response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`,
+          "HTTP-Referer": OPENROUTER_REFERRER,
+          "X-Title": "Marwan Summakieh Portfolio",
+        },
+        body: JSON.stringify(payload),
+      });
+    } catch (error) {
+      console.error("OpenRouter fetch failed:", error);
+      return NextResponse.json({ reply: localPortfolioReply(message), fallback: true });
+    }
 
     if (!response.ok) {
       const errorPayload = await response.text();
       console.error("OpenRouter API error:", errorPayload);
-      return NextResponse.json({ error: "Upstream model request failed." }, { status: 500 });
+      return NextResponse.json({ reply: localPortfolioReply(message), fallback: true });
     }
 
     const data = await response.json();
@@ -283,12 +339,9 @@ export async function POST(req: NextRequest) {
 
   } catch (error: unknown) {
     console.error("API Route Error:", error);
-    let errorMessage = 'An internal error occurred.';
-    if (error instanceof Error) {
-        errorMessage = process.env.NODE_ENV === 'development'
-            ? error.message
-            : 'An internal error occurred.';
+    if (requestedMessage) {
+      return NextResponse.json({ reply: localPortfolioReply(requestedMessage), fallback: true });
     }
-    return NextResponse.json({ error: errorMessage }, { status: 500 });
+    return NextResponse.json({ error: "Invalid chat request." }, { status: 400 });
   }
 } 

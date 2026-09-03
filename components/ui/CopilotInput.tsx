@@ -13,14 +13,10 @@ interface CopilotInputProps {
 
 // Sample relevant prompts about Marwan
 const samplePrompts = [
-    "Tell me about Marwan's experience with React.",
-    "What are Marwan's career goals?",
-    "What kind of games does Marwan like to develop?",
-    "What technologies did Marwan use in the Azure Provisioning Tool project?",
-    "What are Marwan's hobbies besides coding?",
-    "Ask Marwan about his views on pizza.",
-    "What's Marwan's approach to problem-solving?",
-    "Where did Marwan study?",
+    "Summarize the software sector.",
+    "Show me the game development projects.",
+    "Which repo contracts are strongest?",
+    "How can I contact Marwan?",
 ];
 
 const CopilotInput: React.FC<CopilotInputProps> = ({ 
@@ -54,7 +50,7 @@ const CopilotInput: React.FC<CopilotInputProps> = ({
 
   return (
     <div
-      className="w-full bg-[#1a1f36]/70 backdrop-blur-md rounded-full p-2 flex items-center space-x-2 shadow-lg border border-blue-900/50"
+      className="flex w-full items-center space-x-2 border-2 border-halo bg-wall p-2 shadow-[4px_4px_0_#000]"
       aria-busy={isLoading}
     >
       {/* Input Field - Added min-w-0 */}
@@ -63,8 +59,8 @@ const CopilotInput: React.FC<CopilotInputProps> = ({
         value={value}
         onChange={onChange}
         onKeyPress={onKeyPress}
-        placeholder="Ask me anything... or click the ✨ for a suggestion"
-        className="flex-1 bg-transparent text-neutral-100 placeholder-neutral-400 focus:outline-none text-lg px-2 min-w-0"
+        placeholder="Transmit query..."
+        className="min-w-0 flex-1 bg-transparent px-2 text-base font-bold text-chalk placeholder-white/35 focus:outline-none"
         aria-label="Chat input"
         disabled={isLoading}
       />
@@ -74,7 +70,7 @@ const CopilotInput: React.FC<CopilotInputProps> = ({
         {/* Sparkles Icon Button */}
         <button 
           onClick={handleSparkleClick}
-          className="p-2 text-neutral-300 hover:text-yellow-300 transition-colors rounded-full hover:bg-blue-800/50"
+          className="p-2 text-chalk/70 transition-colors hover:bg-halo hover:text-ink"
           aria-label="Suggest a prompt"
           disabled={isLoading}
         >
@@ -88,7 +84,7 @@ const CopilotInput: React.FC<CopilotInputProps> = ({
       <button
         onClick={onSubmit}
         disabled={isSendDisabled}
-        className="p-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white disabled:bg-neutral-600 disabled:opacity-50 hover:shadow-lg transition-all flex items-center justify-center flex-shrink-0"
+        className="flex shrink-0 items-center justify-center bg-tag p-2 text-ink border-2 border-ink transition-all hover:bg-peach disabled:bg-neutral-600 disabled:opacity-50"
         aria-label="Send message"
       >
         {isLoading ? (

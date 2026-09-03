@@ -1,46 +1,120 @@
-SOFTWARE ENGINEER | HUMAN-CENTERED AI GRADUATE STUDENT
+FULL-STACK ENGINEER & CREATIVE TECHNOLOGIST | MSc HUMAN-CENTERED AI @ DTU
 Marwan Summakieh
 Phone: +45 27 29 78 28   Email: marwansummakieh97@gmail.com
 Copenhagen, Denmark
 
 SUMMARY
-Front-end focused software engineer pursuing a master's degree in Human-Centered Artificial Intelligence. I translate user research and systems thinking into trustworthy interfaces, while balancing graduate coursework with client consulting. Experienced across React, Next.js, Python, Azure tooling, and UX prototyping.
+Full-stack and systems engineer who ships whole systems: a Linux distro that boots into a controller shell (MarwanOS), a realtime multiplayer editor (Storyroom), a live trading bot (Trader), self-hosted media systems (Mediawan, Marusic), and a finished VR game (Reel Deal). Currently writing an MSc thesis in Human-Centered AI at DTU on simulated prosthetic vision. Practical experience with Next.js, React, TypeScript, Python, Node, Godot, Unity, Docker, Azure and MongoDB through internship, freelance, and cloud development roles. Open to full-stack, systems, and AI-adjacent roles in Copenhagen or remote.
 
 CURRENT FOCUS
-Pursuing a master's in Human-Centered AI with research centered on explainable interfaces, accessibility, and collaborative tooling for design and engineering teams.
+Writing the master's thesis on simulated prosthetic vision (real-time depth-based walkable-space encoding) and building MarwanOS, a bootc-based Linux gaming appliance with a Godot 4 shell. The site is organised as: / (home, Fresh Paint), /work (all pieces by shelf), /devlog (the Blackbook, one dossier per repo), /contact. The site's brand — the wildstyle "MARWAN OS" graffiti piece — is Marwan's own artwork.
+
+INTERESTS & CREATIVE PURSUITS
+• Creating visual experiences in VR — building immersive worlds and interactive environments using Unity and XR Interaction Toolkit
+• Game development — designing real-time strategy mechanics with behavior-tree AI, custom shaders, and unit systems in Unity
+• Learning Blender — exploring 3D modeling, texturing, and visual storytelling as a creative outlet
+• Bridging code and art — interested in the intersection of software engineering and creative expression through interactive media
 
 EXPERIENCE
 
-SHADE ANALYSIS PLATFORM UI REFRESH | SECOND SUN (2025)
-Elevated the UI for a golf-course shade analysis product by restructuring journeys and aligning design standards.
-• Designed reusable interface components that improved clarity for course designers.
-• Audited the existing front-end implementation and produced a roadmap of usability improvements.
-• Authored implementation guidelines to keep engineering and design teams aligned.
-Technologies: Python Flask, HTML, CSS, JavaScript.
+TURF MANAGEMENT PLATFORM | SECOND SUN — Full Stack Developer Intern (May 2025 – Sep 2025)
+Built a full-stack web application in Flask for a production-facing turf management platform.
+• Containerized application services with Docker to improve deployment consistency and streamline environment setup.
+• Enhanced sensor-data visualization and core user flows to strengthen platform usability.
+• Improved user interfaces for sensor data monitoring and overall platform experience.
+Technologies: Python, Flask, Docker, JavaScript, HTML, CSS.
 
-OUTLOOK FILE MANAGEMENT EXTENSION | JOKER IT (2024)
-Built an Outlook extension that lets consultants upload attachments to SharePoint without leaving the mail client.
-• Developed the add-in with Microsoft's Office Add-in framework and React.
-• Implemented secure authentication flows and resilient error handling for file transfers.
-• Produced user documentation and training assets to accelerate onboarding.
-Technologies: Microsoft Office Add-in Framework, React, SharePoint REST API, OAuth.
+TRACK & TRACE ORDER SYSTEM | FREELANCE — Software Engineer (Sep 2024 – Apr 2025)
+Developed a full-stack web platform using Next.js and MongoDB for Zaki's Skrædder & Renseri.
+• Designed and implemented a Track & Trace ticketing system that digitized manual order workflows.
+• Deployed the application on Vercel for scalable, production-ready hosting.
+• Created Figma prototypes to align stakeholders before implementation.
+Technologies: Next.js, React Native, MongoDB, Tailwind CSS, Vercel, Figma.
 
-AZURE PROVISIONING TOOL | JOKER IT (2023)
-Delivered an automated provisioning tool that standardised Azure resource allocation and reduced manual setup.
-• Designed the provisioning architecture and dashboards for monitoring resource usage.
-• Automated common workflows with PowerShell, Azure CLI, and Functions.
-• Established logging and error handling for reliable deployments.
-Technologies: Azure Resource Manager, PowerShell, Azure CLI, Azure Functions, REST APIs.
+CLOUD INFRASTRUCTURE & TOOLING | JOKER IT — Cloud Developer (Aug 2023 – Aug 2024)
+Managed Azure cloud infrastructure as the sole developer, using PowerShell automation to support operational workflows.
+• Developed and deployed a custom Outlook extension to improve enterprise email productivity.
+• Maintained legacy systems with 99% uptime to support client operations.
+• Integrated Copilot AI into development workflows to streamline code generation and troubleshooting.
+Technologies: Azure, PowerShell, React, Microsoft Office Add-in, SharePoint REST API, OAuth.
 
-TAILORING ORDER TRACKING SUITE | FREELANCE (2024)
-Launched a marketing site and order tracking app for a tailoring business to improve customer visibility.
-• Built responsive web and mobile experiences with Next.js and React Native.
-• Deployed via Vercel using AWS-backed infrastructure.
-• Created Figma and Relume prototypes to align stakeholders before implementation.
-Technologies: Next.js, React Native, Tailwind CSS, AWS, Vercel, Figma, Relume.
+GITHUB PROJECTS (Personal & Academic)
+
+FRESH PAINT — 2026 (newest work, highlighted on the site's home page)
+
+MARWANOS (Godot 4, GDScript, bootc, Fedora / Universal Blue, systemd, gamescope, Plymouth, Bash, GitHub Actions) — In production
+A Fedora-based, image-mode Linux distribution built on bootc that cold-boots straight into a controller-navigable gaming shell written in Godot 4. No desktop, no login screen, no visible text. The OS is a container image; upgrades ship via `bootc upgrade` with `bootc rollback` as undo. Includes a silent boot pipeline (custom Plymouth theme, hidden GRUB), a fleet of systemd units (app scan/launch, flatpak installs, flight recorder, boot-success watchdog, USB automount, display profiles), a dev-mode flag that enables sshd/terminal, and 12 architecture decision records. Phase 1 adds a Rust library daemon talking to the shell over JSON-RPC/WebSocket. The MarwanOS name is also Marwan's personal brand (the graffiti logo on the site). Dossier: /devlog/marwanos
+GitHub: https://github.com/MarwanSummakieh/MarwanOS
+
+TRADER (Python 3.11, FastAPI, Alpaca API, pandas, SQLite, Docker) — Live (paper trading)
+An automated intraday momentum trading bot for US equities executing through Alpaca paper trading with server-side bracket orders (ATR stops, 3R take-profit, R-based trailing), a live FastAPI dashboard, and a backtest/parameter-sweep engine over 5-minute bars that every rule was validated against on a train/holdout split with walk-forward checks and honest cost modelling. A second instance trades crypto 24/7 on an internal simulator. Paper trading only, not financial advice. Dossier: /devlog/trader
+Live: https://trader.marwansummakieh.me
+GitHub: https://github.com/MarwanSummakieh/trader
+
+STORYROOM (Next.js, TypeScript, TipTap, Yjs, Hocuspocus, Prisma, Postgres, Tailwind, Playwright, Vitest, Inno Setup) — Released
+A realtime collaborative novel-writing workspace: co-authors edit the same scene simultaneously with Yjs CRDTs, live cursors/presence, scene chat over WebSocket, chapter/scene navigation, a story bible, Markdown export, a one-command Docker deploy and a native Windows installer. Automated two-tab Playwright realtime test. Dossier: /devlog/storyroom
+GitHub: https://github.com/MarwanSummakieh/storyroom
+
+SIMULATED PROSTHETIC VISION — MSc THESIS (Python, NumPy, OpenCV, PyTorch, RGB-D, RANSAC) — Research
+Master's thesis "Real-Time Depth-Based Walkable-Space Encoding for Simulated Prosthetic Vision in Indoor Navigation". A Python pipeline: RGB-D source → RANSAC floor + height-rule walkable-space detection → encoder (raw vs. simplified hazard-aware) → phosphene renderer with jitter/dropout/afterglow → latency metrics. Includes TinySegNet, a ~70K-parameter depthwise-separable U-Net trained on procedurally generated corridors, an evaluation CLI (IoU + latency), NYU Depth V2 support and a pytest suite. This is the platform for a human study. Dossier: /devlog/prosthetic-vision
+GitHub: https://github.com/MarwanSummakieh/real-time-video-feed-subsampling
+
+MEDIAWAN (Node.js 22, node:sqlite, ffmpeg, Samsung Tizen, Docker Compose) — In production, educational/research only
+A study of media-server architecture: one Node process serving an SPA, session auth, admin panel, cached AniList metadata, source resolution with tiered quality ranking, per-device delivery decisions (direct play vs. remux vs. transcode via capability probing), a thin media proxy with SSRF guards and signed tokens, plus a Samsung Tizen TV app. Ships no content; every source is opt-in. Dossier: /devlog/mediawan
+GitHub: https://github.com/MarwanSummakieh/mediawan
+
+MARUSIC (Node.js, Express, youtubei.js, yt-dlp, SQLite, SSE, UPnP/DLNA, PWA, Kotlin, Android Auto) — In production, educational reference only
+A Spotify-style web music player: invite-only auth (scrypt, cookie sessions), per-user libraries, artist pages, lyrics, radio, daily mixes, jam sessions (shared queue + live control over server-sent events with host handoff), casting to smart TVs/Sonos over UPnP, PWA, and a Kotlin Android Auto companion app. Not affiliated with YouTube/Spotify/Sonos. Dossier: /devlog/marusic
+GitHub: https://github.com/MarwanSummakieh/marusic
+
+OLDER PROJECTS
+
+REAL-TIME STRATEGIE (Unity, C#, ShaderLab)
+An RTS prototype in Unity with behavior-tree driven AI, drag-select unit management, and custom ShaderLab shader effects.
+GitHub: https://github.com/MarwanSummakieh/Real-Time-Strategie
+
+BASKETBALL VR (Unity, C#, XR Interaction Toolkit, Oculus XR, HLSL)
+A VR basketball experience for Oculus headsets with physics-based ball throwing, scoring system, and HLSL shader effects. Built on the XR Interaction Toolkit.
+GitHub: https://github.com/MarwanSummakieh/Basket-Ball-VR
+
+REEL DEAL / NINJAFISHINGVR (Unity 6, C#, XR Interaction Toolkit, OpenXR, Unity Input System, Unity UI Toolkit, URP, EzySlice)
+A finished VR fishing game made over 13 weeks. Players fish from a boat, store catches in a cooler, slice fish with a katana, earn money, and upgrade equipment. Marwan was a programmer and main responsible contributor for the hook mechanic and tutorial system, with shared responsibility for progression mechanics. The project includes thumbstick bobber control, moving target circle, success/fail progress, fish difficulty scaling, rod upgrade balancing, holographic tutorial panels, pulsing controller button highlights, blinking world-object guidance, wristwatch collection/equipment UI, sound/haptic feedback, EzySlice-based fish slicing, and user-test-driven iteration across 16 participants.
+GitHub: https://github.com/MarwanSummakieh/ReelDeal
+Project README: https://github.com/MarwanSummakieh/ReelDeal#readme
+
+NEURAL NETWORK FROM SCRATCH (Python)
+A ground-up neural network implementation in pure Python — no frameworks. Covers neurons, layers, ReLU and Softmax activations, dot products, and categorical cross-entropy loss.
+GitHub: https://github.com/MarwanSummakieh/Neural-Network
+
+ELDEN RING SOCIAL GRAPHS (Python, Jupyter, NetworkX, NLP)
+Network analysis of the Elden Ring universe — mapping character relationships through community detection, NLP, and TF-IDF text analysis. DTU coursework.
+GitHub: https://github.com/MarwanSummakieh/social_graphs_project
+
+EMERGENCY ALERT APP (React Native, Expo, TypeScript, Firebase)
+A mobile app for sending emergency alerts with real-time GPS location and push notifications. Built collaboratively with 3 contributors.
+GitHub: https://github.com/MarwanSummakieh/Emergency-Button
+
+CUSTOM TERMINAL (Go)
+A custom terminal emulator built from scratch in Go — exploring systems programming, command parsing, and process management.
+GitHub: https://github.com/MarwanSummakieh/Terminal
+
+NOT PIRATE BAY (React, TypeScript, Azure Static Web Apps)
+A React + TypeScript web application with Azure Static Web Apps CI/CD pipeline and GitHub Actions deployment.
+GitHub: https://github.com/MarwanSummakieh/Not-Pirate-bay
+
+COLLABORATIVE PROJECTS
+
+VIBE-OPSY — SKIN CANCER DETECTION AI (React 19, TypeScript, Three.js, React Three Fiber, Framer Motion, Tailwind CSS, Cloudflare Workers)
+An ML-focused skin lesion classification app that performs multi-class prediction across 7 categories from dermatoscopic images. The project emphasizes model inference workflow and reliable prediction delivery, with a retro-futuristic 3D interface (Macintosh Classic + thermal receipt UI) to present outputs clearly. Team of 5 contributors.
+Live: https://vibe-opsy.aryan-mi.workers.dev/
+GitHub: https://github.com/Aryan-Mi/vibe-opsy
+
+MULTI-AGENT SYSTEM WARMUP (Python, AI Planning, Search Algorithms)
+A multi-agent systems exercise from DTU course 02285 — implementing collaborative agent planning, coordination, and problem-solving in structured environments.
+GitHub: https://github.com/WendyHui805/02285-Multi-Agent-System-Warmup
 
 EDUCATION
-Master's in Human-Centered Artificial Intelligence (In progress)
+Master's in Human-Centered Artificial Intelligence (In progress) — DTU, Denmark's Technical University
 Bachelor's in Software Engineering, VIA University College, Denmark (2019 - 2022)
 • Algorithms and Data Structures: C
 • .NET Development: A
@@ -52,10 +126,21 @@ Microsoft Certified: Power Platform App Maker Associate
 Credential ID: F3E768ADDBF1844   Certification Number: ADE462-0AECAQ   Earned: 28 April 2024
 
 SKILLS
-Front-end: React, Next.js, TypeScript, Tailwind CSS, Microsoft Office Add-in Framework
-Back-end & Scripting: Python, C# (learning), PowerShell, Azure CLI, REST APIs
-Cloud & DevOps: Azure Resource Manager, Azure Functions, AWS, Vercel, CI/CD, Git
-Collaboration & Design: Figma, Relume, design system governance, human-centered research synthesis
+Languages: Python, JavaScript, TypeScript, Java, C#, Go, Kotlin
+Front-End: React, React Native, Next.js, Three.js, React Three Fiber, Tailwind CSS
+Back-End: Flask, Node.js, ASP.NET, .NET, REST APIs
+Cloud & DevOps: Azure, Docker, Cloudflare Workers, PowerShell, Vercel, CI/CD, GitHub Actions
+Game Dev & VR: Unity, C# for Unity, XR Interaction Toolkit, OpenXR, Oculus XR, Unity Input System, Unity UI Toolkit, URP, ShaderLab, HLSL, EzySlice
+Databases: MongoDB, SQL, Firebase
+AI & Data: Neural Networks, NLP / TF-IDF, NetworkX, Jupyter, MLOps, Multi-Agent Systems, Human-Centered AI
+Creative Tools: Blender (learning), Figma, UX Research, 3D Modeling
+Collaboration: Git, GitHub, Microsoft Power Platform, Notion
+
+CURRENTLY LEARNING
+• Blender — 3D modeling & visual storytelling
+• VR experience design with Unity XR, OpenXR, haptics, and physics-driven interactions
+• Human-Centered AI research at DTU
+• Advanced game AI & behavior systems
 
 LANGUAGES
 English - Bilingual
@@ -63,7 +148,7 @@ Danish - Speaking
 Arabic - Native
 
 HOBBIES
-Football (watching and playing), Table tennis, Listening to music, Writing short stories, Video game development, D&D campaign design
+Football (watching and playing), Table tennis, Learning to play the piano, Writing short stories, Video games, Creating visual experiences in VR, Learning 3D modeling in Blender
 
 ## Contact Information
 * **LinkedIn:** https://www.linkedin.com/in/marwan-summakieh-36aab4290/
