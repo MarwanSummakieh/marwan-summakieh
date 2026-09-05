@@ -3,11 +3,11 @@ import type { ReactNode } from "react";
 type Splat = "tag" | "violet" | "pink" | "peach" | "sky";
 
 const splatColor: Record<Splat, string> = {
-  tag: "var(--tag)",
-  violet: "var(--violet)",
-  pink: "var(--pink)",
-  peach: "var(--peach)",
-  sky: "var(--sky)",
+  tag: "rgba(80, 227, 128, 0.5)",
+  violet: "rgba(109, 92, 255, 0.5)",
+  pink: "rgba(255, 77, 141, 0.45)",
+  peach: "rgba(255, 178, 122, 0.45)",
+  sky: "rgba(88, 200, 255, 0.45)",
 };
 
 interface SectionHeadProps {
@@ -20,16 +20,21 @@ interface SectionHeadProps {
 }
 
 const SectionHead = ({ eyebrow, title, lede, splat = "tag", align = "left", id }: SectionHeadProps) => (
-  <div id={id} className={`relative scroll-mt-24 ${align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-4xl"}`}>
+  <div id={id} className={`relative scroll-mt-28 ${align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-4xl"}`}>
     <span
       aria-hidden
-      className="splat -left-10 -top-10 h-40 w-56"
+      className="splat -top-16 left-0 h-44 w-72 opacity-60"
       style={{ background: splatColor[splat] }}
     />
-    <span aria-hidden className="splat -top-6 left-40 h-24 w-32 opacity-40" style={{ background: "var(--pink)" }} />
-    <p className={`sticker sticker-${splat === "tag" ? "tag" : splat} relative`}>{eyebrow}</p>
-    <h2 className="font-display outline-text relative mt-4 text-5xl leading-[0.9] sm:text-6xl lg:text-7xl">{title}</h2>
-    {lede && <p className="relative mt-5 max-w-2xl text-base leading-7 text-chalk/70 sm:text-lg">{lede}</p>}
+    <p className={`eyebrow relative ${align === "center" ? "flex justify-center" : ""}`}>{eyebrow}</p>
+    <h2 className="font-display relative mt-3 text-4xl font-semibold leading-[1.05] text-chalk sm:text-5xl lg:text-6xl">
+      {title}
+    </h2>
+    {lede && (
+      <p className={`relative mt-4 max-w-2xl text-base leading-7 text-chalk-dim sm:text-lg ${align === "center" ? "mx-auto" : ""}`}>
+        {lede}
+      </p>
+    )}
   </div>
 );
 

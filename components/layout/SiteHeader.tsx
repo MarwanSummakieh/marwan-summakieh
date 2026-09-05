@@ -16,16 +16,28 @@ const navItems = [
 const SiteHeader = () => {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
 
   return (
-    <header className="sticky top-0 z-50 border-b-2 border-halo bg-wall/90 text-chalk shadow-[0_4px_0_#000] backdrop-blur-xl">
-      <div className="mx-auto max-w-7xl px-5 py-2.5 sm:px-8">
+    <header
+      className={`sticky top-0 z-50 border-b transition-colors duration-300 ${
+        scrolled ? "border-line bg-[rgba(10,10,12,0.85)] backdrop-blur-xl" : "border-transparent bg-[rgba(10,10,12,0.6)] backdrop-blur-md"
+      }`}
+    >
+      <div className="mx-auto max-w-7xl px-5 py-3 sm:px-8">
         <div className="flex items-center justify-between gap-4">
           <Link href="/" className="group inline-flex items-center gap-3" aria-label="Home">
             <Image
@@ -34,56 +46,66 @@ const SiteHeader = () => {
               width={1404}
               height={489}
               priority
-              className="h-10 w-auto transition group-hover:-rotate-2 group-hover:scale-105 sm:h-11"
+              className="h-9 w-auto transition group-hover:scale-[1.03] sm:h-10"
             />
-            <span className="hidden font-marker text-sm text-chalk/70 lg:inline">marwan summakieh</span>
+            <span className="hidden h-4 w-px bg-line-strong sm:inline-block" aria-hidden />
+            <span className="hidden font-mono text-xs uppercase tracking-[0.2em] text-chalk-mute lg:inline">
+              marwan summakieh
+            </span>
           </Link>
 
           <div className="flex items-center gap-2">
             <button
               type="button"
-              className="border-2 border-halo bg-concrete p-2 text-chalk shadow-[3px_3px_0_#000] transition hover:bg-tag hover:text-ink md:hidden"
+              className="rounded-lg border border-line bg-white/[0.03] p-2 text-chalk-dim transition hover:border-line-strong hover:text-chalk md:hidden"
               onClick={() => setIsMobileMenuOpen((prev) => !prev)}
               aria-label={isMobileMenuOpen ? "Close navigation" : "Open navigation"}
               aria-expanded={isMobileMenuOpen}
             >
-              {isMobileMenuOpen ? <XMarkIcon className="h-6 w-6" /> : <Bars3Icon className="h-6 w-6" />}
+              {isMobileMenuOpen ? <XMarkIcon className="h-5 w-5" /> : <Bars3Icon className="h-5 w-5" />}
             </button>
 
-            <nav className="hidden items-center gap-1 md:flex">
+            <nav className="hidden items-center gap-1 md:flex" aria-label="Main">
               {navItems.map((item) => {
                 const active = isActive(item.href);
-                const isContact = item.href === "/contact";
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`font-display px-3.5 py-1.5 text-lg tracking-wide transition ${
-                      active
-                        ? "bg-tag text-ink shadow-[3px_3px_0_#000] outline outline-2 outline-ink"
-                        : isContact
-                          ? "text-pink hover:bg-pink hover:text-halo hover:shadow-[3px_3px_0_#000]"
-                          : "text-chalk/80 hover:bg-halo hover:text-ink hover:shadow-[3px_3px_0_#000]"
+                    className={`relative rounded-full px-4 py-1.5 text-sm font-medium transition ${
+                      active ? "bg-white/[0.07] text-chalk" : "text-chalk-dim hover:bg-white/[0.04] hover:text-chalk"
                     }`}
                   >
                     {item.label}
+                    {active && (
+                      <span
+                        aria-hidden
+                        className="absolute -bottom-[3px] left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-tag shadow-[0_0_8px_rgba(80,227,128,0.9)]"
+                      />
+                    )}
                   </Link>
                 );
               })}
+              <Link href="/contact" className="btn-tag ml-2 px-4 py-1.5 text-xs">
+                Let&apos;s talk
+              </Link>
             </nav>
           </div>
         </div>
 
         {isMobileMenuOpen && (
-          <nav className="mt-3 flex flex-col gap-1 border-2 border-halo bg-concrete p-2 shadow-[4px_4px_0_#000] md:hidden">
+          <nav
+            className="mt-3 flex flex-col gap-1 rounded-2xl border border-line bg-[rgba(18,18,22,0.95)] p-2 shadow-2xl shadow-black/60 md:hidden"
+            aria-label="Mobile"
+          >
             {navItems.map((item) => {
               const active = isActive(item.href);
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`font-display px-3 py-2 text-xl tracking-wide transition ${
-                    active ? "bg-tag text-ink" : "text-chalk/80 hover:bg-halo hover:text-ink"
+                  className={`rounded-xl px-4 py-2.5 text-base font-medium transition ${
+                    active ? "bg-white/[0.07] text-chalk" : "text-chalk-dim hover:bg-white/[0.04] hover:text-chalk"
                   }`}
                 >
                   {item.label}

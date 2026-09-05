@@ -9,9 +9,15 @@ export const metadata = {
 };
 
 const icons: Record<string, React.ReactNode> = {
-  Email: <EnvelopeIcon className="h-6 w-6" />,
-  Phone: <PhoneIcon className="h-6 w-6" />,
-  Location: <MapPinIcon className="h-6 w-6" />,
+  Email: <EnvelopeIcon className="h-5 w-5" />,
+  Phone: <PhoneIcon className="h-5 w-5" />,
+  Location: <MapPinIcon className="h-5 w-5" />,
+};
+
+const accents: Record<string, string> = {
+  Email: "bg-[rgba(80,227,128,0.1)] text-tag border-[rgba(80,227,128,0.35)]",
+  Phone: "bg-[rgba(88,200,255,0.1)] text-sky border-[rgba(88,200,255,0.35)]",
+  Location: "bg-[rgba(109,92,255,0.12)] text-[#a99dff] border-[rgba(109,92,255,0.4)]",
 };
 
 const ContactPage = () => {
@@ -19,8 +25,8 @@ const ContactPage = () => {
 
   return (
     <div className="text-chalk">
-      <section className="drips bricks border-b-2 border-halo shadow-[0_4px_0_#000]">
-        <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
+      <section className="drips bricks border-b border-line">
+        <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
           <SectionHead
             eyebrow="contact"
             title={
@@ -33,36 +39,41 @@ const ContactPage = () => {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 pb-8 pt-20 sm:px-8">
-        <div className="grid gap-8 lg:grid-cols-3">
-          {contact.map((item, i) => (
+      <section className="mx-auto max-w-7xl px-5 pt-16 sm:px-8">
+        <div className="grid gap-6 lg:grid-cols-3">
+          {contact.map((item) => (
             <a
               key={item.label}
               href={item.href}
               target={item.label === "Location" ? "_blank" : undefined}
               rel={item.label === "Location" ? "noopener noreferrer" : undefined}
-              className={`piece flex flex-col p-6 ${["-rotate-[0.6deg]", "rotate-[0.5deg]", "-rotate-[0.3deg]"][i]}`}
+              className="piece group flex flex-col p-6"
             >
-              <span className="inline-flex h-11 w-11 items-center justify-center border-2 border-ink bg-tag text-ink shadow-[3px_3px_0_#000]">
+              <span
+                className={`inline-flex h-11 w-11 items-center justify-center rounded-xl border transition ${accents[item.label] ?? "bg-white/5 text-chalk border-line-strong"}`}
+              >
                 {icons[item.label]}
               </span>
               <p className="eyebrow mt-5">{item.label}</p>
-              <p className="font-display mt-1 break-words text-2xl leading-tight sm:text-3xl">{item.value}</p>
+              <p className="font-display mt-1.5 break-words text-xl font-semibold leading-snug transition group-hover:text-tag sm:text-2xl">
+                {item.value}
+              </p>
             </a>
           ))}
         </div>
 
-        <div className="piece piece-static mt-12 grid gap-6 p-6 sm:p-8 md:grid-cols-[1fr,auto] md:items-center">
+        <div className="piece piece-static mt-8 grid gap-6 p-6 sm:p-8 md:grid-cols-[1fr,auto] md:items-center">
           <div>
             <p className="sticker sticker-violet">links</p>
-            <p className="mt-4 max-w-xl text-sm leading-6 text-chalk/70">
-              All source lives on GitHub. Career history and recommendations are on LinkedIn. If you&apos;re hiring in Copenhagen or remote, email is fastest.
+            <p className="mt-4 max-w-xl text-sm leading-6 text-chalk-dim">
+              All source lives on GitHub. Career history and recommendations are on LinkedIn. If you&apos;re hiring in
+              Copenhagen or remote, email is fastest.
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
             {socials.map((link) => (
               <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" className="btn-ghost">
-                {link.label === "LinkedIn" ? <FaLinkedin className="h-5 w-5" /> : <FaGithub className="h-5 w-5" />}
+                {link.label === "LinkedIn" ? <FaLinkedin className="h-4 w-4" /> : <FaGithub className="h-4 w-4" />}
                 {link.label}
               </a>
             ))}

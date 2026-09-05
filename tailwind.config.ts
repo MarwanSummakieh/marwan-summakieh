@@ -21,7 +21,11 @@ export default {
         "wall-2": "var(--wall-2)",
         concrete: "var(--concrete)",
         "concrete-2": "var(--concrete-2)",
+        line: "var(--line)",
+        "line-strong": "var(--line-strong)",
         chalk: "var(--chalk)",
+        "chalk-dim": "var(--chalk-dim)",
+        "chalk-mute": "var(--chalk-mute)",
         tag: "var(--tag)",
         "tag-deep": "var(--tag-deep)",
         violet: "var(--violet)",
@@ -42,8 +46,8 @@ export default {
       fontFamily: {
         sans: ["var(--font-geist-sans)"],
         mono: ["var(--font-geist-mono)"],
-        display: ["var(--font-bangers)", "Impact", "Arial Black", "sans-serif"],
-        marker: ["var(--font-marker)", "Comic Sans MS", "cursive"],
+        display: ["var(--font-display)", "var(--font-geist-sans)", "system-ui", "sans-serif"],
+        marker: ["var(--font-geist-mono)"],
       },
       keyframes: {
         wiggle: {

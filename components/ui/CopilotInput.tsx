@@ -19,10 +19,10 @@ const samplePrompts = [
     "How can I contact Marwan?",
 ];
 
-const CopilotInput: React.FC<CopilotInputProps> = ({ 
-    value, 
-    onChange, 
-    onSubmit, 
+const CopilotInput: React.FC<CopilotInputProps> = ({
+    value,
+    onChange,
+    onSubmit,
     onKeyPress,
     isLoading = false,
 }) => {
@@ -39,10 +39,10 @@ const CopilotInput: React.FC<CopilotInputProps> = ({
 
     // Create a synthetic event to pass to the onChange handler
     // This mimics a user typing into the input field
-    const syntheticEvent = { 
-      target: { 
-        value: randomPrompt 
-      } 
+    const syntheticEvent = {
+      target: {
+        value: randomPrompt
+      }
     } as React.ChangeEvent<HTMLInputElement>; // Type assertion
 
     onChange(syntheticEvent); // Update the input field in the parent component
@@ -50,51 +50,46 @@ const CopilotInput: React.FC<CopilotInputProps> = ({
 
   return (
     <div
-      className="flex w-full items-center space-x-2 border-2 border-halo bg-wall p-2 shadow-[4px_4px_0_#000]"
+      className="flex w-full items-center gap-2 rounded-full border border-line-strong bg-wall py-1.5 pl-5 pr-1.5 transition focus-within:border-[rgba(80,227,128,0.5)] focus-within:shadow-[0_0_0_3px_rgba(80,227,128,0.12)]"
       aria-busy={isLoading}
     >
-      {/* Input Field - Added min-w-0 */}
+      {/* Input Field */}
       <input
         type="text"
         value={value}
         onChange={onChange}
         onKeyPress={onKeyPress}
         placeholder="Transmit query..."
-        className="min-w-0 flex-1 bg-transparent px-2 text-base font-bold text-chalk placeholder-white/35 focus:outline-none"
+        className="min-w-0 flex-1 bg-transparent py-1.5 text-base text-chalk placeholder-white/30 focus:outline-none"
         aria-label="Chat input"
         disabled={isLoading}
       />
 
-      {/* Grouping auxiliary action buttons - Added flex-shrink-0 */}
-      <div className="flex items-center space-x-1 flex-shrink-0">
-        {/* Sparkles Icon Button */}
-        <button 
-          onClick={handleSparkleClick}
-          className="p-2 text-chalk/70 transition-colors hover:bg-halo hover:text-ink"
-          aria-label="Suggest a prompt"
-          disabled={isLoading}
-        >
-          <SparklesIcon className="h-6 w-6" />
-        </button>
+      {/* Sparkles suggestion button */}
+      <button
+        onClick={handleSparkleClick}
+        className="flex-shrink-0 rounded-full p-2 text-chalk-mute transition-colors hover:bg-white/[0.06] hover:text-tag"
+        aria-label="Suggest a prompt"
+        disabled={isLoading}
+      >
+        <SparklesIcon className="h-5 w-5" />
+      </button>
 
-        {/* Mic Icon Button Removed */}
-      </div>
-
-      {/* Submit Button - Added flex-shrink-0 */}
+      {/* Submit Button */}
       <button
         onClick={onSubmit}
         disabled={isSendDisabled}
-        className="flex shrink-0 items-center justify-center bg-tag p-2 text-ink border-2 border-ink transition-all hover:bg-peach disabled:bg-neutral-600 disabled:opacity-50"
+        className="flex shrink-0 items-center justify-center rounded-full bg-tag p-2.5 text-ink transition-all hover:bg-[#6cf094] disabled:bg-concrete-2 disabled:text-chalk-mute disabled:opacity-60"
         aria-label="Send message"
       >
         {isLoading ? (
-          <span className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-white/70 border-t-transparent" />
+          <span className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-black/50 border-t-transparent" />
         ) : (
-          <PaperAirplaneIcon className="h-6 w-6" />
+          <PaperAirplaneIcon className="h-5 w-5" />
         )}
       </button>
     </div>
   );
 };
 
-export default React.memo(CopilotInput); 
+export default React.memo(CopilotInput);

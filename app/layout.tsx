@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Bangers, Permanent_Marker } from "next/font/google";
+import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import ChatDrawer from "@/components/layout/ChatDrawer";
@@ -15,15 +15,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const bangers = Bangers({
-  variable: "--font-bangers",
-  weight: "400",
-  subsets: ["latin"],
-});
-
-const marker = Permanent_Marker({
-  variable: "--font-marker",
-  weight: "400",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-display",
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
 });
 
@@ -47,7 +41,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${bangers.variable} ${marker.variable} wall font-sans text-chalk antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} wall font-sans text-chalk antialiased`}>
         <SiteHeader />
         <main className="min-h-screen">{children}</main>
         <SiteFooter />

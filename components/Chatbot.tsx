@@ -22,7 +22,7 @@ interface HistoryEntry {
 
 const LoadingIndicator: React.FC = () => (
   <motion.div
-    className="inline-flex items-center gap-2 border-2 border-halo bg-concrete px-4 py-2 shadow-[3px_3px_0_#000]"
+    className="inline-flex items-center gap-2 rounded-full border border-line bg-white/[0.03] px-4 py-2"
     initial={{ opacity: 0, y: 6 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.25, ease: "easeOut" }}
@@ -30,7 +30,7 @@ const LoadingIndicator: React.FC = () => (
     {Array.from({ length: 3 }).map((_, index) => (
       <motion.span
         key={index}
-        className="h-2 w-2 bg-tag"
+        className="h-1.5 w-1.5 rounded-full bg-tag"
         animate={{ opacity: [0.4, 1, 0.4], scale: [0.85, 1.05, 0.85] }}
         transition={{
           repeat: Infinity,
@@ -148,9 +148,9 @@ const Chatbot: React.FC<ChatbotProps> = ({ onClose }) => {
       text: trimmedValue,
       role: "user",
     };
-    
-    const messagesForHistory = messages.length > 0 && messages[0].role === 'model' 
-        ? messages.slice(1) 
+
+    const messagesForHistory = messages.length > 0 && messages[0].role === 'model'
+        ? messages.slice(1)
         : messages;
 
   const history: HistoryEntry[] = messagesForHistory.map(msg => ({
@@ -178,7 +178,7 @@ const Chatbot: React.FC<ChatbotProps> = ({ onClose }) => {
 
       const data = await response.json();
       const botReply = data.reply || "Sorry, I couldn't get a response.";
-      
+
       console.log("Raw bot reply:", botReply);
 
       const newBotMessage: Message = {
@@ -214,12 +214,12 @@ const Chatbot: React.FC<ChatbotProps> = ({ onClose }) => {
   }, [submit]);
 
   return (
-  <div className="relative flex h-full flex-col overflow-hidden bg-wall text-chalk">
+  <div className="relative flex h-full flex-col overflow-hidden bg-wall-2 text-chalk">
       {onClose && (
         <button
           type="button"
           onClick={onClose}
-          className="absolute right-3 top-3 z-10 border-2 border-halo bg-concrete p-2 text-chalk shadow-[2px_2px_0_#000] transition hover:bg-pink hover:text-halo"
+          className="absolute right-3 top-3 z-10 rounded-lg border border-line bg-white/[0.03] p-2 text-chalk-dim transition hover:border-line-strong hover:bg-white/[0.07] hover:text-chalk"
           aria-label="Close chat"
         >
           <XMarkIcon className="h-5 w-5" aria-hidden />
@@ -228,21 +228,20 @@ const Chatbot: React.FC<ChatbotProps> = ({ onClose }) => {
       <div
         key="messages"
         className={cn(
-          "flex-1 space-y-4 overflow-y-auto px-4 md:space-y-6 md:px-6",
-          onClose ? "pt-12" : ""
+          "flex-1 space-y-4 overflow-y-auto px-4 md:space-y-5 md:px-6",
+          onClose ? "pt-12" : "pt-4"
         )}
       >
         {messages.map((message) => {
-          // --- Check if it's a contact info message --- > MODIFIED SECTION START
+          // --- Check if it's a contact info message ---
           let contactInfo = null;
           if (message.role === 'model') {
             contactInfo = parseContactInfo(message.text);
           }
-          // --- END CHECK --- 
 
           return (
-            <motion.div 
-              key={message.id} 
+            <motion.div
+              key={message.id}
               className="message-item w-full"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -254,10 +253,10 @@ const Chatbot: React.FC<ChatbotProps> = ({ onClose }) => {
                   message.role === "model" ? "justify-start" : "justify-end"
                 )}
               >
-                <div className="max-w-full space-y-1 text-left">
+                <div className={cn("max-w-full space-y-1.5 text-left", message.role === "user" && "max-w-[85%]")}>
                   <p
                     className={cn(
-                      "text-[11px] font-medium uppercase tracking-[0.25em]",
+                      "font-mono text-[10px] font-medium uppercase tracking-[0.22em]",
                       message.role === "model" ? "text-tag" : "text-sky"
                     )}
                   >
@@ -265,16 +264,16 @@ const Chatbot: React.FC<ChatbotProps> = ({ onClose }) => {
                   </p>
                   <div
                     className={cn(
-                      "overflow-hidden border-2 px-4 py-3 text-sm leading-relaxed shadow-lg",
+                      "overflow-hidden rounded-2xl border px-4 py-3 text-sm leading-relaxed",
                       message.role === "model"
-                        ? "border-halo bg-concrete text-chalk shadow-[4px_4px_0_#000]"
-                        : "border-tag bg-[#0b1f14] text-chalk shadow-[4px_4px_0_#000]"
+                        ? "border-line bg-concrete text-chalk"
+                        : "border-[rgba(80,227,128,0.35)] bg-[rgba(80,227,128,0.08)] text-chalk"
                     )}
                   >
                     {/* --- Render contact card or normal message --- */}
                     {message.role === "model" && contactInfo ? (
                       <div className="space-y-3">
-                        <p className="font-display text-lg text-tag">
+                        <p className="font-display text-lg font-semibold text-tag">
                           Contact information
                         </p>
                         {contactInfo.linkedIn && (
@@ -359,11 +358,11 @@ const Chatbot: React.FC<ChatbotProps> = ({ onClose }) => {
             transition={{ duration: 0.3, ease: "easeOut" }}
           >
             <div className="flex w-full justify-start">
-              <div className="space-y-1">
-                <p className="font-marker text-xs text-tag">
+              <div className="space-y-1.5">
+                <p className="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-tag">
                   NetRunner
                 </p>
-                <div className="border-2 border-halo bg-concrete px-4 py-3 shadow-[3px_3px_0_#000]">
+                <div className="rounded-2xl border border-line bg-concrete px-4 py-3">
                   <LoadingIndicator />
                 </div>
               </div>
@@ -373,8 +372,8 @@ const Chatbot: React.FC<ChatbotProps> = ({ onClose }) => {
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="relative border-t-2 border-halo bg-concrete px-4 py-3 md:px-6">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-10 bg-gradient-to-t from-concrete to-transparent" />
+      <div className="relative border-t border-line bg-concrete/60 px-4 py-3 md:px-6">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-10 bg-gradient-to-t from-wall-2 to-transparent" />
         <div className="relative z-10 w-full">
           <CopilotInput
             value={input}
@@ -389,4 +388,4 @@ const Chatbot: React.FC<ChatbotProps> = ({ onClose }) => {
   );
 };
 
-export default React.memo(Chatbot); 
+export default React.memo(Chatbot);

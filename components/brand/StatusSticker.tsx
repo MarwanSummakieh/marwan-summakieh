@@ -10,7 +10,10 @@ const styles: Record<GameProject["status"], string> = {
 
 const StatusSticker = ({ status, className = "" }: { status: GameProject["status"]; className?: string }) => (
   <span className={`sticker ${styles[status]} ${className}`}>
-    {status === "Live" && <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-ink" aria-hidden />}
+    {status === "Live" && <span className="relative inline-flex h-1.5 w-1.5" aria-hidden>
+      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-current opacity-60" />
+      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-current" />
+    </span>}
     {status}
   </span>
 );
